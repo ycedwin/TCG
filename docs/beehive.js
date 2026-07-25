@@ -104,7 +104,7 @@ export function parseTitle(title) {
       number: "",
       name: rest,
       rarity: applyVariant("DON", variant),
-      fullNumber: "",
+      fullNumber: "DON!!",
     };
   }
 
@@ -192,15 +192,22 @@ export function productToCard(product, collectionCode) {
   const handle = product.handle || "";
   const ids = resolveFullNumber(collectionCode, parsed);
 
+  const isDon =
+    (parsed.rarity || "").startsWith("DON") || /ドン!!/.test(product.title);
+  const fullNumber = isDon
+    ? "DON!!"
+    : ids.fullNumber || product.title;
+
   return {
     id: String(product.id),
     collection: collectionCode,
     set: parsed.cardSet || collectionCode,
     number: parsed.number,
-    sourceNumber: ids.sourceNumber,
-    fullNumber: ids.fullNumber || product.title,
+    sourceNumber: isDon ? "DON!!" : ids.sourceNumber,
+    fullNumber,
     name: parsed.name || product.title,
-    rarity: parsed.rarity,
+    nameEn: isDon ? "DON" : "",
+    rarity: isDon ? parsed.rarity || "DON" : parsed.rarity,
     priceHkd: Number.isFinite(price) ? price : null,
     image: thumbnailUrl(imageSrc),
     url: `${BASE}/products/${handle}`,

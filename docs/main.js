@@ -126,13 +126,46 @@ function filterCatalog(raw) {
   return { ...raw, cards, sets };
 }
 
+function isDonCard(card) {
+  return (
+    (card.rarity || "").startsWith("DON") ||
+    /ドン!!/.test(card.title || "") ||
+    /ドン!!/.test(card.name || "")
+  );
+}
+
 function normalizeCardIds(card) {
+  if (isDonCard(card)) {
+    return {
+      ...card,
+      sourceNumber: "DON!!",
+      fullNumber: "DON!!",
+      rarity: (card.rarity || "").startsWith("DON") ? card.rarity : "DON",
+    };
+  }
   // Printed id only; undo older PRB01-OP01-016 / PRB01-016 rewrites
   const fullNumber =
     card.set && card.number
       ? `${card.set}-${card.number}`
       : card.sourceNumber || card.fullNumber || "";
   return { ...card, sourceNumber: fullNumber, fullNumber };
+}
+
+/** Event attack names → show character so search finds Luffy etc. */
+function enrichNameEn(card, lookup) {
+  if (isDonCard(card)) return "DON";
+  let en =
+    card.nameEn ||
+    namesEn[lookup] ||
+    namesEn[card.fullNumber] ||
+    namesEn[card.sourceNumber] ||
+    "";
+  if (en === "DON") return en;
+  // Official card title is the attack (Gear Two / Gum-Gum …), not the character
+  if (/^(Gum-Gum|Gear )/i.test(en)) {
+    return `Monkey D. Luffy · ${en}`;
+  }
+  return en;
 }
 
 function enrichRaw(raw) {
@@ -146,11 +179,7 @@ function enrichRaw(raw) {
         `${fixed.set}-${fixed.number}`;
       return {
         ...fixed,
-        nameEn:
-          fixed.nameEn ||
-          namesEn[lookup] ||
-          namesEn[fixed.fullNumber] ||
-          "",
+        nameEn: enrichNameEn(fixed, lookup),
       };
     }),
   };
@@ -215,6 +244,8 @@ function matchesQuery(card, q) {
     `${card.set}-${card.number}`,
     card.nameEn,
     card.collection,
+    card.rarity,
+    isDonCard(card) ? "don don!!" : "",
   ]
     .filter(Boolean)
     .join(" ")
