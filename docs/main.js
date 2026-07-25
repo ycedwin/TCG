@@ -19,17 +19,39 @@ const els = {
 let catalog = null;
 let namesEn = {};
 let setsMeta = [];
+let characterTiers = { S: [], A: [], B: [] };
+let tierMatchers = null;
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
 const MIN_PRICE_HKD = 50;
 
-/** Price-based popularity tiers (HKD) */
-function popularityTier(price) {
-  if (price == null || Number.isNaN(price)) return { tier: "C", label: "Tier C" };
-  if (price >= 1000) return { tier: "S", label: "Tier S" };
-  if (price >= 200) return { tier: "A", label: "Tier A" };
-  if (price >= 50) return { tier: "B", label: "Tier B" };
+function normalizeName(s) {
+  return String(s || "")
+    .toLowerCase()
+    .replace(/[.\s・'’\-_/]/g, "");
+}
+
+function buildTierMatchers() {
+  const order = ["S", "A", "B"];
+  return order.flatMap((tier) =>
+    (characterTiers[tier] || [])
+      .map((kw) => ({ tier, key: normalizeName(kw) }))
+      .filter((x) => x.key.length >= 2)
+      .sort((a, b) => b.key.length - a.key.length),
+  );
+}
+
+/** Character popularity tier (not price) */
+function popularityTier(card) {
+  if (!tierMatchers) tierMatchers = buildTierMatchers();
+  const hay = normalizeName(
+    [card.nameEn, card.name, card.title].filter(Boolean).join(" "),
+  );
+  if (!hay) return { tier: "C", label: "Tier C" };
+  for (const { tier, key } of tierMatchers) {
+    if (hay.includes(key)) return { tier, label: `Tier ${tier}` };
+  }
   return { tier: "C", label: "Tier C" };
 }
 
@@ -182,7 +204,7 @@ function render() {
           const cardNo = c.fullNumber || c.title || "";
           const setNo = c.collection || c.set || "";
           const en = c.nameEn || "";
-          const { tier, label } = popularityTier(c.priceHkd);
+          const { tier, label } = popularityTier(c);
           const thumb = c.image
             ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${en ? " · " + en : ""}`)}" aria-label="Enlarge card art">
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
@@ -194,7 +216,7 @@ function render() {
               <div class="info">
                 <div class="num-row">
                   <span class="num">${escapeHtml(cardNo)}</span>
-                  <span class="tier tier-${tier}" title="Popularity by market price">${escapeHtml(label)}</span>
+                  <span class="tier tier-${tier}" title="Character popularity">${escapeHtml(label)}</span>
                 </div>
                 ${setNo ? `<p class="set">${escapeHtml(setNo)}</p>` : ""}
                 ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
@@ -232,12 +254,17 @@ async function applyCatalog(next, { sourceLabel, offline = false, persistData = 
 }
 
 async function loadMeta() {
-  const [namesRes, setsRes] = await Promise.all([
+  const [namesRes, setsRes, tiersRes] = await Promise.all([
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
+    fetch("./data/character-tiers.json"),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
+  if (tiersRes.ok) {
+    characterTiers = await tiersRes.json();
+    tierMatchers = null;
+  }
 }
 
 async function loadBundledCatalog() {

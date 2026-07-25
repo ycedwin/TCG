@@ -1,5 +1,5 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v5";
+const CACHE = "op-price-v6";
 const IMG_CACHE = "op-images-v1";
 const PRECACHE = [
   "./",
@@ -11,6 +11,7 @@ const PRECACHE = [
   "./manifest.webmanifest",
   "./data/sets.json",
   "./data/names-en.json",
+  "./data/character-tiers.json",
   "./data/catalog.json",
 ];
 
@@ -63,7 +64,8 @@ self.addEventListener("fetch", (event) => {
 
   const isCatalog =
     url.pathname.endsWith("/data/catalog.json") ||
-    url.pathname.endsWith("/data/names-en.json");
+    url.pathname.endsWith("/data/names-en.json") ||
+    url.pathname.endsWith("/data/character-tiers.json");
 
   if (isCatalog) {
     event.respondWith(
