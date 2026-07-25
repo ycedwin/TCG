@@ -2,7 +2,7 @@
 
 export const BASE = "https://beehivetcg.com";
 export const PAGE_LIMIT = 250;
-export const CACHE_KEY = "op-catalog-v5";
+export const CACHE_KEY = "op-catalog-v6";
 const IDB_NAME = "op-prices";
 const IDB_STORE = "kv";
 
@@ -166,27 +166,16 @@ export function parseTitle(title) {
   };
 }
 
-/**
- * PRB/PROMO listings keep the original printed id in the title (e.g. OP01-016)
- * but belong to the shop collection (PRB01). Display as PRB01-OP01-016 so
- * reprints from different sets don't collide (OP01-016 vs ST04-016).
- */
+/** Printed card id (OP01-016). Shop set lives in `collection` (PRB01). */
 export function resolveFullNumber(collectionCode, parsed) {
   const sourceNumber =
     parsed.fullNumber ||
     (parsed.cardSet && parsed.number
       ? `${parsed.cardSet}-${parsed.number}`
       : "");
-  const col = collectionCode || "";
-  if ((col.startsWith("PRB") || col === "PROMO") && sourceNumber) {
-    return {
-      sourceNumber,
-      fullNumber: `${col}-${sourceNumber}`,
-    };
-  }
   return {
-    sourceNumber: sourceNumber,
-    fullNumber: sourceNumber || productTitleFallback(parsed, col),
+    sourceNumber,
+    fullNumber: sourceNumber || productTitleFallback(parsed, collectionCode),
   };
 }
 

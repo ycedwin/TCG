@@ -70,27 +70,12 @@ function filterCatalog(raw) {
 }
 
 function normalizeCardIds(card) {
-  const col = card.collection || "";
-  let sourceNumber = card.sourceNumber || "";
-  // Recover original printed id if an older cache used OP01-016 under PRB01
-  if (!sourceNumber) {
-    const fn = card.fullNumber || "";
-    if (col && fn.startsWith(`${col}-`) && /^(OP|EB|ST|P)\d*/i.test(fn.slice(col.length + 1))) {
-      sourceNumber = fn.slice(col.length + 1);
-    } else if (card.set && card.number) {
-      sourceNumber = `${card.set}-${card.number}`;
-    } else {
-      sourceNumber = fn;
-    }
-  }
-  if ((col.startsWith("PRB") || col === "PROMO") && sourceNumber) {
-    // Avoid PRB01-PRB01-OP01-016 if already prefixed
-    const fullNumber = sourceNumber.startsWith(`${col}-`)
-      ? sourceNumber
-      : `${col}-${sourceNumber}`;
-    return { ...card, sourceNumber, fullNumber };
-  }
-  return { ...card, sourceNumber };
+  // Printed id only; undo older PRB01-OP01-016 / PRB01-016 rewrites
+  const fullNumber =
+    card.set && card.number
+      ? `${card.set}-${card.number}`
+      : card.sourceNumber || card.fullNumber || "";
+  return { ...card, sourceNumber: fullNumber, fullNumber };
 }
 
 function enrichRaw(raw) {
@@ -237,6 +222,7 @@ function render() {
       const items = list
         .map((c) => {
           const cardNo = c.fullNumber || c.title || "";
+          const setCode = c.collection || c.set || "";
           const en = c.nameEn || "";
           const { tier, label } = popularityTier(c);
           const thumb = c.image
@@ -252,6 +238,7 @@ function render() {
                   <span class="num">${escapeHtml(cardNo)}</span>
                   <span class="tier tier-${tier}" title="Character popularity">${escapeHtml(label)}</span>
                 </div>
+                ${setCode ? `<p class="set">${escapeHtml(setCode)}</p>` : ""}
                 ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
               </div>
               <div class="price">${formatHkd(c.priceHkd)}</div>
