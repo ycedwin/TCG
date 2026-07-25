@@ -202,7 +202,6 @@ function render() {
       const items = list
         .map((c) => {
           const cardNo = c.fullNumber || c.title || "";
-          const setNo = c.collection || c.set || "";
           const en = c.nameEn || "";
           const { tier, label } = popularityTier(c);
           const thumb = c.image
@@ -218,7 +217,6 @@ function render() {
                   <span class="num">${escapeHtml(cardNo)}</span>
                   <span class="tier tier-${tier}" title="Character popularity">${escapeHtml(label)}</span>
                 </div>
-                ${setNo ? `<p class="set">${escapeHtml(setNo)}</p>` : ""}
                 ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
               </div>
               <div class="price">${formatHkd(c.priceHkd)}</div>
