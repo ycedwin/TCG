@@ -22,7 +22,7 @@ let setsMeta = [];
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
-const MIN_PRICE_HKD = 20;
+const MIN_PRICE_HKD = 50;
 
 /** Price-based popularity tiers (HKD) */
 function popularityTier(price) {
