@@ -99,12 +99,55 @@ function buildTierMatchers() {
   );
 }
 
+function officialNameEn(card) {
+  if (isDonCard(card)) return "";
+  for (const k of [
+    card.number && card.set ? `${card.set}-${card.number}` : "",
+    card.sourceNumber,
+    card.fullNumber,
+  ]) {
+    if (k && namesEn[k] && namesEn[k] !== "DON" && namesEn[k] !== "Event") {
+      return namesEn[k];
+    }
+  }
+  return "";
+}
+
+function isEventCard(card) {
+  if (card.nameEn === "Event") return true;
+  const en = officialNameEn(card);
+  return (
+    /^(Gum-Gum|Gear )/i.test(en) ||
+    /ゴムゴム|ギア[2-5２-５]/.test(`${card.name || ""}${card.title || ""}`)
+  );
+}
+
+/** Text used for tier match — not the Event/DON display label */
+function tierSearchText(card) {
+  const parts = [card.name, card.title, officialNameEn(card)];
+  if (isDonCard(card)) {
+    const m = `${card.title || ""} ${card.name || ""}`.match(
+      /[（(]([^）)]+)[）)]/u,
+    );
+    if (m) parts.push(m[1]);
+  }
+  // Luffy attack events (Gear Two / Gum-Gum …)
+  if (isEventCard(card)) {
+    const en = officialNameEn(card);
+    if (
+      /^(Gum-Gum|Gear )/i.test(en) ||
+      /ゴムゴム|ギア[2-5２-５]/.test(`${card.name || ""}${card.title || ""}`)
+    ) {
+      parts.push("Monkey D. Luffy", "モンキー・D・ルフィ", "Luffy", "ルフィ");
+    }
+  }
+  return normalizeName(parts.filter(Boolean).join(" "));
+}
+
 /** Character popularity tier (not price) */
 function popularityTier(card) {
   if (!tierMatchers) tierMatchers = buildTierMatchers();
-  const hay = normalizeName(
-    [card.nameEn, card.name, card.title].filter(Boolean).join(" "),
-  );
+  const hay = tierSearchText(card);
   if (!hay) return { tier: "C", label: "Tier C" };
   for (const { tier, key } of tierMatchers) {
     if (hay.includes(key)) return { tier, label: `Tier ${tier}` };
