@@ -2,7 +2,7 @@
 
 export const BASE = "https://beehivetcg.com";
 export const PAGE_LIMIT = 250;
-export const CACHE_KEY = "op-catalog-v3";
+export const CACHE_KEY = "op-catalog-v4";
 const IDB_NAME = "op-prices";
 const IDB_STORE = "kv";
 

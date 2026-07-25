@@ -17,13 +17,21 @@ const els = {
 };
 
 let catalog = null;
-let setNames = new Map();
-let namesZh = {};
+let namesEn = {};
 let setsMeta = [];
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
 const MIN_PRICE_HKD = 20;
+
+/** Price-based popularity tiers (HKD) */
+function popularityTier(price) {
+  if (price == null || Number.isNaN(price)) return { tier: "C", label: "Tier C" };
+  if (price >= 1000) return { tier: "S", label: "Tier S" };
+  if (price >= 200) return { tier: "A", label: "Tier A" };
+  if (price >= 50) return { tier: "B", label: "Tier B" };
+  return { tier: "C", label: "Tier C" };
+}
 
 function filterCatalog(raw) {
   const cards = (raw.cards || []).filter(
@@ -40,16 +48,11 @@ function filterCatalog(raw) {
 }
 
 function enrichRaw(raw) {
-  const setByCode = new Map(setsMeta.map((s) => [s.code, s]));
   return {
     ...raw,
-    sets: (raw.sets || []).map((s) => {
-      const m = setByCode.get(s.code);
-      return m ? { ...s, name: m.name, nameZh: m.nameZh } : s;
-    }),
     cards: (raw.cards || []).map((c) => ({
       ...c,
-      nameZh: c.nameZh || namesZh[c.fullNumber] || "",
+      nameEn: c.nameEn || namesEn[c.fullNumber] || "",
     })),
   };
 }
@@ -80,13 +83,6 @@ function formatSyncedAt(iso) {
 function setStatus(text, offline = false) {
   els.status.textContent = text;
   els.status.classList.toggle("is-offline", offline);
-}
-
-function setLabel(card) {
-  const s = setNames.get(card.collection);
-  if (!s) return card.collection || card.set || "";
-  if (typeof s === "string") return s;
-  return s.nameZh || s.name || card.collection || "";
 }
 
 function largeImageUrl(src) {
@@ -183,13 +179,12 @@ function render() {
     .map(([rarity, list], idx) => {
       const items = list
         .map((c) => {
-          const headline = c.fullNumber || c.name || c.title;
-          const zh = c.nameZh || "";
-          const jp =
-            c.name && c.name !== c.fullNumber && c.name !== zh ? c.name : "";
-          const set = setLabel(c);
+          const cardNo = c.fullNumber || c.title || "";
+          const setNo = c.collection || c.set || "";
+          const en = c.nameEn || "";
+          const { tier, label } = popularityTier(c.priceHkd);
           const thumb = c.image
-            ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${headline}${zh ? " · " + zh : ""}`)}" aria-label="Enlarge card art">
+            ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${en ? " · " + en : ""}`)}" aria-label="Enlarge card art">
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
               </button>`
             : `<div class="thumb missing">No art</div>`;
@@ -197,10 +192,12 @@ function render() {
             ${thumb}
             <div class="card-main">
               <div class="info">
-                <div class="num">${escapeHtml(headline)}</div>
-                ${zh ? `<p class="name name-zh">${escapeHtml(zh)}</p>` : ""}
-                ${jp ? `<p class="name name-jp">${escapeHtml(jp)}</p>` : ""}
-                ${set ? `<p class="set">${escapeHtml(set)}</p>` : ""}
+                <div class="num-row">
+                  <span class="num">${escapeHtml(cardNo)}</span>
+                  <span class="tier tier-${tier}" title="Popularity by market price">${escapeHtml(label)}</span>
+                </div>
+                ${setNo ? `<p class="set">${escapeHtml(setNo)}</p>` : ""}
+                ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
               </div>
               <div class="price">${formatHkd(c.priceHkd)}</div>
             </div>
@@ -230,22 +227,16 @@ async function applyCatalog(next, { sourceLabel, offline = false, persistData = 
   const enriched = enrichRaw(next);
   if (persistData) await persist(enriched);
   catalog = filterCatalog(enriched);
-  setNames = new Map(
-    (catalog.sets || []).map((s) => [
-      s.code,
-      { name: s.name, nameZh: s.nameZh },
-    ]),
-  );
   setStatus(`${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`, offline);
   render();
 }
 
 async function loadMeta() {
   const [namesRes, setsRes] = await Promise.all([
-    fetch("./data/names-zh.json"),
+    fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
   ]);
-  if (namesRes.ok) namesZh = await namesRes.json();
+  if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
 }
 
