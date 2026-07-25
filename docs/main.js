@@ -1,4 +1,3 @@
-import "./styles.css";
 import {
   buildCatalog,
   loadCachedCatalog,
@@ -15,7 +14,6 @@ const els = {
   results: document.getElementById("results"),
 };
 
-/** @type {{ syncedAt: string, rarityOrder: string[], sets: any[], cards: any[] } | null} */
 let catalog = null;
 let refreshing = false;
 
@@ -68,8 +66,6 @@ function matchesQuery(card, q) {
   if (!q) return true;
   const raw = q.trim().toLowerCase();
   if (!raw) return true;
-
-  // Card number only (e.g. OP16-065, 065, op16 065)
   const hay = [card.fullNumber, card.number, `${card.set}-${card.number}`]
     .filter(Boolean)
     .join(" ")
@@ -110,6 +106,14 @@ function groupByRarity(cards) {
     return a.localeCompare(b);
   });
   return keys.map((k) => [k, map.get(k)]);
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }
 
 function render() {
@@ -166,21 +170,10 @@ function render() {
     .join("");
 }
 
-function escapeHtml(s) {
-  return String(s)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
-}
-
 function applyCatalog(next, { sourceLabel, offline = false } = {}) {
   catalog = next;
   populateSets();
-  setStatus(
-    `${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`,
-    offline,
-  );
+  setStatus(`${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`, offline);
   render();
 }
 

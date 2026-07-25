@@ -1,4 +1,4 @@
-/** Beehive catalog fetch + title parse (browser + optional CLI). */
+/** Beehive catalog fetch + title parse */
 
 export const BASE = "https://beehivetcg.com";
 export const PAGE_LIMIT = 250;
@@ -220,12 +220,12 @@ function fetchProductsJsonp(url) {
   });
 }
 
-async function fetchCollection(slug, fetcher) {
+async function fetchCollection(slug) {
   const products = [];
   let page = 1;
   for (;;) {
     const url = `${BASE}/collections/${slug}/products.json?limit=${PAGE_LIMIT}&page=${page}`;
-    const data = await fetcher(url);
+    const data = await fetchProductsJsonp(url);
     const batch = data.products || [];
     if (batch.length === 0) break;
     products.push(...batch);
@@ -236,17 +236,7 @@ async function fetchCollection(slug, fetcher) {
   return products;
 }
 
-export async function buildCatalog(sets, { onProgress, fetcher } = {}) {
-  const get =
-    fetcher ||
-    (typeof document !== "undefined"
-      ? fetchProductsJsonp
-      : async (url) => {
-          const res = await fetch(url);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.json();
-        });
-
+export async function buildCatalog(sets, { onProgress } = {}) {
   const allCards = [];
   const setSummaries = [];
 
@@ -259,7 +249,7 @@ export async function buildCatalog(sets, { onProgress, fetcher } = {}) {
       name: set.name,
     });
     try {
-      const products = await fetchCollection(set.slug, get);
+      const products = await fetchCollection(set.slug);
       const cards = products.map((p) => productToCard(p, set.code));
       allCards.push(...cards);
       setSummaries.push({

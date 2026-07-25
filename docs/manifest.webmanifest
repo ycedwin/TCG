@@ -1,1 +1,18 @@
-{"name":"海賊王卡價查詢","short_name":"OP卡價","description":"One Piece 卡牌價格查詢（Beehive）","start_url":"./","display":"standalone","background_color":"#071525","theme_color":"#0b1e33","lang":"zh-Hant","scope":"./","icons":[{"src":"favicon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name": "海賊王卡價查詢",
+  "short_name": "OP卡價",
+  "description": "One Piece 卡牌價格查詢（Beehive）",
+  "start_url": "./",
+  "display": "standalone",
+  "lang": "zh-Hant",
+  "theme_color": "#0b1e33",
+  "background_color": "#071525",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
