@@ -142,7 +142,13 @@ function matchesQuery(card, q) {
   if (!q) return true;
   const raw = q.trim().toLowerCase();
   if (!raw) return true;
-  const hay = [card.fullNumber, card.number, `${card.set}-${card.number}`]
+  const hay = [
+    card.fullNumber,
+    card.number,
+    `${card.set}-${card.number}`,
+    card.nameEn,
+    card.collection,
+  ]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
