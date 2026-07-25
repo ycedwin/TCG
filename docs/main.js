@@ -151,7 +151,7 @@ function normalizeCardIds(card) {
   return { ...card, sourceNumber: fullNumber, fullNumber };
 }
 
-/** Event attack names → show character so search finds Luffy etc. */
+/** Event attack names (Gear Two / Gum-Gum …) → label as Event */
 function enrichNameEn(card, lookup) {
   if (isDonCard(card)) return "DON";
   let en =
@@ -160,11 +160,9 @@ function enrichNameEn(card, lookup) {
     namesEn[card.fullNumber] ||
     namesEn[card.sourceNumber] ||
     "";
-  if (en === "DON") return en;
-  // Official card title is the attack (Gear Two / Gum-Gum …), not the character
-  if (/^(Gum-Gum|Gear )/i.test(en)) {
-    return `Monkey D. Luffy · ${en}`;
-  }
+  if (en === "DON" || en === "Event") return en;
+  // Attack / event card titles — not character names
+  if (/^(Gum-Gum|Gear )/i.test(en)) return "Event";
   return en;
 }
 
