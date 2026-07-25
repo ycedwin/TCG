@@ -187,10 +187,50 @@ body {
   box-shadow: 0 0 0 3px rgba(232, 184, 74, 0.18);
 }
 
+.search-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+  align-items: end;
+}
+
+.price-toggle {
+  appearance: none;
+  width: 2.6rem;
+  height: 2.75rem;
+  margin-bottom: 1px;
+  border: 1px solid rgba(242, 239, 230, 0.14);
+  border-radius: 10px;
+  background: rgba(4, 14, 26, 0.65);
+  color: var(--muted);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.price-toggle:hover,
+.price-toggle[aria-expanded="true"] {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(232, 184, 74, 0.12);
+}
+
+.price-toggle.is-active:not([aria-expanded="true"]) {
+  color: var(--gold);
+  border-color: var(--gold-dim);
+}
+
 .price-filters {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.65rem;
+}
+
+.price-filters[hidden] {
+  display: none;
 }
 
 .price-filters .field input {

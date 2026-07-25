@@ -8,6 +8,8 @@ const els = {
   status: document.getElementById("status"),
   refresh: document.getElementById("refresh"),
   search: document.getElementById("search"),
+  priceToggle: document.getElementById("priceToggle"),
+  priceFilters: document.getElementById("priceFilters"),
   sellMin: document.getElementById("sellMin"),
   sellMax: document.getElementById("sellMax"),
   buyMin: document.getElementById("buyMin"),
@@ -621,16 +623,32 @@ async function refreshFromBeehive() {
   }
 }
 
+function syncPriceToggleActive() {
+  const active = [els.sellMin, els.sellMax, els.buyMin, els.buyMax].some(
+    (el) => (el.value || "").trim() !== "",
+  );
+  els.priceToggle.classList.toggle("is-active", active);
+}
+
 function wireEvents() {
   let t = 0;
   const scheduleRender = () => {
     clearTimeout(t);
-    t = setTimeout(render, 120);
+    t = setTimeout(() => {
+      syncPriceToggleActive();
+      render();
+    }, 120);
   };
   els.search.addEventListener("input", scheduleRender);
   for (const el of [els.sellMin, els.sellMax, els.buyMin, els.buyMax]) {
     el.addEventListener("input", scheduleRender);
   }
+  els.priceToggle.addEventListener("click", () => {
+    const open = els.priceFilters.hidden;
+    els.priceFilters.hidden = !open;
+    els.priceToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    if (open) els.sellMin.focus();
+  });
   els.refresh.addEventListener("click", refreshFromBeehive);
   // Start fetching large art on press/hover so open feels instant
   els.results.addEventListener("pointerdown", (e) => {
