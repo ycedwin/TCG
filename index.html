@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1e33" />
+    <meta name="description" content="海賊王 One Piece 卡牌價格查詢（Beehive 皇巢）" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Shippori+Mincho:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>海賊王卡價查詢</title>
+  </head>
+  <body>
+    <div class="bg" aria-hidden="true"></div>
+    <header class="top">
+      <div class="brand">
+        <p class="brand-mark">海賊王卡價</p>
+        <h1>卡牌價格查詢</h1>
+        <p class="tagline">資料來源：Beehive 皇巢 · 港幣 HKD</p>
+      </div>
+      <div class="status" id="status" role="status">載入中…</div>
+    </header>
+
+    <main class="shell">
+      <section class="controls" aria-label="搜尋與篩選">
+        <label class="field search-field">
+          <span>搜尋</span>
+          <input
+            id="search"
+            type="search"
+            enterkeyhint="search"
+            placeholder="卡號（如 OP16-065）或角色名（如 ルフィ）"
+            autocomplete="off"
+          />
+        </label>
+        <label class="field">
+          <span>系列</span>
+          <select id="setSelect">
+            <option value="">全部系列</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>排序</span>
+          <select id="sortSelect">
+            <option value="number">卡號</option>
+            <option value="price-asc">價格：低→高</option>
+            <option value="price-desc">價格：高→低</option>
+          </select>
+        </label>
+      </section>
+
+      <p class="meta" id="meta"></p>
+      <div id="results" class="results" aria-live="polite"></div>
+    </main>
+
+    <footer class="foot">
+      <p>價格以 Beehive 網站為準 · 離線時使用本機快取</p>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
