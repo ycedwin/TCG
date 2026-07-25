@@ -198,6 +198,7 @@ def main() -> None:
                 "buyHkd": v["buyHkd"],
                 "buyPaused": v["buyPaused"],
                 "name": v["name"],
+                "url": v["url"],
             }
             for k, v in matched.items()
         },

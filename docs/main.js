@@ -395,14 +395,39 @@ function render() {
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
               </button>`
             : `<div class="thumb missing">No art</div>`;
-          const buyHtml =
+          const buyUrl = buy?.url || "";
+          const sellPill = buyUrl
+            ? `<a class="price-pill price-sell" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist">
+                <span class="lbl">Sell</span>
+                <span class="amt">${formatHkd(c.priceHkd)}</span>
+              </a>`
+            : `<div class="price-pill price-sell" title="Sell price">
+                <span class="lbl">Sell</span>
+                <span class="amt">${formatHkd(c.priceHkd)}</span>
+              </div>`;
+          const buyPill =
             buy == null
-              ? ""
-              : `<span class="price-buy${buy.buyPaused ? " is-paused" : ""}" title="${
-                  buy.buyPaused
-                    ? "暫停回收 — buy price marked $0"
-                    : "Beehive buy / trade-in price"
-                }">Buy ${formatHkd(buy.buyHkd)}</span>`;
+              ? `<div class="price-pill price-buy" title="No buylist match">
+                  <span class="lbl">Buy</span>
+                  <span class="amt">—</span>
+                </div>`
+              : buyUrl
+                ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="${
+                    buy.buyPaused
+                      ? "暫停回收 — buy price marked $0"
+                      : "Open Beehive buylist"
+                  }">
+                  <span class="lbl">Buy</span>
+                  <span class="amt">${formatHkd(buy.buyHkd)}</span>
+                </a>`
+                : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="${
+                    buy.buyPaused
+                      ? "暫停回收 — buy price marked $0"
+                      : "Beehive buy / trade-in price"
+                  }">
+                  <span class="lbl">Buy</span>
+                  <span class="amt">${formatHkd(buy.buyHkd)}</span>
+                </div>`;
           return `<li class="card-row">
             ${thumb}
             <div class="card-main">
@@ -415,8 +440,8 @@ function render() {
                 ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
               </div>
               <div class="price">
-                <span class="price-sell" title="Sell price">${formatHkd(c.priceHkd)}</span>
-                ${buyHtml}
+                ${sellPill}
+                ${buyPill}
               </div>
             </div>
           </li>`;

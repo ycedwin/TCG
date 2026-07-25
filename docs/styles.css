@@ -438,29 +438,65 @@ body {
 
 .price {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.12rem;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-end;
+  gap: 0.4rem;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  line-height: 1.2;
+  flex-shrink: 0;
 }
 
-.price-sell {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--gold);
+.price-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  min-width: 4.6rem;
+  padding: 0.28rem 0.45rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: rgba(7, 21, 37, 0.55);
+  line-height: 1.15;
+  text-decoration: none;
+  color: inherit;
 }
 
-.price-buy {
+a.price-pill {
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
+}
+
+a.price-pill:hover {
+  border-color: rgba(232, 184, 74, 0.55);
+  background: rgba(232, 184, 74, 0.12);
+  transform: translateY(-1px);
+}
+
+.price-pill .lbl {
+  font-size: 0.62rem;
   font-weight: 600;
-  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: var(--muted);
 }
 
-.price-buy.is-paused {
+.price-pill .amt {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.price-sell .amt {
+  color: var(--gold);
+}
+
+.price-buy .amt {
+  color: var(--ink);
+}
+
+.price-buy.is-paused .amt {
   text-decoration: line-through;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .empty,
