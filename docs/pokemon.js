@@ -12,6 +12,7 @@ const els = {
   lightboxImg: document.getElementById("lightboxImg"),
   lightboxCap: document.getElementById("lightboxCap"),
   lightboxClose: document.getElementById("lightboxClose"),
+  backTop: document.getElementById("backTop"),
 };
 
 /** Prefer high-end rarities first; unknowns follow alphabetically */
@@ -359,6 +360,14 @@ function wireEvents() {
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLightbox();
   });
+  const syncBackTop = () => {
+    els.backTop.hidden = window.scrollY < 400;
+  };
+  window.addEventListener("scroll", syncBackTop, { passive: true });
+  els.backTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  syncBackTop();
 }
 
 wireEvents();
