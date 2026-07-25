@@ -104,18 +104,12 @@ function matchesQuery(card, q) {
   if (!q) return true;
   const raw = q.trim().toLowerCase();
   if (!raw) return true;
-  const hay = [
-    card.fullNumber,
-    card.number,
-    `${card.set}-${card.number}`,
-    card.nameZh,
-    card.name,
-  ]
+  const hay = [card.fullNumber, card.number, `${card.set}-${card.number}`]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
-  const compact = hay.replace(/[\s\-・]/g, "");
-  const qCompact = raw.replace(/[\s\-・]/g, "");
+  const compact = hay.replace(/[\s\-]/g, "");
+  const qCompact = raw.replace(/[\s\-]/g, "");
   return hay.includes(raw) || compact.includes(qCompact);
 }
 
