@@ -1,0 +1,5784 @@
+{
+  "note": "Brave Soul sheet cards with buyHkd > $5 not cleanly matched to a card on our page (number+rarity). Skipped 中国版 / 未開封. Not added to the app yet.",
+  "syncedAt": "2026-07-25T13:11:34.008622Z",
+  "source": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ0tls6zT7uuQQB4m0guPEJ0GQ1NkBM5bL2vyiRbBBvWx8AJd3XYU73N2mGZ_g84Cy7GyxqHrHH_UZ8/pubhtml?gid=1278494821&single=true",
+  "count": 584,
+  "cards": [
+    {
+      "fullNumber": "OP13-118",
+      "rarity": null,
+      "buyHkd": 150000.0,
+      "section": "OP13 Promo",
+      "name": "OP13-118",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-001",
+      "rarity": null,
+      "buyHkd": 110000.0,
+      "section": "ST",
+      "name": "ST01-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-004",
+      "rarity": null,
+      "buyHkd": 100000.0,
+      "section": "OP09 Promo",
+      "name": "OP09-004",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-114",
+      "rarity": null,
+      "buyHkd": 69000.0,
+      "section": "OP03 Promo",
+      "name": "OP03-114",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-106",
+      "rarity": null,
+      "buyHkd": 51000.0,
+      "section": "OP08 Promo",
+      "name": "OP08-106",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-109",
+      "rarity": null,
+      "buyHkd": 45000.0,
+      "section": "OP07 Promo",
+      "name": "OP07-109",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-119",
+      "rarity": null,
+      "buyHkd": 36000.0,
+      "section": "OP11 金銀背景 漫画絵 SP",
+      "name": "OP05-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-119",
+      "rarity": null,
+      "buyHkd": 30000.0,
+      "section": "OP13 Promo",
+      "name": "OP13-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-013",
+      "rarity": null,
+      "buyHkd": 27000.0,
+      "section": "ST",
+      "name": "ST01-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-012",
+      "rarity": null,
+      "buyHkd": 24000.0,
+      "section": "ST",
+      "name": "ST01-012",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-020",
+      "rarity": null,
+      "buyHkd": 22500.0,
+      "section": "OP12 Promo",
+      "name": "OP12-020",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-L"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-119",
+      "rarity": null,
+      "buyHkd": 19500.0,
+      "section": "OP11 金銀背景 漫画絵 SP",
+      "name": "OP05-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-091",
+      "rarity": null,
+      "buyHkd": 18000.0,
+      "section": "OP05 Promo",
+      "name": "OP05-091",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-119",
+      "rarity": null,
+      "buyHkd": 15000.0,
+      "section": "OP07 Promo",
+      "name": "OP07-119",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-010",
+      "rarity": null,
+      "buyHkd": 12000.0,
+      "section": "EB02 Promo",
+      "name": "EB02-010 英語版",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-L"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-086",
+      "rarity": null,
+      "buyHkd": 10000.0,
+      "section": "OP05 Promo",
+      "name": "OP05-086",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-093",
+      "rarity": null,
+      "buyHkd": 8400.0,
+      "section": "OP12 漫画絵 金銀背景 SP",
+      "name": "OP09-093",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-014",
+      "rarity": null,
+      "buyHkd": 8100.0,
+      "section": "ST",
+      "name": "ST21-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-004",
+      "rarity": null,
+      "buyHkd": 6900.0,
+      "section": "ST",
+      "name": "ST17-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-116",
+      "rarity": null,
+      "buyHkd": 6600.0,
+      "section": "OP03 Promo",
+      "name": "OP03-116",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-120",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "PRB01 漫画絵 / LEADER",
+      "name": "OP01-120 ロゴ有",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-013",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "PRB01 漫画絵 / LEADER",
+      "name": "OP02-013 ロゴ有",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-051",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "OP14 金銀背景 漫畫  SP",
+      "name": "OP09-051",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-RP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-093",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "OP12 漫画絵 金銀背景 SP",
+      "name": "OP09-093",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-063",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "OP12 Promo",
+      "name": "OP12-063 金文字",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-120",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "OP13 Promo",
+      "name": "OP13-120",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-006",
+      "rarity": null,
+      "buyHkd": 6000.0,
+      "section": "ST",
+      "name": "ST10-006 英語版",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-009",
+      "rarity": null,
+      "buyHkd": 5400.0,
+      "section": "OP09 Promo",
+      "name": "OP09-009",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-122",
+      "rarity": null,
+      "buyHkd": 5100.0,
+      "section": "PRB01 漫画絵 / LEADER",
+      "name": "OP03-122 ロゴ有",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SECP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-083",
+      "rarity": null,
+      "buyHkd": 5100.0,
+      "section": "PRB01 漫画絵 / LEADER",
+      "name": "OP04-083 ロゴ有",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-004",
+      "rarity": null,
+      "buyHkd": 4800.0,
+      "section": "OP13 漫画 SP 手配書 金銀背景",
+      "name": "OP09-004",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-119",
+      "rarity": null,
+      "buyHkd": 4500.0,
+      "section": "OP07 Promo",
+      "name": "OP07-119 ASIA",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST18-002",
+      "rarity": null,
+      "buyHkd": 4500.0,
+      "section": "ST",
+      "name": "ST18-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-005",
+      "rarity": null,
+      "buyHkd": 3900.0,
+      "section": "OP10 Promo",
+      "name": "OP10-005",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-071",
+      "rarity": null,
+      "buyHkd": 3600.0,
+      "section": "OP09 Promo",
+      "name": "OP07-071 JUDGE",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-051",
+      "rarity": null,
+      "buyHkd": 3300.0,
+      "section": "OP14 金銀背景 漫畫  SP",
+      "name": "OP09-051",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-RP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-003",
+      "rarity": null,
+      "buyHkd": 3300.0,
+      "section": "ST",
+      "name": "ST13-003 英語版",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-051",
+      "rarity": null,
+      "buyHkd": 2700.0,
+      "section": "OP13 Promo",
+      "name": "OP13-051 JUDGE",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-013",
+      "rarity": null,
+      "buyHkd": 2400.0,
+      "section": "OP09 Promo",
+      "name": "OP09-013",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-001",
+      "rarity": null,
+      "buyHkd": 2400.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST30-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-105",
+      "rarity": null,
+      "buyHkd": 2100.0,
+      "section": "OP08 コンパス背景 漫画絵 SP",
+      "name": "OP08-105",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-069",
+      "rarity": null,
+      "buyHkd": 1800.0,
+      "section": "OP09 Promo",
+      "name": "OP09-069",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-055",
+      "rarity": null,
+      "buyHkd": 1800.0,
+      "section": "P-",
+      "name": "p-055 英語版",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-001",
+      "rarity": null,
+      "buyHkd": 1650.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST21-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-069",
+      "rarity": null,
+      "buyHkd": 1500.0,
+      "section": "OP06 Promo",
+      "name": "OP06-069",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-080",
+      "rarity": null,
+      "buyHkd": 1350.0,
+      "section": "OP11 金銀背景 漫画絵 SP",
+      "name": "OP11-080",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-001",
+      "rarity": null,
+      "buyHkd": 1350.0,
+      "section": "ST LEADER 金文字",
+      "name": "ST01-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-015",
+      "rarity": null,
+      "buyHkd": 1350.0,
+      "section": "ST",
+      "name": "ST13-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-119",
+      "rarity": null,
+      "buyHkd": 1200.0,
+      "section": "OP09 Promo",
+      "name": "OP09-119 3周年ロゴ",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-118",
+      "rarity": null,
+      "buyHkd": 1200.0,
+      "section": "OP14 金銀背景 漫畫  SP",
+      "name": "OP14-118",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-006",
+      "rarity": null,
+      "buyHkd": 1200.0,
+      "section": "ST",
+      "name": "ST10-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST18-002",
+      "rarity": null,
+      "buyHkd": 1200.0,
+      "section": "ST",
+      "name": "ST18-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-119",
+      "rarity": null,
+      "buyHkd": 960.0,
+      "section": "OP05 異圖",
+      "name": "OP05-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-037",
+      "rarity": null,
+      "buyHkd": 900.0,
+      "section": "OP12 漫画絵 金銀背景 SP",
+      "name": "OP12-037",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-001",
+      "rarity": null,
+      "buyHkd": 900.0,
+      "section": "P-",
+      "name": "p-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-110",
+      "rarity": null,
+      "buyHkd": 810.0,
+      "section": "P-",
+      "name": "P-110",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-006",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "EB03 異圖",
+      "name": "EB03-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-005",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP10 Promo",
+      "name": "OP10-005 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-106",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP11 Promo",
+      "name": "OP11-106",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-080",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP13 赤文字",
+      "name": "OP13-080",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "P-RP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-083",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP13 赤文字",
+      "name": "OP13-083",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "P-RP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-084",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP13 赤文字",
+      "name": "OP13-084",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "P-RP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-089",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP13 赤文字",
+      "name": "OP13-089",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "P-RP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-091",
+      "rarity": null,
+      "buyHkd": 750.0,
+      "section": "OP13 赤文字",
+      "name": "OP13-091",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "P-RP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-069",
+      "rarity": null,
+      "buyHkd": 600.0,
+      "section": "OP06 Promo",
+      "name": "OP06-069 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-051",
+      "rarity": null,
+      "buyHkd": 600.0,
+      "section": "OP13 Promo",
+      "name": "OP13-051 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-066",
+      "rarity": null,
+      "buyHkd": 600.0,
+      "section": "P-",
+      "name": "P-066",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-012",
+      "rarity": null,
+      "buyHkd": 600.0,
+      "section": "ST",
+      "name": "ST01-012",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-014",
+      "rarity": null,
+      "buyHkd": 600.0,
+      "section": "ST",
+      "name": "ST21-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-001",
+      "rarity": null,
+      "buyHkd": 600.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST29-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-003",
+      "rarity": null,
+      "buyHkd": 540.0,
+      "section": "ST LEADER 金文字",
+      "name": "ST13-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-119",
+      "rarity": null,
+      "buyHkd": 520.0,
+      "section": "OP05 異圖",
+      "name": "OP05-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-118",
+      "rarity": null,
+      "buyHkd": 520.0,
+      "section": "OP06 Promo",
+      "name": "OP06-118",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-063",
+      "rarity": null,
+      "buyHkd": 520.0,
+      "section": "OP12 Promo",
+      "name": "OP12-063",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-001",
+      "rarity": null,
+      "buyHkd": 520.0,
+      "section": "ST",
+      "name": "ST01-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-003",
+      "rarity": null,
+      "buyHkd": 520.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST13-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-033",
+      "rarity": null,
+      "buyHkd": 510.0,
+      "section": "P-",
+      "name": "P-033",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-013",
+      "rarity": null,
+      "buyHkd": 480.0,
+      "section": "OP02  Promo",
+      "name": "OP02-013",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-096",
+      "rarity": null,
+      "buyHkd": 480.0,
+      "section": "OP14 金銀背景 漫畫  SP",
+      "name": "OP14-096",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-075",
+      "rarity": null,
+      "buyHkd": 480.0,
+      "section": "P-",
+      "name": "P-075",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST22-001",
+      "rarity": null,
+      "buyHkd": 480.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST22-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-054",
+      "rarity": null,
+      "buyHkd": 450.0,
+      "section": "OP11 Promo",
+      "name": "OP11-054",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-119",
+      "rarity": null,
+      "buyHkd": 450.0,
+      "section": "OP11 Promo",
+      "name": "OP11-119",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-091",
+      "rarity": null,
+      "buyHkd": 440.0,
+      "section": "OP06 漫画絵 SP",
+      "name": "OP05-091",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-093",
+      "rarity": null,
+      "buyHkd": 440.0,
+      "section": "OP06 Promo",
+      "name": "OP06-093",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-060",
+      "rarity": null,
+      "buyHkd": 440.0,
+      "section": "OP12 漫画絵 金銀背景 SP",
+      "name": "OP12-060",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-024",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "OP01 異圖",
+      "name": "OP01-024",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-077",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "OP01 異圖",
+      "name": "OP01-077",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-093",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "OP05 異圖",
+      "name": "OP05-093",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-898",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "OP08 LEADER",
+      "name": "OP08-898",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-051",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "OP13 Promo",
+      "name": "OP13-051 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-001",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "P-",
+      "name": "P-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-043",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "P-",
+      "name": "P-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-080",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "P-",
+      "name": "P-080",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-004",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "ST",
+      "name": "ST17-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-012",
+      "rarity": null,
+      "buyHkd": 400.0,
+      "section": "ST",
+      "name": "ST30-012",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-039",
+      "rarity": null,
+      "buyHkd": 390.0,
+      "section": "OP12 漫画絵 金銀背景 SP",
+      "name": "OP12-039",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-119",
+      "rarity": null,
+      "buyHkd": 360.0,
+      "section": "OP05 異圖",
+      "name": "OP05-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-105",
+      "rarity": null,
+      "buyHkd": 340.0,
+      "section": "P-",
+      "name": "P-105",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-096",
+      "rarity": null,
+      "buyHkd": 330.0,
+      "section": "OP14 金銀背景 漫畫  SP",
+      "name": "OP06-096",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-059",
+      "rarity": null,
+      "buyHkd": 320.0,
+      "section": "OP02  異圖",
+      "name": "OP02-059",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-067",
+      "rarity": null,
+      "buyHkd": 320.0,
+      "section": "OP08 Promo",
+      "name": "OP08-067",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-041",
+      "rarity": null,
+      "buyHkd": 320.0,
+      "section": "P-",
+      "name": "P-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST23-001",
+      "rarity": null,
+      "buyHkd": 320.0,
+      "section": "ST",
+      "name": "ST23-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-106",
+      "rarity": null,
+      "buyHkd": 300.0,
+      "section": "OP09 異圖",
+      "name": "OP09-106",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-043",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "EB01 異圖",
+      "name": "EB01-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-038",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP07 Promo",
+      "name": "OP07-038 英語版",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "L",
+        "P-L"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-109",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP07 Promo",
+      "name": "OP07-109 ONE PIECE DAY",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-042",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP09 LEADER",
+      "name": "OP09-042",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-033",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP10  異圖",
+      "name": "OP10-033",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-049",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP10 Promo",
+      "name": "OP10-049 JUDGE",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-114",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP11 金銀背景 漫画絵 SP",
+      "name": "OP11-114",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-034",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP12 Promo",
+      "name": "OP12-034 3周年ロゴ",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-108",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP13 Promo",
+      "name": "OP13-108",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP16-042",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "OP16 異圖",
+      "name": "OP16-042",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "TR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-080",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "P-",
+      "name": "P-080",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-004",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "ST",
+      "name": "ST10-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-008",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "ST",
+      "name": "ST29-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-009",
+      "rarity": null,
+      "buyHkd": 280.0,
+      "section": "ST",
+      "name": "ST29-009",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-012",
+      "rarity": null,
+      "buyHkd": 260.0,
+      "section": "OP13 異圖",
+      "name": "OP13-012",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-001",
+      "rarity": null,
+      "buyHkd": 260.0,
+      "section": "P-",
+      "name": "P-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-015",
+      "rarity": null,
+      "buyHkd": 260.0,
+      "section": "ST",
+      "name": "ST21-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-012",
+      "rarity": null,
+      "buyHkd": 240.0,
+      "section": "EB01 Promo",
+      "name": "EB01-012",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-073",
+      "rarity": null,
+      "buyHkd": 240.0,
+      "section": "OP07 異圖",
+      "name": "OP07-073",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-070",
+      "rarity": null,
+      "buyHkd": 240.0,
+      "section": "OP09 異圖",
+      "name": "OP09-070",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-079",
+      "rarity": null,
+      "buyHkd": 240.0,
+      "section": "OP12 漫画絵 金銀背景 SP",
+      "name": "OP12-079",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP15-108",
+      "rarity": null,
+      "buyHkd": 240.0,
+      "section": "OP15 異圖",
+      "name": "OP15-108 異圖",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-041",
+      "rarity": null,
+      "buyHkd": 240.0,
+      "section": "P-",
+      "name": "P-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-006",
+      "rarity": null,
+      "buyHkd": 220.0,
+      "section": "OP05 異圖",
+      "name": "OP05-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-066",
+      "rarity": null,
+      "buyHkd": 220.0,
+      "section": "OP07 異圖",
+      "name": "OP07-066",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-067",
+      "rarity": null,
+      "buyHkd": 220.0,
+      "section": "OP11 Promo",
+      "name": "OP11-067",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-030",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "OP01 異圖",
+      "name": "OP01-030",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-078",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "OP01 異圖",
+      "name": "OP01-078",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-119",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "OP05 Promo",
+      "name": "OP05-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SEC",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-118",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "OP07 Promo",
+      "name": "OP07-118 3周年ロゴ",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-045",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "OP10 LEADER",
+      "name": "OP10-045",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-002",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST13-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST19-002",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "ST",
+      "name": "ST19-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-014",
+      "rarity": null,
+      "buyHkd": 200.0,
+      "section": "ST",
+      "name": "ST21-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-016",
+      "rarity": null,
+      "buyHkd": 180.0,
+      "section": "OP13 Promo",
+      "name": "OP13-016",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-040",
+      "rarity": null,
+      "buyHkd": 180.0,
+      "section": "OP13 異圖",
+      "name": "OP13-040",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-047",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "OP06 異圖",
+      "name": "OP06-047",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-019",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "OP10  漫画絵 SP",
+      "name": "OP10-019",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-113",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "OP10  異圖",
+      "name": "OP10-113",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-068",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "OP13 Promo",
+      "name": "OP13-068",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-022",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "P-",
+      "name": "P-022",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-072",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "P-",
+      "name": "P-072",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-099",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "P-",
+      "name": "P-099",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-106",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "P-",
+      "name": "P-106",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-009",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "ST",
+      "name": "ST21-009",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-009",
+      "rarity": null,
+      "buyHkd": 160.0,
+      "section": "ST",
+      "name": "ST29-009",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-023",
+      "rarity": null,
+      "buyHkd": 140.0,
+      "section": "EB01 異圖",
+      "name": "EB01-023",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-093",
+      "rarity": null,
+      "buyHkd": 140.0,
+      "section": "OP06 Promo",
+      "name": "OP06-093 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-064",
+      "rarity": null,
+      "buyHkd": 140.0,
+      "section": "OP07 Promo",
+      "name": "OP07-064 コンパス背景",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-031",
+      "rarity": null,
+      "buyHkd": 140.0,
+      "section": "OP12 Promo",
+      "name": "OP12-031",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-071",
+      "rarity": null,
+      "buyHkd": 140.0,
+      "section": "OP12 異圖",
+      "name": "OP12-071",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-121",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "OP01 異圖",
+      "name": "OP01-121",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-010",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "OP11 Promo",
+      "name": "OP11-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-018",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "OP11 金銀背景 漫画絵 SP",
+      "name": "OP11-018",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-008",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "OP12 Promo",
+      "name": "OP12-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-094",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "OP12 Promo",
+      "name": "OP12-094",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-119",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "OP12 Promo",
+      "name": "OP12-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "SEC"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-041",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "P-",
+      "name": "P-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-056",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "P-",
+      "name": "P-056",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-012",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "ST",
+      "name": "ST01-012",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-001",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "ST",
+      "name": "ST17-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-014",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "ST",
+      "name": "ST29-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-001",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST30-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-014",
+      "rarity": null,
+      "buyHkd": 120.0,
+      "section": "ST",
+      "name": "ST30-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-054",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "EB02 異圖",
+      "name": "EB02-054",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-053",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP07 異圖",
+      "name": "OP07-053",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-047",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP08 異圖",
+      "name": "OP08-047",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-031",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP09 Promo",
+      "name": "OP09-031",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-051",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP09 異圖",
+      "name": "OP09-051",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-RP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-118",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP10  漫画絵 SP",
+      "name": "OP10-118",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-001",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP13 Promo",
+      "name": "OP13-001",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-L"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-083",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP14 異圖",
+      "name": "OP14-083",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-092",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "OP14 Promo",
+      "name": "OP14-092 JUDGE",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-055",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "P-",
+      "name": "P-055",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-096",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "P-",
+      "name": "P-096",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-013",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "ST",
+      "name": "ST01-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-013",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "ST",
+      "name": "ST03-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-001",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "ST LEADER 白黒版",
+      "name": "ST13-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-002",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "ST LEADER 金文字",
+      "name": "ST13-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-007",
+      "rarity": null,
+      "buyHkd": 100.0,
+      "section": "ST",
+      "name": "ST30-007",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-010",
+      "rarity": null,
+      "buyHkd": 90.0,
+      "section": "ST",
+      "name": "ST30-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-024",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP01 異圖",
+      "name": "OP01-024",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-077",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP01 異圖",
+      "name": "OP01-077",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-030",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP05 Promo",
+      "name": "OP05-030",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-020",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP08 異圖",
+      "name": "OP08-020",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-036",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP08 異圖",
+      "name": "OP08-036",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-067",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP08 Promo",
+      "name": "OP08-067 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-065",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP09 異圖",
+      "name": "OP09-065",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-004",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP10 Promo",
+      "name": "OP10-004 JUDGE",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-008",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP12 Promo",
+      "name": "OP12-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-112",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP12 異圖",
+      "name": "OP12-112",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-037",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP13 異圖",
+      "name": "OP13-037",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-043",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP13 異圖",
+      "name": "OP13-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP15-075",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "OP15 普畫",
+      "name": "OP15-075",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-046",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "P-",
+      "name": "P-046",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-065",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "P-",
+      "name": "P-065",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-066",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "P-",
+      "name": "P-066",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-075",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "P-",
+      "name": "P-075",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-097",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "P-",
+      "name": "P-097",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-115",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "P-",
+      "name": "P-115",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-008",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "ST",
+      "name": "ST01-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-013",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "ST",
+      "name": "ST03-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-017",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "ST",
+      "name": "ST03-017",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-010",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "ST",
+      "name": "ST10-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-001",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "ST",
+      "name": "ST13-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-001",
+      "rarity": null,
+      "buyHkd": 80.0,
+      "section": "ST LEADER 金文字",
+      "name": "ST13-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-025",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "OP02  LEADER",
+      "name": "OP02-025",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-058",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "OP06 異圖",
+      "name": "OP06-058",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-119",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "OP07 異圖",
+      "name": "OP07-119",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-015",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "OP12 異圖",
+      "name": "OP12-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-043",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "OP12 異圖",
+      "name": "OP12-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-010",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "ST",
+      "name": "ST21-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-004",
+      "rarity": null,
+      "buyHkd": 70.0,
+      "section": "ST",
+      "name": "ST29-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-071",
+      "rarity": null,
+      "buyHkd": 65.0,
+      "section": "OP02  LEADER",
+      "name": "OP02-071",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-062",
+      "rarity": null,
+      "buyHkd": 65.0,
+      "section": "OP11 LEADER",
+      "name": "OP11-062",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-016",
+      "rarity": null,
+      "buyHkd": 65.0,
+      "section": "ST",
+      "name": "ST30-016 ★",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-012",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "EB01 Promo",
+      "name": "EB01-012 ASIA",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-005",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP01 異圖",
+      "name": "OP01-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-078",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP01 異圖",
+      "name": "OP01-078",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-121",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP01 異圖",
+      "name": "OP01-121",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-029",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP02  異圖",
+      "name": "OP02-029",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-059",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP02  異圖",
+      "name": "OP02-059",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-062",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP02  異圖",
+      "name": "OP02-062",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-044",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP03 Promo",
+      "name": "OP03-044",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-082",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP05 異圖",
+      "name": "OP05-082",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-042",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP09 LEADER",
+      "name": "OP09-042",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-070",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP11 異圖",
+      "name": "OP11-070",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-008",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP12 異圖",
+      "name": "OP12-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-041",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "OP12 LEADER",
+      "name": "OP12-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-011",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-011",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-011",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "LEADER -  ST / P",
+      "name": "P-011",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-028",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-028",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-036",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-036",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-042",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-042",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-053",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-053",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-073",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-073",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-074",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-074",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-093",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-093",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-094",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-094",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-100",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "P-",
+      "name": "P-100",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-001",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "ST",
+      "name": "ST01-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-008",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "ST",
+      "name": "ST03-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-013",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "ST",
+      "name": "ST03-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST07-008",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "ST",
+      "name": "ST07-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST09-012",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "ST",
+      "name": "ST09-012",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST20-003",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "ST",
+      "name": "ST20-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-001",
+      "rarity": null,
+      "buyHkd": 60.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST21-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-007",
+      "rarity": null,
+      "buyHkd": 50.0,
+      "section": "OP08 異圖",
+      "name": "OP08-007",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-109",
+      "rarity": null,
+      "buyHkd": 50.0,
+      "section": "P-",
+      "name": "P-109",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST12-003",
+      "rarity": null,
+      "buyHkd": 50.0,
+      "section": "ST",
+      "name": "ST12-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-007",
+      "rarity": null,
+      "buyHkd": 50.0,
+      "section": "ST",
+      "name": "ST29-007",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-003",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "EB02 Promo",
+      "name": "EB02-003",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-113",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "OP07 異圖",
+      "name": "OP07-113",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-106",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "OP12 異圖",
+      "name": "OP12-106",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST04-001",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "ST LEADER 金文字",
+      "name": "ST04-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST14-001",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "ST",
+      "name": "ST14-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST14-001",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST14-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST16-001",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "ST",
+      "name": "ST16-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST18-001",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "ST",
+      "name": "ST18-001",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-C",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-003",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "ST",
+      "name": "ST21-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-004",
+      "rarity": null,
+      "buyHkd": 45.0,
+      "section": "ST",
+      "name": "ST21-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-003",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "EB02 異圖",
+      "name": "EB02-003",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "R"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-019",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "EB02 異圖",
+      "name": "EB02-019",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-036",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "EB02 異圖",
+      "name": "EB02-036",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-005",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP01 異圖",
+      "name": "OP01-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-094",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP01 異圖",
+      "name": "OP01-094",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-015",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP02  異圖",
+      "name": "OP02-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-068",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP02  異圖",
+      "name": "OP02-068",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-018",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP03 異圖",
+      "name": "OP03-018",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-021",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP03 LEADER",
+      "name": "OP03-021",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-064",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP04 異圖",
+      "name": "OP04-064",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-090",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP04 異圖",
+      "name": "OP04-090",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-043",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP06 異圖",
+      "name": "OP06-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-104",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP06 異圖",
+      "name": "OP06-104",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-106",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP06 異圖",
+      "name": "OP06-106",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-021",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP07 異圖",
+      "name": "OP07-021",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-052",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP08 異圖",
+      "name": "OP08-052",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-069",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP08 Promo",
+      "name": "OP08-069 コンパス背景",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-034",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP09 異圖",
+      "name": "OP09-034",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-109",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP10  異圖",
+      "name": "OP10-109",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-071",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP11 異圖",
+      "name": "OP11-071",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-031",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "OP12 異圖",
+      "name": "OP12-031",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-006",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-028",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-028",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-031",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-031",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-037",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-037",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-041",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-045",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-045",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-047",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-047",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-053",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-053",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-055",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-055",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-061",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "P-",
+      "name": "P-061 NOTFORSALE",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-008",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "ST",
+      "name": "ST03-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-002",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "ST",
+      "name": "ST10-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-002",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST10-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-003",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "ST",
+      "name": "ST13-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-004",
+      "rarity": null,
+      "buyHkd": 40.0,
+      "section": "ST",
+      "name": "ST30-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-069",
+      "rarity": null,
+      "buyHkd": 35.0,
+      "section": "OP05 異圖",
+      "name": "OP05-069",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SRP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-111",
+      "rarity": null,
+      "buyHkd": 35.0,
+      "section": "P-",
+      "name": "P-111",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-013",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "EB01 異圖",
+      "name": "EB01-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-056",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "EB01 異圖",
+      "name": "EB01-056",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-077",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP01 異圖",
+      "name": "OP01-077 ASIA",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-058",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP02  異圖",
+      "name": "OP02-058",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-122",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP03 異圖",
+      "name": "OP03-122",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SECP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-020",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP04 異圖",
+      "name": "OP04-020",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-022",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP07 異圖",
+      "name": "OP07-022",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-022",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP09 LEADER",
+      "name": "OP09-022",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-027",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP09 異圖",
+      "name": "OP09-027",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-099",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP10 LEADER",
+      "name": "OP10-099",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-101",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP11 異圖",
+      "name": "OP11-101",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-119",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP11 異圖",
+      "name": "OP11-119",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-040",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP13 異圖",
+      "name": "OP13-040",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-067",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "OP13 異圖",
+      "name": "OP13-067",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-001",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "P-",
+      "name": "P-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-022",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "P-",
+      "name": "P-022",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-047",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "P-",
+      "name": "P-047",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-108",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "P-",
+      "name": "P-108",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-116",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "P-",
+      "name": "P-116",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "PRB02-003",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "PRB02 異圖",
+      "name": "PRB02-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST12-001",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST12-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-003",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "ST",
+      "name": "ST13-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST13-003",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST13-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST16-004",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "PRB02 異圖",
+      "name": "ST16-004 ★",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-011",
+      "rarity": null,
+      "buyHkd": 30.0,
+      "section": "ST",
+      "name": "ST30-011",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-003",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB01 異圖",
+      "name": "EB01-003",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-007",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB01 異圖",
+      "name": "EB01-007",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-034",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB01 異圖",
+      "name": "EB01-034",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-049",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB01 異圖",
+      "name": "EB01-049",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-052",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB01 異圖",
+      "name": "EB01-052",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-012",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB02 異圖",
+      "name": "EB02-012",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-045",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB02 異圖",
+      "name": "EB02-045",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-054",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "EB02 異圖",
+      "name": "EB02-054",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-017",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP01 異圖",
+      "name": "OP01-017",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-096",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP02  異圖",
+      "name": "OP02-096",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-092",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP03 異圖",
+      "name": "OP03-092",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-104",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP04 異圖",
+      "name": "OP04-104",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-119",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP04 異圖",
+      "name": "OP04-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-088",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP05 異圖",
+      "name": "OP05-088",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-069",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP08 異圖",
+      "name": "OP08-069",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-034",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP09 異圖",
+      "name": "OP09-034",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-069",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP09 異圖",
+      "name": "OP09-069",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-011",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP10  異圖",
+      "name": "OP10-011",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-108",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP10  異圖",
+      "name": "OP10-108",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-051",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP11 異圖",
+      "name": "OP11-051",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-073",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP11 異圖",
+      "name": "OP11-073",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-084",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP11 異圖",
+      "name": "OP11-084",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-095",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP11 異圖",
+      "name": "OP11-095",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-073",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "OP12 異圖",
+      "name": "OP12-073",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-016",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "P-",
+      "name": "P-016",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-107",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "P-",
+      "name": "P-107",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "PRB02-018",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "PRB02 異圖",
+      "name": "PRB02-018",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-012",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST01-012",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-005",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST03-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST05-004",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST05-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST08-002",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST08-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-005",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST29-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-008",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST30-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-017",
+      "rarity": null,
+      "buyHkd": 25.0,
+      "section": "ST",
+      "name": "ST30-017 ★有り",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-022",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB01 異圖",
+      "name": "EB01-022",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-027",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB01 異圖",
+      "name": "EB01-027",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-031",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB01 異圖",
+      "name": "EB01-031",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-011",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB02 異圖",
+      "name": "EB02-011",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-044",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB02 異圖",
+      "name": "EB02-044",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-048",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB02 異圖",
+      "name": "EB02-048",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-056",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB02 異圖",
+      "name": "EB02-056",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-025",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB03 異圖",
+      "name": "EB03-025",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-027",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB03 異圖",
+      "name": "EB03-027",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-034",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB03 異圖",
+      "name": "EB03-034",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-042",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB03 異圖",
+      "name": "EB03-042",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB04-012",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "EB04 異圖",
+      "name": "EB04-012 SR",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-021",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-021",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-022",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-022",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-040",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-040",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-067",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-067",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-077",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-077 FOIL",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-093",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-093",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-096",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-096",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-097",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-097",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-102",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP01 異圖",
+      "name": "OP01-102",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-008",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-018",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-018",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-029",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-029 ASIA",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-030",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-030",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-051",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-051",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-073",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-073",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-085",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-085",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-114",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-114",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-115",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP02  異圖",
+      "name": "OP02-115",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-024",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-024",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-025",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-025",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-041",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-044",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-044",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-047",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-047",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-072",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-072",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-078",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-078",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-108",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-108",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-114",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP03 異圖",
+      "name": "OP03-114",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-013",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-028",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-028",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-030",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-030",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-044",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-044",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-051",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-051",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-060",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-060",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-072",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-072",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-082",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-082",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-092",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP04 異圖",
+      "name": "OP04-092",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-006",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-007",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-007",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-010",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-015",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-019",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-019",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-032",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-032",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-034",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-034",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-043",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-051",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-051",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-055",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-055",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-057",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-057",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-074",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-074",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-093",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-093",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-100",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP05 異圖",
+      "name": "OP05-100",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-009",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-009",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-025",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-025",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-038",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-038",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-047",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-047",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-062",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-062",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-068",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 Promo",
+      "name": "OP06-068 REIJUロゴ有",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "C-有紋"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-081",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-081",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-107",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP06 異圖",
+      "name": "OP06-107",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-005",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-015",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-015",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-029",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-029",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-046",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-046",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-047",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-047",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-053",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-053",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-071",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-071",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-072",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-072",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-111",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP07 異圖",
+      "name": "OP07-111",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-015",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-030",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-030",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-040",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-040",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-079",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-079",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-080",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-080",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-084",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-084",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP08-110",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP08 異圖",
+      "name": "OP08-110",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-009",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-009",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-023",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-023",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-037",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-037",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-046",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-046",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-048",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-048",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-051",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-051",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-RP",
+        "SP",
+        "SP-金",
+        "SP-銀"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-065",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-065",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-072",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-072",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-095",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-095",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-103",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP09 異圖",
+      "name": "OP09-103",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-016",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP10  異圖",
+      "name": "OP10-016",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-032",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP10  異圖",
+      "name": "OP10-032",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-037",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP10  異圖",
+      "name": "OP10-037",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-046",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP10  異圖",
+      "name": "OP10-046",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-090",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP10  異圖",
+      "name": "OP10-090",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-095",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP10  異圖",
+      "name": "OP10-095",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-010",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP11 異圖",
+      "name": "OP11-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-021",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP11 LEADER",
+      "name": "OP11-021",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-023",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP11 異圖",
+      "name": "OP11-023",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-031",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP11 異圖",
+      "name": "OP11-031",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-089",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP12 異圖",
+      "name": "OP12-089",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-066",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP13 異圖",
+      "name": "OP13-066",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-092",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "OP13 異圖",
+      "name": "OP13-092",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-003",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-017",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-017",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-041",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-041 鉛筆",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-098",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-098",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-106",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-106",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-120",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-120",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-121",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "P-",
+      "name": "P-121",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "PRB02-015",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "PRB02 異圖",
+      "name": "PRB02-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-004",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST01-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-015",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST01-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-004",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST17-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-005",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST17-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-006",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST21-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-008",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST21-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-017",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST21-017",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST22-001",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST22-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST22-002",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST22-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-001",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST29-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-014",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST30-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-015",
+      "rarity": null,
+      "buyHkd": 20.0,
+      "section": "ST",
+      "name": "ST30-015 ★有り",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-023",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "EB01 異圖",
+      "name": "EB01-023",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-018",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "EB03 異圖",
+      "name": "EB03-018",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB04-036",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "EB04 異圖",
+      "name": "EB04-036 SR",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB04-043",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "EB04 異圖",
+      "name": "EB04-043 R",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-089",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP02  異圖",
+      "name": "OP02-089",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-096",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP02  異圖",
+      "name": "OP02-096",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-114",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP02  異圖",
+      "name": "OP02-114",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-117",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP02  異圖",
+      "name": "OP02-117",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-016",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP04 異圖",
+      "name": "OP04-016",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-044",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP04 異圖",
+      "name": "OP04-044",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-104",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP04 異圖",
+      "name": "OP04-104",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-015",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-015",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-030",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-030",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-043",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-043",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-074",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-074",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SRP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-081",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-081",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-093",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-093",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-102",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-102",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-105",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP05 異圖",
+      "name": "OP05-105",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-023",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP06 異圖",
+      "name": "OP06-023",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-091",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP06 異圖",
+      "name": "OP06-091",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-092",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP06 異圖",
+      "name": "OP06-092",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-014",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP09 異圖",
+      "name": "OP09-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP12-028",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP12 Promo",
+      "name": "OP12-028",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-057",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP13 異圖",
+      "name": "OP13-057",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-031",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP14 普畫",
+      "name": "OP14-031",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP15-008",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "OP15 異圖",
+      "name": "OP15-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-035",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "P-",
+      "name": "P-035",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-151",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "P-",
+      "name": "P-151",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-002",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST17-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST17-003",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST17-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST23-001",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST23-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-006",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST29-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-012",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST29-012",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-002",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST30-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-003",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST30-003",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-012",
+      "rarity": null,
+      "buyHkd": 15.0,
+      "section": "ST",
+      "name": "ST30-012",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB01-003",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "EB01 異圖",
+      "name": "EB01-003",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB02-041",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "EB02 異圖",
+      "name": "EB02-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-053",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "EB03 普畫",
+      "name": "EB03-053",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "EB03-055",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "EB03 普畫",
+      "name": "EB03-055",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-021",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP01 異圖",
+      "name": "OP01-021",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-033",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP01 異圖",
+      "name": "OP01-033",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP01-041",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP01 異圖",
+      "name": "OP01-041",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP02-018",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP02  異圖",
+      "name": "OP02-018",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-003",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP03 異圖",
+      "name": "OP03-003",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-089",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP03 異圖",
+      "name": "OP03-089",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-102",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP03 異圖",
+      "name": "OP03-102",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-108",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP03 異圖",
+      "name": "OP03-108",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP03-110",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP03 異圖",
+      "name": "OP03-110",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-016",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "PRB02 普畫",
+      "name": "OP04-016",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP04-089",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP04 異圖",
+      "name": "OP04-089",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-007",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP05 異圖",
+      "name": "OP05-007",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-034",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP05 異圖",
+      "name": "OP05-034",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-082",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP05 異圖",
+      "name": "OP05-082",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-115",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP05 異圖",
+      "name": "OP05-115",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP05-117",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP05 異圖",
+      "name": "OP05-117",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-036",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP06 異圖",
+      "name": "OP06-036",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-065",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP06 異圖",
+      "name": "OP06-065",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-067",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP06 異圖",
+      "name": "OP06-067",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP06-079",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP06 異圖",
+      "name": "OP06-079",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP07-033",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP07 異圖",
+      "name": "OP07-033",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP09-014",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "PRB02 異圖",
+      "name": "OP09-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP10-032",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP10  異圖",
+      "name": "OP10-032",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP11-060",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP11 異圖",
+      "name": "OP11-060",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-072",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP13 異圖",
+      "name": "OP13-072",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-119",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP13 普畫",
+      "name": "OP13-119",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP13-120",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP13 普畫",
+      "name": "OP13-120",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SEC",
+        "P-SECP",
+        "SP"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-104",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP14 普畫",
+      "name": "OP14-104",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP15-113",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "OP15 普畫",
+      "name": "OP15-113",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-001",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "P-",
+      "name": "P-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-008",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "P-",
+      "name": "P-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-028",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "P-",
+      "name": "P-028",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "P-061",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "P-",
+      "name": "P-061",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "PRB02-011",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "PRB02 異圖",
+      "name": "PRB02-011",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "PRB02-013",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "PRB02 異圖",
+      "name": "PRB02-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST01-005",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST01-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST02-004",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST02-004",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST02-010",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST02-010",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST03-008",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST03-008",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST08-001",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST08-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST08-001",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "LEADER -  ST / P",
+      "name": "ST08-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-001",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST10-001",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-006",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST10-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST10-013",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST10-013",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST21-014",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST21-014",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST29-002",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST29-002",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-005",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST30-005",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "ST30-006",
+      "rarity": null,
+      "buyHkd": 10.0,
+      "section": "ST",
+      "name": "ST30-006",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP14-033",
+      "rarity": null,
+      "buyHkd": 8.0,
+      "section": "OP14 普畫",
+      "name": "OP14-033",
+      "reason": "ambiguous_or_rarity_mismatch",
+      "pageRarities": [
+        "P-SR"
+      ],
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP15-007",
+      "rarity": null,
+      "buyHkd": 8.0,
+      "section": "OP15 異圖",
+      "name": "OP15-007 異圖",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    },
+    {
+      "fullNumber": "OP15-025",
+      "rarity": null,
+      "buyHkd": 8.0,
+      "section": "OP15 異圖",
+      "name": "OP15-025",
+      "reason": "not_on_page",
+      "source": "bravesoul"
+    }
+  ]
+}
