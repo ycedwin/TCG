@@ -31,7 +31,7 @@
     </header>
 
     <main class="shell">
-      <section class="controls" aria-label="Search and filters">
+      <section class="controls" aria-label="Search">
         <label class="field search-field">
           <span>Search</span>
           <input
@@ -41,20 +41,6 @@
             placeholder="Card number (e.g. OP16-065 or 065)"
             autocomplete="off"
           />
-        </label>
-        <label class="field">
-          <span>Set</span>
-          <select id="setSelect">
-            <option value="">All sets</option>
-          </select>
-        </label>
-        <label class="field">
-          <span>Sort</span>
-          <select id="sortSelect">
-            <option value="number">Card number</option>
-            <option value="price-asc">Price: low → high</option>
-            <option value="price-desc">Price: high → low</option>
-          </select>
         </label>
       </section>
 
@@ -69,7 +55,6 @@
     <script type="module" src="./main.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
-        // Drop stale Workbox/old SW caches from earlier deploys
         navigator.serviceWorker.getRegistrations().then((regs) => {
           Promise.all(regs.map((r) => r.unregister())).finally(() => {
             navigator.serviceWorker.register("./sw.js").catch(() => {});

@@ -156,7 +156,6 @@ body {
 .controls {
   display: grid;
   gap: 0.75rem;
-  grid-template-columns: 1fr;
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -164,13 +163,6 @@ body {
   backdrop-filter: blur(10px);
   box-shadow: var(--shadow);
   animation: rise 0.7s ease 0.22s both;
-}
-
-@media (min-width: 720px) {
-  .controls {
-    grid-template-columns: 1.6fr 1fr 0.9fr;
-    align-items: end;
-  }
 }
 
 .field {
@@ -293,13 +285,19 @@ body {
   letter-spacing: 0.02em;
 }
 
-.info .name {
+.info .name,
+.info .set {
   margin: 0.15rem 0 0;
   color: var(--muted);
   font-size: 0.88rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.info .set {
+  font-size: 0.78rem;
+  opacity: 0.9;
 }
 
 .price {

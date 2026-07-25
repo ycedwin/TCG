@@ -8,13 +8,12 @@ const els = {
   status: document.getElementById("status"),
   refresh: document.getElementById("refresh"),
   search: document.getElementById("search"),
-  setSelect: document.getElementById("setSelect"),
-  sortSelect: document.getElementById("sortSelect"),
   meta: document.getElementById("meta"),
   results: document.getElementById("results"),
 };
 
 let catalog = null;
+let setNames = new Map();
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
@@ -62,21 +61,13 @@ function setStatus(text, offline = false) {
   els.status.classList.toggle("is-offline", offline);
 }
 
-function populateSets() {
-  const current = els.setSelect.value;
-  els.setSelect.innerHTML = `<option value="">All sets</option>`;
-  const frag = document.createDocumentFragment();
-  for (const s of catalog.sets) {
-    if (!s.count) continue;
-    const opt = document.createElement("option");
-    opt.value = s.code;
-    opt.textContent = `${s.name}（${s.count}）`;
-    frag.appendChild(opt);
-  }
-  els.setSelect.appendChild(frag);
-  if ([...els.setSelect.options].some((o) => o.value === current)) {
-    els.setSelect.value = current;
-  }
+function setLabel(card) {
+  return (
+    setNames.get(card.collection) ||
+    card.collection ||
+    card.set ||
+    ""
+  );
 }
 
 function matchesQuery(card, q) {
@@ -90,20 +81,6 @@ function matchesQuery(card, q) {
   const compact = hay.replace(/[\s\-]/g, "");
   const qCompact = raw.replace(/[\s\-]/g, "");
   return hay.includes(raw) || compact.includes(qCompact);
-}
-
-function sortCards(cards, mode) {
-  const copy = cards.slice();
-  if (mode === "price-asc") {
-    copy.sort((a, b) => (a.priceHkd ?? Infinity) - (b.priceHkd ?? Infinity));
-  } else if (mode === "price-desc") {
-    copy.sort((a, b) => (b.priceHkd ?? -1) - (a.priceHkd ?? -1));
-  } else {
-    copy.sort((a, b) =>
-      (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
-    );
-  }
-  return copy;
 }
 
 function groupByRarity(cards) {
@@ -136,18 +113,16 @@ function escapeHtml(s) {
 function render() {
   if (!catalog) return;
   const q = els.search.value;
-  const setCode = els.setSelect.value;
-  const sort = els.sortSelect.value;
 
-  let cards = catalog.cards;
-  if (setCode) cards = cards.filter((c) => c.collection === setCode);
-  cards = cards.filter((c) => matchesQuery(c, q));
-  cards = sortCards(cards, sort);
+  let cards = catalog.cards.filter((c) => matchesQuery(c, q));
+  cards = cards.slice().sort((a, b) =>
+    (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
+  );
 
   els.meta.textContent = `${cards.length} cards · updated ${formatSyncedAt(catalog.syncedAt)}`;
 
   if (cards.length === 0) {
-    els.results.innerHTML = `<div class="empty">No cards match your filters</div>`;
+    els.results.innerHTML = `<div class="empty">No cards match your search</div>`;
     return;
   }
 
@@ -160,16 +135,16 @@ function render() {
             ? `<img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />`
             : `<div class="thumb missing">No art</div>`;
           const headline = c.fullNumber || c.name || c.title;
-          const sub =
-            c.fullNumber && c.name && c.name !== c.fullNumber
-              ? c.name
-              : c.collection || "";
+          const name =
+            c.fullNumber && c.name && c.name !== c.fullNumber ? c.name : "";
+          const set = setLabel(c);
           return `<li>
             <a class="card" href="${c.url}" target="_blank" rel="noopener noreferrer">
               ${img}
               <div class="info">
                 <div class="num">${escapeHtml(headline)}</div>
-                ${sub ? `<p class="name">${escapeHtml(sub)}</p>` : ""}
+                ${name ? `<p class="name">${escapeHtml(name)}</p>` : ""}
+                ${set ? `<p class="set">${escapeHtml(set)}</p>` : ""}
               </div>
               <div class="price">${formatHkd(c.priceHkd)}</div>
             </a>
@@ -189,7 +164,7 @@ function render() {
 
 function applyCatalog(next, { sourceLabel, offline = false } = {}) {
   catalog = filterCatalog(next);
-  populateSets();
+  setNames = new Map((catalog.sets || []).map((s) => [s.code, s.name]));
   setStatus(`${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`, offline);
   render();
 }
@@ -268,8 +243,6 @@ function wireEvents() {
     clearTimeout(t);
     t = setTimeout(render, 120);
   });
-  els.setSelect.addEventListener("change", render);
-  els.sortSelect.addEventListener("change", render);
   els.refresh.addEventListener("click", refreshFromBeehive);
   window.addEventListener("online", () => {
     setStatus(`Online · ${formatSyncedAt(catalog?.syncedAt)}`);
