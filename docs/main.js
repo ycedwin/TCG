@@ -264,9 +264,13 @@ function render() {
           </li>`;
         })
         .join("");
+      const hint = rarityHint(rarity);
       return `<section class="rarity-block" style="animation-delay:${Math.min(idx, 8) * 0.04}s">
         <div class="rarity-head">
-          <h2>${escapeHtml(rarity)}</h2>
+          <div class="rarity-title">
+            <h2>${escapeHtml(hint.code)}</h2>
+            <p class="rarity-hint">${escapeHtml(hint.en)} · ${escapeHtml(hint.zh)}</p>
+          </div>
           <span>${list.length}</span>
         </div>
         <ul class="card-list">${items}</ul>
