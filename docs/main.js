@@ -26,6 +26,63 @@ let refreshing = false;
 /** Hide cheap commons — only show cards above this HKD price */
 const MIN_PRICE_HKD = 50;
 
+/** Rarity code → English + Traditional Chinese hint */
+const RARITY_BASE = {
+  C: { en: "Common", zh: "普通" },
+  UC: { en: "Uncommon", zh: "非普通" },
+  R: { en: "Rare", zh: "稀有" },
+  SR: { en: "Super Rare", zh: "超稀有" },
+  SEC: { en: "Secret Rare", zh: "秘密稀有" },
+  L: { en: "Leader", zh: "領袖卡" },
+  SP: { en: "Special", zh: "特別卡" },
+  TR: { en: "Treasure Rare", zh: "寶藏稀有" },
+  DON: { en: "DON!!", zh: "DON!!卡" },
+  Promo: { en: "Promo", zh: "宣傳卡" },
+  P: { en: "Parallel", zh: "平行版" },
+  "P-C": { en: "Parallel Common", zh: "平行·普通" },
+  "P-UC": { en: "Parallel Uncommon", zh: "平行·非普通" },
+  "P-R": { en: "Parallel Rare", zh: "平行·稀有" },
+  "P-SR": { en: "Parallel Super Rare", zh: "平行·超稀有" },
+  "P-SEC": { en: "Parallel Secret", zh: "平行·秘密稀有" },
+  "P-SECP": { en: "Secret Parallel+", zh: "高階平行·秘密" },
+  "P-SRP": { en: "Super Rare Parallel+", zh: "高階平行·超稀有" },
+  "P-RP": { en: "Rare Parallel+", zh: "高階平行·稀有" },
+  "P-L": { en: "Parallel Leader", zh: "平行·領袖" },
+  "P-P": { en: "Parallel Promo", zh: "平行·宣傳" },
+};
+
+const RARITY_SUFFIX = {
+  特殊閃版: { en: "special foil", zh: "特殊閃版" },
+  有紋: { en: "textured", zh: "有紋／壓紋" },
+  金邊: { en: "gold border", zh: "金邊" },
+  金: { en: "gold", zh: "金" },
+  銀: { en: "silver", zh: "銀" },
+};
+
+function rarityHint(code) {
+  const key = code || "?";
+  if (RARITY_BASE[key]) {
+    const { en, zh } = RARITY_BASE[key];
+    return { code: key, en, zh };
+  }
+  for (const [suf, label] of Object.entries(RARITY_SUFFIX)) {
+    if (!key.endsWith(`-${suf}`) && key !== suf) continue;
+    const base = key.endsWith(`-${suf}`) ? key.slice(0, -(suf.length + 1)) : "";
+    const baseHint = RARITY_BASE[base];
+    if (baseHint) {
+      return {
+        code: key,
+        en: `${baseHint.en} (${label.en})`,
+        zh: `${baseHint.zh}（${label.zh}）`,
+      };
+    }
+  }
+  if (key.startsWith("P-")) {
+    return { code: key, en: "Parallel variant", zh: "平行變體" };
+  }
+  return { code: key, en: "Other", zh: "其他" };
+}
+
 function normalizeName(s) {
   return String(s || "")
     .toLowerCase()
