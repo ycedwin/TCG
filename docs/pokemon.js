@@ -15,6 +15,10 @@ const els = {
   backTop: document.getElementById("backTop"),
 };
 
+/** Hide extreme buy outliers */
+const MAX_BUY_HKD = 15000;
+const MAX_BUY_YEN = 300000;
+
 /** Prefer high-end rarities first; unknowns follow alphabetically */
 const RARITY_RANK = [
   "MUR",
@@ -187,11 +191,18 @@ function closeLightbox() {
   document.body.classList.remove("is-lightbox-open");
 }
 
+function withinBuyCaps(card) {
+  if ((card.buyHkd || 0) > MAX_BUY_HKD) return false;
+  // Hareruya top listings sit at exactly ¥300,000
+  if ((card.buyYenHareruya || 0) >= MAX_BUY_YEN) return false;
+  return true;
+}
+
 function render() {
   if (!catalog) return;
   const q = els.search.value;
   let cards = (catalog.cards || []).filter(
-    (c) => matchesQuery(c, q) && matchesPriceFilters(c),
+    (c) => withinBuyCaps(c) && matchesQuery(c, q) && matchesPriceFilters(c),
   );
   cards = cards
     .slice()
