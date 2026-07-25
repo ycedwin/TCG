@@ -10,10 +10,16 @@ const els = {
   search: document.getElementById("search"),
   meta: document.getElementById("meta"),
   results: document.getElementById("results"),
+  lightbox: document.getElementById("lightbox"),
+  lightboxImg: document.getElementById("lightboxImg"),
+  lightboxCap: document.getElementById("lightboxCap"),
+  lightboxClose: document.getElementById("lightboxClose"),
 };
 
 let catalog = null;
 let setNames = new Map();
+let namesZh = {};
+let setsMeta = [];
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
@@ -31,6 +37,21 @@ function filterCatalog(raw) {
     .map((s) => ({ ...s, count: countBySet.get(s.code) || 0 }))
     .filter((s) => s.count > 0);
   return { ...raw, cards, sets };
+}
+
+function enrichRaw(raw) {
+  const setByCode = new Map(setsMeta.map((s) => [s.code, s]));
+  return {
+    ...raw,
+    sets: (raw.sets || []).map((s) => {
+      const m = setByCode.get(s.code);
+      return m ? { ...s, name: m.name, nameZh: m.nameZh } : s;
+    }),
+    cards: (raw.cards || []).map((c) => ({
+      ...c,
+      nameZh: c.nameZh || namesZh[c.fullNumber] || "",
+    })),
+  };
 }
 
 function formatHkd(n) {
@@ -62,19 +83,39 @@ function setStatus(text, offline = false) {
 }
 
 function setLabel(card) {
-  return setNames.get(card.collection) || card.collection || card.set || "";
+  const s = setNames.get(card.collection);
+  if (!s) return card.collection || card.set || "";
+  if (typeof s === "string") return s;
+  return s.nameZh || s.name || card.collection || "";
+}
+
+function largeImageUrl(src) {
+  if (!src) return "";
+  try {
+    const u = new URL(src);
+    u.searchParams.set("width", "800");
+    return u.toString();
+  } catch {
+    return src;
+  }
 }
 
 function matchesQuery(card, q) {
   if (!q) return true;
   const raw = q.trim().toLowerCase();
   if (!raw) return true;
-  const hay = [card.fullNumber, card.number, `${card.set}-${card.number}`]
+  const hay = [
+    card.fullNumber,
+    card.number,
+    `${card.set}-${card.number}`,
+    card.nameZh,
+    card.name,
+  ]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
-  const compact = hay.replace(/[\s\-]/g, "");
-  const qCompact = raw.replace(/[\s\-]/g, "");
+  const compact = hay.replace(/[\s\-・]/g, "");
+  const qCompact = raw.replace(/[\s\-・]/g, "");
   return hay.includes(raw) || compact.includes(qCompact);
 }
 
@@ -105,6 +146,26 @@ function escapeHtml(s) {
     .replaceAll('"', "&quot;");
 }
 
+function openLightbox(thumbSrc, caption) {
+  const full = largeImageUrl(thumbSrc);
+  els.lightboxImg.src = full || thumbSrc;
+  els.lightboxCap.textContent = caption || "";
+  if (typeof els.lightbox.showModal === "function") {
+    els.lightbox.showModal();
+  } else {
+    els.lightbox.setAttribute("open", "");
+  }
+}
+
+function closeLightbox() {
+  if (typeof els.lightbox.close === "function") {
+    els.lightbox.close();
+  } else {
+    els.lightbox.removeAttribute("open");
+  }
+  els.lightboxImg.removeAttribute("src");
+}
+
 function render() {
   if (!catalog) return;
   const q = els.search.value;
@@ -128,19 +189,23 @@ function render() {
     .map(([rarity, list], idx) => {
       const items = list
         .map((c) => {
-          const img = c.image
-            ? `<img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />`
-            : `<div class="thumb missing">No art</div>`;
           const headline = c.fullNumber || c.name || c.title;
-          const name =
-            c.fullNumber && c.name && c.name !== c.fullNumber ? c.name : "";
+          const zh = c.nameZh || "";
+          const jp =
+            c.name && c.name !== c.fullNumber && c.name !== zh ? c.name : "";
           const set = setLabel(c);
-          return `<li>
-            <a class="card" href="${c.url}" target="_blank" rel="noopener noreferrer">
-              ${img}
+          const thumb = c.image
+            ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${headline}${zh ? " · " + zh : ""}`)}" aria-label="Enlarge card art">
+                <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
+              </button>`
+            : `<div class="thumb missing">No art</div>`;
+          return `<li class="card-row">
+            ${thumb}
+            <a class="card-main" href="${c.url}" target="_blank" rel="noopener noreferrer">
               <div class="info">
                 <div class="num">${escapeHtml(headline)}</div>
-                ${name ? `<p class="name">${escapeHtml(name)}</p>` : ""}
+                ${zh ? `<p class="name name-zh">${escapeHtml(zh)}</p>` : ""}
+                ${jp ? `<p class="name name-jp">${escapeHtml(jp)}</p>` : ""}
                 ${set ? `<p class="set">${escapeHtml(set)}</p>` : ""}
               </div>
               <div class="price">${formatHkd(c.priceHkd)}</div>
@@ -164,16 +229,30 @@ async function persist(raw) {
     await saveCachedCatalog(raw);
   } catch (err) {
     console.warn("Could not cache catalog", err);
-    setStatus(`Loaded · cache save failed (${err.message || "quota"})`);
   }
 }
 
 async function applyCatalog(next, { sourceLabel, offline = false, persistData = true } = {}) {
-  if (persistData) await persist(next);
-  catalog = filterCatalog(next);
-  setNames = new Map((catalog.sets || []).map((s) => [s.code, s.name]));
+  const enriched = enrichRaw(next);
+  if (persistData) await persist(enriched);
+  catalog = filterCatalog(enriched);
+  setNames = new Map(
+    (catalog.sets || []).map((s) => [
+      s.code,
+      { name: s.name, nameZh: s.nameZh },
+    ]),
+  );
   setStatus(`${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`, offline);
   render();
+}
+
+async function loadMeta() {
+  const [namesRes, setsRes] = await Promise.all([
+    fetch("./data/names-zh.json"),
+    fetch("./data/sets.json"),
+  ]);
+  if (namesRes.ok) namesZh = await namesRes.json();
+  if (setsRes.ok) setsMeta = await setsRes.json();
 }
 
 async function loadBundledCatalog() {
@@ -184,8 +263,12 @@ async function loadBundledCatalog() {
 
 async function loadCatalog() {
   const online = navigator.onLine;
+  try {
+    await loadMeta();
+  } catch {
+    // still try to show cards
+  }
 
-  // 1) Instant offline-capable cache
   const cached = await loadCachedCatalog();
   if (cached?.cards?.length) {
     await applyCatalog(cached, {
@@ -196,7 +279,6 @@ async function loadCatalog() {
     return;
   }
 
-  // 2) First visit: load bundled catalog from site (SW will cache the file)
   try {
     const bundled = await loadBundledCatalog();
     await applyCatalog(bundled, {
@@ -222,9 +304,10 @@ async function refreshFromBeehive() {
   els.refresh.classList.add("is-busy");
 
   try {
-    const setsRes = await fetch("./data/sets.json");
-    if (!setsRes.ok) throw new Error("Could not load set list");
-    const sets = await setsRes.json();
+    if (!setsMeta.length) await loadMeta();
+    const sets = setsMeta.length
+      ? setsMeta
+      : await (await fetch("./data/sets.json")).json();
 
     const next = await buildCatalog(sets, {
       onProgress: ({ index, total, code }) => {
@@ -234,7 +317,10 @@ async function refreshFromBeehive() {
 
     if (!next.cards.length) throw new Error("No cards returned");
 
-    await applyCatalog(next, { sourceLabel: "Updated from Beehive", persistData: true });
+    await applyCatalog(next, {
+      sourceLabel: "Updated from Beehive",
+      persistData: true,
+    });
   } catch (err) {
     setStatus(`Refresh failed: ${err.message}`);
     console.error(err);
@@ -252,6 +338,19 @@ function wireEvents() {
     t = setTimeout(render, 120);
   });
   els.refresh.addEventListener("click", refreshFromBeehive);
+  els.results.addEventListener("click", (e) => {
+    const btn = e.target.closest(".thumb-btn");
+    if (!btn) return;
+    e.preventDefault();
+    openLightbox(btn.dataset.img, btn.dataset.cap);
+  });
+  els.lightboxClose.addEventListener("click", closeLightbox);
+  els.lightbox.addEventListener("click", (e) => {
+    if (e.target === els.lightbox) closeLightbox();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
   window.addEventListener("online", () => {
     setStatus(`Online · ${formatSyncedAt(catalog?.syncedAt)}`);
   });

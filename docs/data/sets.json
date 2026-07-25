@@ -1,25 +1,140 @@
 [
-  { "slug": "opcgop01", "code": "OP01", "name": "[OP01] Romance Dawn" },
-  { "slug": "opcgop02", "code": "OP02", "name": "[OP02] Paramount War" },
-  { "slug": "opcgop03", "code": "OP03", "name": "[OP03] Pillars of Strength" },
-  { "slug": "opcgop04", "code": "OP04", "name": "[OP04] Kingdoms of Intrigue" },
-  { "slug": "opcgop05", "code": "OP05", "name": "[OP05] Awakening of the New Era" },
-  { "slug": "opcgop06", "code": "OP06", "name": "[OP06] Wings of the Captain" },
-  { "slug": "opcgop07", "code": "OP07", "name": "[OP07] 500 Years in the Future" },
-  { "slug": "opcgop08", "code": "OP08", "name": "[OP08] Two Legends" },
-  { "slug": "opcgop09", "code": "OP09", "name": "[OP09] Emperors in the New World" },
-  { "slug": "opcgop10", "code": "OP10", "name": "[OP10] Royal Blood" },
-  { "slug": "opcgop11", "code": "OP11", "name": "[OP11] A Fist of Divine Speed" },
-  { "slug": "opcgop12", "code": "OP12", "name": "[OP12] Legacy of the Master" },
-  { "slug": "opcgop13", "code": "OP13", "name": "[OP13] Carrying On His Will" },
-  { "slug": "opcgop14", "code": "OP14", "name": "[OP14] The Seven Warlords of the Sea" },
-  { "slug": "opcgop15", "code": "OP15", "name": "[OP15] Adventure on the Island of Gods" },
-  { "slug": "opcgop16", "code": "OP16", "name": "[OP16] The Moment of Decision" },
-  { "slug": "opcgeb01", "code": "EB01", "name": "[EB01] Memorial Collection" },
-  { "slug": "opcgeb02", "code": "EB02", "name": "[EB02] Anime 25th Collection" },
-  { "slug": "opcgeb03", "code": "EB03", "name": "[EB03] ONE PIECE Heroines Edition" },
-  { "slug": "opcgeb04", "code": "EB04", "name": "[EB04] Egghead Crisis" },
-  { "slug": "opcgprb01", "code": "PRB01", "name": "[PRB01] ONE PIECE CARD THE BEST" },
-  { "slug": "opcgprb02", "code": "PRB02", "name": "[PRB02] ONE PIECE CARD THE BEST Vol.2" },
-  { "slug": "opcgpromo", "code": "PROMO", "name": "One Piece Promo" }
+  {
+    "slug": "opcgop01",
+    "code": "OP01",
+    "name": "[OP01] Romance Dawn",
+    "nameZh": "[OP01] ROMANCE DAWN"
+  },
+  {
+    "slug": "opcgop02",
+    "code": "OP02",
+    "name": "[OP02] Paramount War",
+    "nameZh": "[OP02] 頂點決戰"
+  },
+  {
+    "slug": "opcgop03",
+    "code": "OP03",
+    "name": "[OP03] Pillars of Strength",
+    "nameZh": "[OP03] 強大的敵人"
+  },
+  {
+    "slug": "opcgop04",
+    "code": "OP04",
+    "name": "[OP04] Kingdoms of Intrigue",
+    "nameZh": "[OP04] 陰謀王國"
+  },
+  {
+    "slug": "opcgop05",
+    "code": "OP05",
+    "name": "[OP05] Awakening of the New Era",
+    "nameZh": "[OP05] 新時代的主角"
+  },
+  {
+    "slug": "opcgop06",
+    "code": "OP06",
+    "name": "[OP06] Wings of the Captain",
+    "nameZh": "[OP06] 雙壁的霸者"
+  },
+  {
+    "slug": "opcgop07",
+    "code": "OP07",
+    "name": "[OP07] 500 Years in the Future",
+    "nameZh": "[OP07] 500年後的未來"
+  },
+  {
+    "slug": "opcgop08",
+    "code": "OP08",
+    "name": "[OP08] Two Legends",
+    "nameZh": "[OP08] 兩位傳奇"
+  },
+  {
+    "slug": "opcgop09",
+    "code": "OP09",
+    "name": "[OP09] Emperors in the New World",
+    "nameZh": "[OP09] 新世界的皇帝"
+  },
+  {
+    "slug": "opcgop10",
+    "code": "OP10",
+    "name": "[OP10] Royal Blood",
+    "nameZh": "[OP10] 王族血脈"
+  },
+  {
+    "slug": "opcgop11",
+    "code": "OP11",
+    "name": "[OP11] A Fist of Divine Speed",
+    "nameZh": "[OP11] 神速之拳"
+  },
+  {
+    "slug": "opcgop12",
+    "code": "OP12",
+    "name": "[OP12] Legacy of the Master",
+    "nameZh": "[OP12] 師徒的情義"
+  },
+  {
+    "slug": "opcgop13",
+    "code": "OP13",
+    "name": "[OP13] Carrying On His Will",
+    "nameZh": "[OP13] 傳承的意志"
+  },
+  {
+    "slug": "opcgop14",
+    "code": "OP14",
+    "name": "[OP14] The Seven Warlords of the Sea",
+    "nameZh": "[OP14] 蒼海的七傑"
+  },
+  {
+    "slug": "opcgop15",
+    "code": "OP15",
+    "name": "[OP15] Adventure on the Island of Gods",
+    "nameZh": "[OP15] 神之島的冒險"
+  },
+  {
+    "slug": "opcgop16",
+    "code": "OP16",
+    "name": "[OP16] The Moment of Decision",
+    "nameZh": "[OP16] 決戰時刻"
+  },
+  {
+    "slug": "opcgeb01",
+    "code": "EB01",
+    "name": "[EB01] Memorial Collection",
+    "nameZh": "[EB01] 回憶收藏"
+  },
+  {
+    "slug": "opcgeb02",
+    "code": "EB02",
+    "name": "[EB02] Anime 25th Collection",
+    "nameZh": "[EB02] Anime 25th collection"
+  },
+  {
+    "slug": "opcgeb03",
+    "code": "EB03",
+    "name": "[EB03] ONE PIECE Heroines Edition",
+    "nameZh": "[EB03] ONE PIECE Heroines Edition"
+  },
+  {
+    "slug": "opcgeb04",
+    "code": "EB04",
+    "name": "[EB04] Egghead Crisis",
+    "nameZh": "[EB04] EGGHEAD CRISIS"
+  },
+  {
+    "slug": "opcgprb01",
+    "code": "PRB01",
+    "name": "[PRB01] ONE PIECE CARD THE BEST",
+    "nameZh": "[PRB01] ONE PIECE CARD THE BEST"
+  },
+  {
+    "slug": "opcgprb02",
+    "code": "PRB02",
+    "name": "[PRB02] ONE PIECE CARD THE BEST Vol.2",
+    "nameZh": "[PRB02] ONE PIECE CARD THE BEST Vol.2"
+  },
+  {
+    "slug": "opcgpromo",
+    "code": "PROMO",
+    "name": "One Piece Promo",
+    "nameZh": "推廣卡"
+  }
 ]

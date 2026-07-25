@@ -9,8 +9,9 @@
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Noto+Sans+TC:wght@400;600;700&family=Source+Sans+3:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -38,7 +39,7 @@
             id="search"
             type="search"
             enterkeyhint="search"
-            placeholder="Card number (e.g. OP16-065 or 065)"
+            placeholder="Card number or Chinese name"
             autocomplete="off"
           />
         </label>
@@ -49,8 +50,14 @@
     </main>
 
     <footer class="foot">
-      <p>Prices from Beehive · tap Refresh to sync · offline uses local cache</p>
+      <p>Prices from Beehive · tap art to enlarge · offline uses local cache</p>
     </footer>
+
+    <dialog id="lightbox" class="lightbox">
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+      <img id="lightboxImg" alt="" />
+      <p id="lightboxCap" class="lightbox-cap"></p>
+    </dialog>
 
     <script type="module" src="./main.js"></script>
     <script>
