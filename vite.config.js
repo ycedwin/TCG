@@ -5,7 +5,8 @@ export default defineConfig({
   base: "./",
   publicDir: "public",
   build: {
-    outDir: "dist",
+    outDir: "docs",
+    emptyOutDir: true,
   },
   plugins: [
     VitePWA({

@@ -6,42 +6,37 @@
 
 - 依系列瀏覽（OP / EB / PRB / Promo）
 - 以**珍貴度（rarity）**分組顯示
-- 搜尋卡號（如 `OP16-065`、`065`）或角色名（日文，如 `ルフィ`）
-- **更新價格**按鈕：連線時直接向 Beehive 抓最新價，存進瀏覽器本機快取
+- 搜尋卡號（如 `OP16-065`、`065`）
+- **更新價格**按鈕：連線時向 Beehive 抓最新價，存進瀏覽器本機快取
 - 離線時使用本機快取／內建資料
 - 價格單位：HKD
 
 ## 本機開發
 
-需要 Node.js 18+。
-
 ```bash
 npm install
-npm run test:parse
-npm run dev           # http://localhost:5173
-npm run build         # 產出 dist/
+npm run dev
+npm run build   # 產出 docs/（GitHub Pages 用）
 ```
 
-可選：預先產生內建 `catalog.json`（網站首次部署用；日常更新用網頁按鈕即可）：
+## 啟用 GitHub Pages（無 Actions）
 
-```bash
-npm run sync
-```
+建置結果放在 `docs/`，用 branch 直接託管：
 
-## GitHub Pages
+1. 打開 repo：**Settings → Pages**
+2. **Source** 選 **Deploy from a branch**
+3. Branch：`main`，Folder：`/docs`
+4. 按 **Save**
 
-1. 推送到 GitHub
-2. **Settings → Pages → Source → GitHub Actions**
-3. 部署 workflow：[`.github/workflows/pages.yml`](.github/workflows/pages.yml)（只負責建置／上架，**不會**自動同步價格）
+約 1 分鐘後開啟：`https://ycedwin.github.io/TCG/`
 
-站台：`https://<user>.github.io/<repo>/`
+之後改程式時在本機跑 `npm run build`，再 commit / push `docs/` 即可更新網站。
 
 ## 注意
 
-- 角色名依 Beehive 標題為**日文**
 - 不含庫存狀態
-- 「更新價格」約需數十秒（全部系列）；請保持連線
-- 圖片使用 Shopify CDN 縮圖，不提交進 git
+- 「更新價格」約需數十秒（全部系列）
+- 圖片使用 Shopify CDN 縮圖
 
 ## 授權
 

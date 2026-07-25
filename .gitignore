@@ -3,3 +3,4 @@ dist/
 .DS_Store
 *.log
 .dev-dist/
+# docs/ is the GitHub Pages site (committed)

@@ -69,21 +69,13 @@ function matchesQuery(card, q) {
   const raw = q.trim().toLowerCase();
   if (!raw) return true;
 
-  const hay = [
-    card.fullNumber,
-    card.number,
-    card.name,
-    card.title,
-    card.set,
-    card.rarity,
-    `${card.set}-${card.number}`,
-  ]
+  // Card number only (e.g. OP16-065, 065, op16 065)
+  const hay = [card.fullNumber, card.number, `${card.set}-${card.number}`]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
-
-  const compact = hay.replace(/[\s\-・]/g, "");
-  const qCompact = raw.replace(/[\s\-・]/g, "");
+  const compact = hay.replace(/[\s\-]/g, "");
+  const qCompact = raw.replace(/[\s\-]/g, "");
   return hay.includes(raw) || compact.includes(qCompact);
 }
 
