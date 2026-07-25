@@ -17,6 +17,23 @@ const els = {
 let catalog = null;
 let refreshing = false;
 
+/** Hide cheap commons — only show cards above this HKD price */
+const MIN_PRICE_HKD = 20;
+
+function filterCatalog(raw) {
+  const cards = (raw.cards || []).filter(
+    (c) => c.priceHkd != null && c.priceHkd > MIN_PRICE_HKD,
+  );
+  const countBySet = new Map();
+  for (const c of cards) {
+    countBySet.set(c.collection, (countBySet.get(c.collection) || 0) + 1);
+  }
+  const sets = (raw.sets || [])
+    .map((s) => ({ ...s, count: countBySet.get(s.code) || 0 }))
+    .filter((s) => s.count > 0);
+  return { ...raw, cards, sets };
+}
+
 function formatHkd(n) {
   if (n == null || Number.isNaN(n)) return "—";
   return `HK$${n.toLocaleString("en-HK", {
@@ -171,7 +188,7 @@ function render() {
 }
 
 function applyCatalog(next, { sourceLabel, offline = false } = {}) {
-  catalog = next;
+  catalog = filterCatalog(next);
   populateSets();
   setStatus(`${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`, offline);
   render();
