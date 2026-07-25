@@ -23,8 +23,6 @@ let characterTiers = { S: [], A: [], B: [] };
 let tierMatchers = null;
 /** Beehive buy/trade-in prices: byKey["OP01-016|P-RP"] = { buyHkd, buyPaused } */
 let buylist = null;
-/** Brave Soul sheet buy prices: byKey["OP01-016|P-RP"] = { buyHkd } */
-let bravesoul = null;
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
@@ -253,15 +251,6 @@ function buyInfoFor(card) {
   return buylist.byKey[`${fn}|${rarity}`] || null;
 }
 
-/** Exact match: card number + rarity → Brave Soul buy price */
-function bravesoulInfoFor(card) {
-  if (!bravesoul?.byKey) return null;
-  const fn = cardNumberKey(card);
-  const rarity = card.rarity || "";
-  if (!fn || !rarity) return null;
-  return bravesoul.byKey[`${fn}|${rarity}`] || null;
-}
-
 function formatSyncedAt(iso) {
   if (!iso) return "unknown";
   try {
@@ -401,7 +390,6 @@ function render() {
           const en = c.nameEn || "";
           const { tier, label } = popularityTier(c);
           const buy = buyInfoFor(c);
-          const brave = bravesoulInfoFor(c);
           const thumb = c.image
             ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${en ? " · " + en : ""}`)}" aria-label="Enlarge card art">
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
@@ -420,7 +408,7 @@ function render() {
               </div>`;
           const buyPill =
             buy == null
-              ? `<div class="price-pill price-buy" title="No Beehive buylist match">
+              ? `<div class="price-pill price-buy" title="No buylist match">
                   <span class="lbl">Buy(beehive)</span>
                   <span class="amt">—</span>
                 </div>`
@@ -433,19 +421,9 @@ function render() {
                   <span class="lbl">Buy(beehive)</span>
                   <span class="amt">${formatHkd(buy.buyHkd)}</span>
                 </a>`
-                : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="Beehive buy price">
+                : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="Buy price only (no product link)">
                   <span class="lbl">Buy(beehive)</span>
                   <span class="amt">${formatHkd(buy.buyHkd)}</span>
-                </div>`;
-          const bravePill =
-            brave == null
-              ? `<div class="price-pill price-brave" title="No Brave Soul match">
-                  <span class="lbl">Buy(bravesoul)</span>
-                  <span class="amt">—</span>
-                </div>`
-              : `<div class="price-pill price-brave" title="Brave Soul buy / trade-in (${escapeHtml(brave.section || "")})">
-                  <span class="lbl">Buy(bravesoul)</span>
-                  <span class="amt">${formatHkd(brave.buyHkd)}</span>
                 </div>`;
           return `<li class="card-row">
             ${thumb}
@@ -461,7 +439,6 @@ function render() {
               <div class="price">
                 ${sellPill}
                 ${buyPill}
-                ${bravePill}
               </div>
             </div>
           </li>`;
@@ -499,12 +476,11 @@ async function applyCatalog(next, { sourceLabel, offline = false, persistData = 
 }
 
 async function loadMeta() {
-  const [namesRes, setsRes, tiersRes, buyRes, braveRes] = await Promise.all([
+  const [namesRes, setsRes, tiersRes, buyRes] = await Promise.all([
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
     fetch("./data/character-tiers.json"),
-    fetch("./data/buylist.json?v=25", { cache: "no-store" }),
-    fetch("./data/bravesoul.json?v=25", { cache: "no-store" }),
+    fetch("./data/buylist.json?v=24", { cache: "no-store" }),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
@@ -513,7 +489,6 @@ async function loadMeta() {
     tierMatchers = null;
   }
   if (buyRes.ok) buylist = await buyRes.json();
-  if (braveRes.ok) bravesoul = await braveRes.json();
 }
 
 async function loadBundledCatalog() {
