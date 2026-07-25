@@ -368,20 +368,31 @@ body {
   border: 1px solid rgba(168, 180, 196, 0.35);
 }
 
+/* Overlay (not <dialog>) — avoids Safari modal fullscreen defaults */
 .lightbox {
-  border: none;
-  padding: 0.65rem;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(3, 10, 18, 0.45);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox-panel {
+  position: relative;
   width: min(72vw, 240px);
   max-width: 240px;
+  padding: 0.65rem;
   background: rgba(10, 28, 48, 0.96);
   color: var(--ink);
   border-radius: 14px;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-}
-
-.lightbox::backdrop {
-  background: rgba(3, 10, 18, 0.45);
 }
 
 .lightbox img {
@@ -415,18 +426,6 @@ body {
   text-align: center;
   font-size: 0.75rem;
   color: var(--muted);
-}
-
-.lightbox[open],
-.lightbox:modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  transform: translate(-50%, -50%);
-  margin: 0;
-  height: fit-content;
 }
 
 .price {

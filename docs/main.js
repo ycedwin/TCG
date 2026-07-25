@@ -182,19 +182,11 @@ function openLightbox(thumbSrc, caption) {
   const full = largeImageUrl(thumbSrc);
   els.lightboxImg.src = full || thumbSrc;
   els.lightboxCap.textContent = caption || "";
-  if (typeof els.lightbox.showModal === "function") {
-    els.lightbox.showModal();
-  } else {
-    els.lightbox.setAttribute("open", "");
-  }
+  els.lightbox.hidden = false;
 }
 
 function closeLightbox() {
-  if (typeof els.lightbox.close === "function") {
-    els.lightbox.close();
-  } else {
-    els.lightbox.removeAttribute("open");
-  }
+  els.lightbox.hidden = true;
   els.lightboxImg.removeAttribute("src");
 }
 
