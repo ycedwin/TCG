@@ -373,6 +373,7 @@ function openLightbox(thumbSrc, caption) {
   els.lightboxImg.src = thumbSrc || "";
   els.lightboxCap.textContent = caption || "";
   els.lightbox.hidden = false;
+  document.body.classList.add("is-lightbox-open");
   const full = largeImageUrl(thumbSrc);
   if (!full || full === thumbSrc) return;
   const upgrade = new Image();
@@ -388,6 +389,7 @@ function openLightbox(thumbSrc, caption) {
 function closeLightbox() {
   els.lightbox.hidden = true;
   els.lightboxImg.removeAttribute("src");
+  document.body.classList.remove("is-lightbox-open");
 }
 
 function parsePriceBound(el) {

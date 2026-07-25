@@ -502,7 +502,9 @@ body {
   border: 1px solid rgba(168, 180, 196, 0.35);
 }
 
-/* Overlay (not <dialog>) — avoids Safari modal fullscreen defaults */
+/* Overlay (not <dialog>) — avoids Safari modal fullscreen defaults.
+   Solid paints + isolation: Safari can wash out fixed layers when a
+   backdrop-filter ancestor (search panel) is still compositing. */
 .lightbox {
   position: fixed;
   inset: 0;
@@ -510,11 +512,20 @@ body {
   display: grid;
   place-items: center;
   padding: 1rem;
-  background: rgba(3, 10, 18, 0.45);
+  background: rgba(3, 10, 18, 0.88);
+  isolation: isolate;
+  transform: translateZ(0);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .lightbox[hidden] {
   display: none;
+}
+
+body.is-lightbox-open .controls {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 .lightbox-panel {
@@ -522,11 +533,13 @@ body {
   width: min(86vw, 360px);
   max-width: 360px;
   padding: 0.65rem;
-  background: rgba(10, 28, 48, 0.96);
+  background: var(--bg1);
   color: var(--ink);
   border-radius: 14px;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
+  isolation: isolate;
+  transform: translateZ(0);
 }
 
 .lightbox img {
@@ -536,7 +549,12 @@ body {
   border-radius: 8px;
   display: block;
   margin: 0 auto;
-  background: #0a1524;
+  background: var(--bg0);
+  opacity: 1;
+  filter: none;
+  mix-blend-mode: normal;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .lightbox-close {

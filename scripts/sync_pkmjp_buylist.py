@@ -62,7 +62,19 @@ def image_of(p: dict) -> str:
     imgs = p.get("images") or []
     if not imgs:
         return ""
-    return (imgs[0].get("src") or "").strip()
+    src = (imgs[0].get("src") or "").strip()
+    # Unwrap WordPress.com Photon CDN → origin file for clearer enlarge
+    # https://i0.wp.com/host/path?fit=... → https://host/path
+    if "://i" in src and ".wp.com/" in src:
+        try:
+            from urllib.parse import urlparse
+
+            path = urlparse(src).path.lstrip("/")
+            if "/" in path:
+                return "https://" + path
+        except Exception:
+            pass
+    return src.split("?", 1)[0] if src else ""
 
 
 def parse_card(name: str, attr: str) -> dict | None:

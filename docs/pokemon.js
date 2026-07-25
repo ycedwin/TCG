@@ -137,13 +137,18 @@ function groupByRarity(cards) {
   return keys.map((k) => [k, map.get(k)]);
 }
 
+/** Prefer origin upload URL — Photon (i0.wp.com) thumbs are tiny and can look washed when upscaled */
 function largeImageUrl(src) {
   if (!src) return "";
   try {
     const u = new URL(src);
-    u.searchParams.delete("fit");
-    u.searchParams.delete("ssl");
-    u.searchParams.set("w", "720");
+    // https://i0.wp.com/beehivetcgbuylist.com/wp-content/... → https://beehivetcgbuylist.com/wp-content/...
+    if (/\.wp\.com$/i.test(u.hostname)) {
+      const path = u.pathname.replace(/^\/+/, "");
+      const slash = path.indexOf("/");
+      if (slash > 0) return `https://${path}`;
+    }
+    u.search = "";
     return u.toString();
   } catch {
     return src;
@@ -161,21 +166,16 @@ function prefetchLarge(src) {
 
 function openLightbox(src, cap) {
   const full = largeImageUrl(src) || src;
-  els.lightboxImg.src = src;
+  els.lightboxImg.src = full;
   els.lightboxCap.textContent = cap || "";
   els.lightbox.hidden = false;
-  const upgrade = new Image();
-  upgrade.onload = () => {
-    if (!els.lightbox.hidden && els.lightboxImg.src) {
-      els.lightboxImg.src = full;
-    }
-  };
-  upgrade.src = full;
+  document.body.classList.add("is-lightbox-open");
 }
 
 function closeLightbox() {
   els.lightbox.hidden = true;
   els.lightboxImg.removeAttribute("src");
+  document.body.classList.remove("is-lightbox-open");
 }
 
 function render() {
@@ -253,7 +253,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=30";
+    : "./data/pkmjp-buylist.json?v=31";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
