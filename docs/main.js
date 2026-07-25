@@ -195,7 +195,7 @@ function render() {
             : `<div class="thumb missing">No art</div>`;
           return `<li class="card-row">
             ${thumb}
-            <a class="card-main" href="${c.url}" target="_blank" rel="noopener noreferrer">
+            <div class="card-main">
               <div class="info">
                 <div class="num">${escapeHtml(headline)}</div>
                 ${zh ? `<p class="name name-zh">${escapeHtml(zh)}</p>` : ""}
@@ -203,7 +203,7 @@ function render() {
                 ${set ? `<p class="set">${escapeHtml(set)}</p>` : ""}
               </div>
               <div class="price">${formatHkd(c.priceHkd)}</div>
-            </a>
+            </div>
           </li>`;
         })
         .join("");
@@ -336,6 +336,7 @@ function wireEvents() {
     const btn = e.target.closest(".thumb-btn");
     if (!btn) return;
     e.preventDefault();
+    e.stopPropagation();
     openLightbox(btn.dataset.img, btn.dataset.cap);
   });
   els.lightboxClose.addEventListener("click", closeLightbox);
