@@ -452,7 +452,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  min-width: 4.6rem;
+  min-width: 5.2rem;
   padding: 0.28rem 0.45rem;
   border-radius: 8px;
   border: 1px solid var(--line);
@@ -460,6 +460,12 @@ body {
   line-height: 1.15;
   text-decoration: none;
   color: inherit;
+  pointer-events: auto;
+}
+
+.price-pill .lbl,
+.price-pill .amt {
+  pointer-events: none;
 }
 
 a.price-pill {

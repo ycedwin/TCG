@@ -396,8 +396,9 @@ function render() {
               </button>`
             : `<div class="thumb missing">No art</div>`;
           const buyUrl = buy?.url || "";
-          const sellPill = buyUrl
-            ? `<a class="price-pill price-sell" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist">
+          const sellUrl = c.url || "";
+          const sellPill = sellUrl
+            ? `<a class="price-pill price-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive shop">
                 <span class="lbl">Sell</span>
                 <span class="amt">${formatHkd(c.priceHkd)}</span>
               </a>`
@@ -408,16 +409,16 @@ function render() {
           const buyPill =
             buy == null
               ? `<div class="price-pill price-buy" title="No buylist match">
-                  <span class="lbl">Buy</span>
+                  <span class="lbl">Buy(beehive)</span>
                   <span class="amt">—</span>
                 </div>`
               : buyUrl
-                ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="${
+                ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" data-buy-url="${escapeHtml(buyUrl)}" title="${
                     buy.buyPaused
                       ? "暫停回收 — buy price marked $0"
-                      : "Open Beehive buylist"
+                      : "Open Beehive buylist product"
                   }">
-                  <span class="lbl">Buy</span>
+                  <span class="lbl">Buy(beehive)</span>
                   <span class="amt">${formatHkd(buy.buyHkd)}</span>
                 </a>`
                 : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="${
@@ -425,7 +426,7 @@ function render() {
                       ? "暫停回收 — buy price marked $0"
                       : "Beehive buy / trade-in price"
                   }">
-                  <span class="lbl">Buy</span>
+                  <span class="lbl">Buy(beehive)</span>
                   <span class="amt">${formatHkd(buy.buyHkd)}</span>
                 </div>`;
           return `<li class="card-row">
@@ -587,6 +588,21 @@ function wireEvents() {
     if (btn?.dataset.img) prefetchLarge(btn.dataset.img);
   });
   els.results.addEventListener("click", (e) => {
+    const buyLink = e.target.closest("a.price-buy[data-buy-url]");
+    if (buyLink) {
+      e.preventDefault();
+      e.stopPropagation();
+      const url = buyLink.getAttribute("data-buy-url") || buyLink.href;
+      if (url) window.open(url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    const sellLink = e.target.closest("a.price-sell");
+    if (sellLink?.href) {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(sellLink.href, "_blank", "noopener,noreferrer");
+      return;
+    }
     const btn = e.target.closest(".thumb-btn");
     if (!btn) return;
     e.preventDefault();
