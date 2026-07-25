@@ -2,7 +2,7 @@
 
 export const BASE = "https://beehivetcg.com";
 export const PAGE_LIMIT = 250;
-export const CACHE_KEY = "op-catalog-v4";
+export const CACHE_KEY = "op-catalog-v5";
 const IDB_NAME = "op-prices";
 const IDB_STORE = "kv";
 
@@ -166,19 +166,46 @@ export function parseTitle(title) {
   };
 }
 
+/**
+ * PRB/PROMO listings keep the original printed id in the title (e.g. OP01-016)
+ * but belong to the shop collection (PRB01). Show collection-number for those.
+ */
+export function resolveFullNumber(collectionCode, parsed) {
+  const sourceNumber = parsed.fullNumber || "";
+  const number = parsed.number || "";
+  const col = collectionCode || "";
+  if ((col.startsWith("PRB") || col === "PROMO") && number) {
+    return {
+      sourceNumber: sourceNumber || `${parsed.cardSet}-${number}`,
+      fullNumber: `${col}-${number}`,
+    };
+  }
+  return {
+    sourceNumber: sourceNumber,
+    fullNumber: sourceNumber || productTitleFallback(parsed, col),
+  };
+}
+
+function productTitleFallback(parsed, col) {
+  if (parsed.cardSet && parsed.number) return `${parsed.cardSet}-${parsed.number}`;
+  return col || "";
+}
+
 export function productToCard(product, collectionCode) {
   const parsed = parseTitle(product.title);
   const variant = product.variants?.[0];
   const price = variant ? Number(variant.price) : NaN;
   const imageSrc = product.images?.[0]?.src || "";
   const handle = product.handle || "";
+  const ids = resolveFullNumber(collectionCode, parsed);
 
   return {
     id: String(product.id),
     collection: collectionCode,
     set: parsed.cardSet || collectionCode,
     number: parsed.number,
-    fullNumber: parsed.fullNumber || product.title,
+    sourceNumber: ids.sourceNumber,
+    fullNumber: ids.fullNumber || product.title,
     name: parsed.name || product.title,
     rarity: parsed.rarity,
     priceHkd: Number.isFinite(price) ? price : null,

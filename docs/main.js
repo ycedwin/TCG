@@ -69,13 +69,39 @@ function filterCatalog(raw) {
   return { ...raw, cards, sets };
 }
 
+function normalizeCardIds(card) {
+  const col = card.collection || "";
+  const number = card.number || "";
+  const sourceNumber = card.sourceNumber || card.fullNumber || "";
+  // Fix PRB/PROMO reprints that still show the original printed set id
+  if ((col.startsWith("PRB") || col === "PROMO") && number) {
+    return {
+      ...card,
+      sourceNumber: sourceNumber,
+      fullNumber: `${col}-${number}`,
+    };
+  }
+  return { ...card, sourceNumber };
+}
+
 function enrichRaw(raw) {
   return {
     ...raw,
-    cards: (raw.cards || []).map((c) => ({
-      ...c,
-      nameEn: c.nameEn || namesEn[c.fullNumber] || "",
-    })),
+    cards: (raw.cards || []).map((c) => {
+      const fixed = normalizeCardIds(c);
+      const lookup =
+        fixed.sourceNumber ||
+        fixed.fullNumber ||
+        `${fixed.set}-${fixed.number}`;
+      return {
+        ...fixed,
+        nameEn:
+          fixed.nameEn ||
+          namesEn[lookup] ||
+          namesEn[fixed.fullNumber] ||
+          "",
+      };
+    }),
   };
 }
 
