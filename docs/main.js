@@ -318,7 +318,7 @@ async function refreshFromBeehive() {
     if (!next.cards.length) throw new Error("No cards returned");
 
     await applyCatalog(next, {
-      sourceLabel: "Updated from Beehive",
+      sourceLabel: "Updated",
       persistData: true,
     });
   } catch (err) {
