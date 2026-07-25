@@ -1,5 +1,5 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v23";
+const CACHE = "op-price-v24";
 const IMG_CACHE = "op-images-v1";
 const PRECACHE = [
   "./",
@@ -66,8 +66,25 @@ self.addEventListener("fetch", (event) => {
   const isCatalog =
     url.pathname.endsWith("/data/catalog.json") ||
     url.pathname.endsWith("/data/names-en.json") ||
-    url.pathname.endsWith("/data/character-tiers.json") ||
-    url.pathname.endsWith("/data/buylist.json");
+    url.pathname.endsWith("/data/character-tiers.json");
+
+  // Buylist must be network-first so product URLs stay fresh (old cache had no url)
+  if (url.pathname.endsWith("/data/buylist.json")) {
+    event.respondWith(
+      fetch(request)
+        .then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(request, copy));
+          }
+          return res;
+        })
+        .catch(() =>
+          caches.match(request).then((cached) => cached || Response.error()),
+        ),
+    );
+    return;
+  }
 
   if (isCatalog) {
     event.respondWith(

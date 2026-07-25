@@ -395,8 +395,8 @@ function render() {
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
               </button>`
             : `<div class="thumb missing">No art</div>`;
-          const buyUrl = buy?.url || "";
-          const sellUrl = c.url || "";
+          const buyUrl = (buy?.url || "").trim();
+          const sellUrl = (c.url || "").trim();
           const sellPill = sellUrl
             ? `<a class="price-pill price-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive shop">
                 <span class="lbl">Sell</span>
@@ -413,7 +413,7 @@ function render() {
                   <span class="amt">—</span>
                 </div>`
               : buyUrl
-                ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" data-buy-url="${escapeHtml(buyUrl)}" title="${
+                ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="${
                     buy.buyPaused
                       ? "暫停回收 — buy price marked $0"
                       : "Open Beehive buylist product"
@@ -421,11 +421,7 @@ function render() {
                   <span class="lbl">Buy(beehive)</span>
                   <span class="amt">${formatHkd(buy.buyHkd)}</span>
                 </a>`
-                : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="${
-                    buy.buyPaused
-                      ? "暫停回收 — buy price marked $0"
-                      : "Beehive buy / trade-in price"
-                  }">
+                : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="Buy price only (no product link)">
                   <span class="lbl">Buy(beehive)</span>
                   <span class="amt">${formatHkd(buy.buyHkd)}</span>
                 </div>`;
@@ -484,7 +480,7 @@ async function loadMeta() {
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
     fetch("./data/character-tiers.json"),
-    fetch("./data/buylist.json"),
+    fetch("./data/buylist.json?v=24", { cache: "no-store" }),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
@@ -588,21 +584,8 @@ function wireEvents() {
     if (btn?.dataset.img) prefetchLarge(btn.dataset.img);
   });
   els.results.addEventListener("click", (e) => {
-    const buyLink = e.target.closest("a.price-buy[data-buy-url]");
-    if (buyLink) {
-      e.preventDefault();
-      e.stopPropagation();
-      const url = buyLink.getAttribute("data-buy-url") || buyLink.href;
-      if (url) window.open(url, "_blank", "noopener,noreferrer");
-      return;
-    }
-    const sellLink = e.target.closest("a.price-sell");
-    if (sellLink?.href) {
-      e.preventDefault();
-      e.stopPropagation();
-      window.open(sellLink.href, "_blank", "noopener,noreferrer");
-      return;
-    }
+    // Let price <a target=_blank> navigate normally; only intercept art enlarge
+    if (e.target.closest("a.price-pill")) return;
     const btn = e.target.closest(".thumb-btn");
     if (!btn) return;
     e.preventDefault();
