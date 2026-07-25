@@ -25,8 +25,9 @@ let tierMatchers = null;
 let buylist = null;
 let refreshing = false;
 
-/** Hide cheap commons — only show cards above this HKD price */
+/** Show cards above this sell price, or cheaper ones with a strong buy offer */
 const MIN_PRICE_HKD = 50;
+const MIN_BUY_SHOW_HKD = 5;
 
 /** Rarity code → English + Traditional Chinese hint */
 const RARITY_BASE = {
@@ -158,9 +159,13 @@ function popularityTier(card) {
 }
 
 function filterCatalog(raw) {
-  const cards = (raw.cards || []).filter(
-    (c) => c.priceHkd != null && c.priceHkd > MIN_PRICE_HKD,
-  );
+  const cards = (raw.cards || []).filter((c) => {
+    if (c.priceHkd == null) return false;
+    if (c.priceHkd > MIN_PRICE_HKD) return true;
+    // Also show cheap sell listings when Beehive buy is meaningful
+    const buy = buyInfoFor(c);
+    return buy != null && (buy.buyHkd || 0) > MIN_BUY_SHOW_HKD;
+  });
   const countBySet = new Map();
   for (const c of cards) {
     countBySet.set(c.collection, (countBySet.get(c.collection) || 0) + 1);
@@ -480,7 +485,7 @@ async function loadMeta() {
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
     fetch("./data/character-tiers.json"),
-    fetch("./data/buylist.json?v=24", { cache: "no-store" }),
+    fetch("./data/buylist.json?v=26", { cache: "no-store" }),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
