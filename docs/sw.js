@@ -1,5 +1,5 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v26";
+const CACHE = "op-price-v27";
 const IMG_CACHE = "op-images-v1";
 const PRECACHE = [
   "./",

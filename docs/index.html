@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=26" />
+    <link rel="stylesheet" href="./styles.css?v=27" />
     <title>OPCG</title>
   </head>
   <body>
@@ -41,6 +41,24 @@
             autocomplete="off"
           />
         </label>
+        <div class="price-filters" aria-label="Price filters">
+          <label class="field">
+            <span>Sell min</span>
+            <input id="sellMin" type="number" min="0" step="1" inputmode="numeric" placeholder="—" />
+          </label>
+          <label class="field">
+            <span>Sell max</span>
+            <input id="sellMax" type="number" min="0" step="1" inputmode="numeric" placeholder="—" />
+          </label>
+          <label class="field">
+            <span>Buy min</span>
+            <input id="buyMin" type="number" min="0" step="1" inputmode="numeric" placeholder="—" />
+          </label>
+          <label class="field">
+            <span>Buy max</span>
+            <input id="buyMax" type="number" min="0" step="1" inputmode="numeric" placeholder="—" />
+          </label>
+        </div>
       </section>
 
       <p class="meta" id="meta"></p>
@@ -59,7 +77,7 @@
       </div>
     </div>
 
-    <script type="module" src="./main.js?v=26"></script>
+    <script type="module" src="./main.js?v=27"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js").catch(() => {});

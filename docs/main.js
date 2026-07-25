@@ -8,6 +8,10 @@ const els = {
   status: document.getElementById("status"),
   refresh: document.getElementById("refresh"),
   search: document.getElementById("search"),
+  sellMin: document.getElementById("sellMin"),
+  sellMax: document.getElementById("sellMax"),
+  buyMin: document.getElementById("buyMin"),
+  buyMax: document.getElementById("buyMax"),
   meta: document.getElementById("meta"),
   results: document.getElementById("results"),
   lightbox: document.getElementById("lightbox"),
@@ -367,11 +371,39 @@ function closeLightbox() {
   els.lightboxImg.removeAttribute("src");
 }
 
+function parsePriceBound(el) {
+  const raw = (el?.value || "").trim();
+  if (!raw) return null;
+  const n = Number(raw);
+  return Number.isFinite(n) ? n : null;
+}
+
+function matchesPriceFilters(card) {
+  const sellMin = parsePriceBound(els.sellMin);
+  const sellMax = parsePriceBound(els.sellMax);
+  const buyMin = parsePriceBound(els.buyMin);
+  const buyMax = parsePriceBound(els.buyMax);
+  if (sellMin == null && sellMax == null && buyMin == null && buyMax == null) {
+    return true;
+  }
+
+  const sell = card.priceHkd;
+  if (sellMin != null && (sell == null || sell < sellMin)) return false;
+  if (sellMax != null && (sell == null || sell > sellMax)) return false;
+
+  const buy = buyInfoFor(card)?.buyHkd;
+  if (buyMin != null && (buy == null || buy < buyMin)) return false;
+  if (buyMax != null && (buy == null || buy > buyMax)) return false;
+  return true;
+}
+
 function render() {
   if (!catalog) return;
   const q = els.search.value;
 
-  let cards = catalog.cards.filter((c) => matchesQuery(c, q));
+  let cards = catalog.cards.filter(
+    (c) => matchesQuery(c, q) && matchesPriceFilters(c),
+  );
   cards = cards
     .slice()
     .sort((a, b) =>
@@ -574,10 +606,14 @@ async function refreshFromBeehive() {
 
 function wireEvents() {
   let t = 0;
-  els.search.addEventListener("input", () => {
+  const scheduleRender = () => {
     clearTimeout(t);
     t = setTimeout(render, 120);
-  });
+  };
+  els.search.addEventListener("input", scheduleRender);
+  for (const el of [els.sellMin, els.sellMax, els.buyMin, els.buyMax]) {
+    el.addEventListener("input", scheduleRender);
+  }
   els.refresh.addEventListener("click", refreshFromBeehive);
   // Start fetching large art on press/hover so open feels instant
   els.results.addEventListener("pointerdown", (e) => {

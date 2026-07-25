@@ -187,6 +187,23 @@ body {
   box-shadow: 0 0 0 3px rgba(232, 184, 74, 0.18);
 }
 
+.price-filters {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.price-filters .field input {
+  padding: 0.55rem 0.65rem;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 640px) {
+  .price-filters {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .meta {
   margin: 0.9rem 0 0.4rem;
   color: var(--muted);
