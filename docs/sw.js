@@ -1,5 +1,5 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v37";
+const CACHE = "op-price-v38";
 const IMG_CACHE = "op-images-v1";
 const PRECACHE = [
   "./",
@@ -8,6 +8,7 @@ const PRECACHE = [
   "./styles.css",
   "./main.js",
   "./pokemon.js",
+  "./hareruya.js",
   "./beehive.js",
   "./favicon.svg",
   "./manifest.webmanifest",

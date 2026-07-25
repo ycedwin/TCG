@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=37" />
+    <link rel="stylesheet" href="./styles.css?v=38" />
     <title>PKM JP</title>
   </head>
   <body class="theme-pkm">
@@ -29,7 +29,7 @@
       </div>
       <div class="status-row">
         <div class="status" id="status" role="status">Loading…</div>
-        <button type="button" class="refresh-btn" id="refresh">Reload prices</button>
+        <button type="button" class="refresh-btn" id="refresh" title="Reload Beehive snapshot + live Hareruya (~8 MB)">Reload prices</button>
       </div>
     </header>
 
@@ -87,7 +87,7 @@
       </div>
     </div>
 
-    <script type="module" src="./pokemon.js?v=37"></script>
+    <script type="module" src="./pokemon.js?v=38"></script>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker.register("./sw.js").catch(() => {});

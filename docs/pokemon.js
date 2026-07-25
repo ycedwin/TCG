@@ -1,3 +1,9 @@
+import {
+  applyHareruyaPrices,
+  buildHareruyaIndex,
+  fetchHareruyaProducts,
+} from "./hareruya.js";
+
 const els = {
   status: document.getElementById("status"),
   refresh: document.getElementById("refresh"),
@@ -294,7 +300,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=34";
+    : "./data/pkmjp-buylist.json?v=38";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
@@ -308,13 +314,44 @@ async function loadCatalog({ bust = false } = {}) {
   }
 }
 
+async function refreshHareruyaLive() {
+  if (!catalog?.cards?.length) throw new Error("No catalog loaded");
+  if (!navigator.onLine) throw new Error("Offline — cannot fetch Hareruya");
+  setStatus("Fetching Hareruya (~8 MB)…");
+  const products = await fetchHareruyaProducts();
+  setStatus(`Matching ${products.length.toLocaleString()} Hareruya rows…`);
+  const idx = buildHareruyaIndex(products);
+  const { matched, cleared } = applyHareruyaPrices(catalog.cards, idx);
+  catalog.hareruya = {
+    ...(catalog.hareruya || {}),
+    syncedAt: new Date().toISOString(),
+    source: "live",
+    counts: {
+      ...(catalog.hareruya?.counts || {}),
+      hareruyaProducts: products.length,
+      indexedKeys: idx.size,
+      matchedExisting: matched,
+      cleared,
+    },
+  };
+  setStatus(
+    `Hareruya updated · ${matched.toLocaleString()} matched · ${formatSyncedAt(catalog.hareruya.syncedAt)}`,
+  );
+  render();
+}
+
 async function refresh() {
   if (refreshing) return;
   refreshing = true;
   els.refresh.disabled = true;
   els.refresh.classList.add("is-busy");
   try {
+    // Beehive stays from deployed JSON; Hareruya yen is live.
     await loadCatalog({ bust: true });
+    await refreshHareruyaLive();
+  } catch (err) {
+    setStatus(`Refresh failed: ${err.message}`);
+    console.error(err);
   } finally {
     refreshing = false;
     els.refresh.disabled = false;
