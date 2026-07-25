@@ -247,10 +247,10 @@ function render() {
                   <span class="lbl">Buy(hareruya)</span>
                   <span class="amt">—</span>
                 </div>`
-              : `<a class="price-pill price-hareruya" href="https://www.hareruya2.com/en/pages/buying-list" target="_blank" rel="noopener noreferrer" title="Hareruya buy price (JPY)">
+              : `<div class="price-pill price-hareruya" title="Hareruya buy price (JPY)">
                   <span class="lbl">Buy(hareruya)</span>
                   <span class="amt">${formatYen(hrYen)}</span>
-                </a>`;
+                </div>`;
           return `<li class="card-row">
             ${thumb}
             <div class="card-main">
