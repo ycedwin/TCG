@@ -71,15 +71,24 @@ function filterCatalog(raw) {
 
 function normalizeCardIds(card) {
   const col = card.collection || "";
-  const number = card.number || "";
-  const sourceNumber = card.sourceNumber || card.fullNumber || "";
-  // Fix PRB/PROMO reprints that still show the original printed set id
-  if ((col.startsWith("PRB") || col === "PROMO") && number) {
-    return {
-      ...card,
-      sourceNumber: sourceNumber,
-      fullNumber: `${col}-${number}`,
-    };
+  let sourceNumber = card.sourceNumber || "";
+  // Recover original printed id if an older cache used OP01-016 under PRB01
+  if (!sourceNumber) {
+    const fn = card.fullNumber || "";
+    if (col && fn.startsWith(`${col}-`) && /^(OP|EB|ST|P)\d*/i.test(fn.slice(col.length + 1))) {
+      sourceNumber = fn.slice(col.length + 1);
+    } else if (card.set && card.number) {
+      sourceNumber = `${card.set}-${card.number}`;
+    } else {
+      sourceNumber = fn;
+    }
+  }
+  if ((col.startsWith("PRB") || col === "PROMO") && sourceNumber) {
+    // Avoid PRB01-PRB01-OP01-016 if already prefixed
+    const fullNumber = sourceNumber.startsWith(`${col}-`)
+      ? sourceNumber
+      : `${col}-${sourceNumber}`;
+    return { ...card, sourceNumber, fullNumber };
   }
   return { ...card, sourceNumber };
 }

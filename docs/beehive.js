@@ -168,16 +168,20 @@ export function parseTitle(title) {
 
 /**
  * PRB/PROMO listings keep the original printed id in the title (e.g. OP01-016)
- * but belong to the shop collection (PRB01). Show collection-number for those.
+ * but belong to the shop collection (PRB01). Display as PRB01-OP01-016 so
+ * reprints from different sets don't collide (OP01-016 vs ST04-016).
  */
 export function resolveFullNumber(collectionCode, parsed) {
-  const sourceNumber = parsed.fullNumber || "";
-  const number = parsed.number || "";
+  const sourceNumber =
+    parsed.fullNumber ||
+    (parsed.cardSet && parsed.number
+      ? `${parsed.cardSet}-${parsed.number}`
+      : "");
   const col = collectionCode || "";
-  if ((col.startsWith("PRB") || col === "PROMO") && number) {
+  if ((col.startsWith("PRB") || col === "PROMO") && sourceNumber) {
     return {
-      sourceNumber: sourceNumber || `${parsed.cardSet}-${number}`,
-      fullNumber: `${col}-${number}`,
+      sourceNumber,
+      fullNumber: `${col}-${sourceNumber}`,
     };
   }
   return {
