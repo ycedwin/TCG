@@ -32,6 +32,9 @@ let refreshing = false;
 /** Show cards above this sell price, or cheaper ones with a strong buy offer */
 const MIN_PRICE_HKD = 50;
 const MIN_BUY_SHOW_HKD = 5;
+/** Leader sell<<buy mismatches are almost always wrong buylist matches */
+const LEADER_NOISE_SELL_MAX = 10;
+const LEADER_NOISE_BUY_MIN = 100;
 
 /** Rarity code → English + Traditional Chinese hint */
 const RARITY_BASE = {
@@ -162,9 +165,23 @@ function popularityTier(card) {
   return { tier: "C", label: "Tier C" };
 }
 
+function isLeaderCard(card) {
+  const r = card.rarity || "";
+  return r === "L" || r === "P-L" || r.endsWith("-L");
+}
+
+function isLeaderBuyNoise(card) {
+  if (!isLeaderCard(card)) return false;
+  const sell = card.priceHkd;
+  if (sell == null || !(sell < LEADER_NOISE_SELL_MAX)) return false;
+  const buy = buyInfoFor(card)?.buyHkd || 0;
+  return buy > LEADER_NOISE_BUY_MIN;
+}
+
 function filterCatalog(raw) {
   const cards = (raw.cards || []).filter((c) => {
     if (c.priceHkd == null) return false;
+    if (isLeaderBuyNoise(c)) return false;
     if (c.priceHkd > MIN_PRICE_HKD) return true;
     // Also show cheap sell listings when Beehive buy is meaningful
     const buy = buyInfoFor(c);
