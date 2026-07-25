@@ -178,10 +178,13 @@ def main() -> None:
     )
     print(json.dumps(out["counts"], indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
-    # English character names for the page
+    # English names, then Hareruya JPY buy prices
     enrich = ROOT / "scripts/enrich_pkmjp_names.py"
     if enrich.exists():
         subprocess.check_call(["python3", str(enrich)])
+    hr = ROOT / "scripts/sync_hareruya_buylist.py"
+    if hr.exists():
+        subprocess.check_call(["python3", str(hr)])
 
 
 if __name__ == "__main__":

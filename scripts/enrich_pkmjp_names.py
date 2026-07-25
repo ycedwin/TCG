@@ -148,6 +148,86 @@ TRAINERS = {
     "改造ハンマー": "Enhanced Hammer",
     "スーパーエネルギー回収": "Super Energy Retrieval",
     "ボウルタウン": "Town Store",
+    # Remaining buylist misses (trainers / items / forms)
+    "ムク": "Muku",
+    "ホミカ": "Klara",
+    "チェレン": "Cheren",
+    "ローズ": "Rose",
+    "シキミ": "Shauna",
+    "ヒョウタ": "Roark",
+    "マコモ": "Shauntal",
+    "ハヤト": "Falkner",
+    "ハッサク": "Ramos",
+    "ピュール": "Tulip",
+    "ザクロ": "Grimsley",
+    "ポプラ": "Opal",
+    "ヤロー": "Milo",
+    "ハイダイ": "Piers",
+    "ドラセナ": "Drasna",
+    "ウォロ": "Ghetsis",
+    "マスター": "Master",
+    "クラウン": "Crown",
+    "クラベル": "Clavell",
+    "カエデ": "Billie",
+    "ライム": "Geeta",
+    "センリ": "Norman",
+    "ゴヨウ": "Cilan",
+    "セイジ": "Sage",
+    "レホール": "Rika",
+    "ホップ": "Hop",
+    "タラゴン": "Tarragon",
+    "ジプソ": "Gypso",
+    "マチエール": "Matière",
+    "バーベナ": "Verbena",
+    "ヘレナ": "Helena",
+    "バーベナとヘレナ": "Verbena & Helena",
+    "ソッド": "Sod",
+    "シルディ": "Sildy",
+    "ソッドとシルディ": "Sod & Sildy",
+    "スター団": "Team Star",
+    "ポリゴンZ": "Porygon-Z",
+    "緊急ボード": "Emergency Board",
+    "シークレットボックス": "Secret Box",
+    "カウンターゲイン": "Counter Gain",
+    "スパイクエネルギー": "Sparkling Energy",
+    "ハッコウシティ": "Levincia",
+    "ビーチコート": "Beach Court",
+    "勇気のおまもり": "Hero's Charm",
+    "探検家の先導": "Explorer's Guidance",
+    "冒険家の発見": "Adventurer's Discovery",
+    "とりつかい": "Bird Keeper",
+    "ボールガイ": "Ball Guy",
+    "カブ": "Kabu",
+    "コック": "Cook",
+    "怖いお兄さん": "Scary Man",
+    "ひふきやろう": "Firebreather",
+    "からておうの稽古": "Black Belt's Training",
+    "ポケパッド": "PokéPad",
+    "ワンダーパッチ": "Wonder Patch",
+    "エネルギー回収": "Energy Retrieval",
+    "スペシャルレッドカード": "Special Red Card",
+    "プリズムタワー": "Prism Tower",
+    "アイアンディフェンダー": "Iron Defender",
+    "エネルギーつけかえ": "Energy Switch",
+    "ダークベル": "Dark Bell",
+    "ごうかいボム": "Big Bomb",
+    "ゴージャスマント": "Luxury Mantle",
+    "偉大な大樹": "Grand Tree",
+    "リッチエネルギー": "Rich Energy",
+    "シトロンの機転": "Clemont's Quick Wit",
+    "アオキの手際": "Kieran's Skill",
+    "アクロマの実験": "Colress's Experiment",
+    "アンズの秘技": "Janine's Secret Technique",
+    "クセロシキのたくらみ": "Cyrus's Conspiracy",
+    "ナナミの手助け": "Lana's Aid",
+    "マサキの転送": "Bill's Transfer",
+    "ホミカの演奏": "Klara's Performance",
+    "チェレンの気くばり": "Cheren's Care",
+    "AZの安らぎ": "AZ's Serenity",
+    "スター団のしたっぱ": "Team Star Grunt",
+    "ホップのウールー": "Hop's Wooloo",
+    "ポワルン たいようのすがた": "Castform Sunny Form",
+    "ポリゴンＺ": "Porygon-Z",
 }
 
 # Fix mis-maps
@@ -162,6 +242,9 @@ FORMS = {
     "アカツキ": "Bloodmoon",
     "れんげきのかた": "Rapid Strike Style",
     "いちげきのかた": "Single Strike Style",
+    "たいようのすがた": "Sunny Form",
+    "あまみずのすがた": "Rainy Form",
+    "ゆきぐものすがた": "Snowy Form",
 }
 
 # Leading form tokens glued to species
@@ -197,6 +280,19 @@ TITLES = {
     "気迫": "Vitality",
     "執念": "Obsession",
     "活気": "Energy",
+    "機転": "Quick Wit",
+    "手際": "Skill",
+    "実験": "Experiment",
+    "秘技": "Secret Technique",
+    "たくらみ": "Conspiracy",
+    "手助け": "Aid",
+    "転送": "Transfer",
+    "演奏": "Performance",
+    "気くばり": "Care",
+    "安らぎ": "Serenity",
+    "発見": "Discovery",
+    "先導": "Guidance",
+    "稽古": "Training",
 }
 
 PREFIXES = [
@@ -402,7 +498,18 @@ def main() -> None:
     data = json.loads(CATALOG.read_text(encoding="utf-8"))
     ok = miss = 0
     for c in data.get("cards") or []:
-        en = translate(c.get("name") or "")
+        # Prefer existing; else translate Beehive name, then Hareruya JP name
+        en = (c.get("nameEn") or "").strip()
+        if not en:
+            en = translate(c.get("name") or "") or ""
+        if not en and c.get("hareruyaName"):
+            en = translate(c["hareruyaName"]) or ""
+        # Full-string trainer/item overrides (exact card titles)
+        if not en:
+            for src in (c.get("name"), c.get("hareruyaName")):
+                if src and src in TRAINERS:
+                    en = TRAINERS[src]
+                    break
         c["nameEn"] = en or ""
         if en:
             ok += 1

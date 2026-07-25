@@ -61,6 +61,11 @@ function formatHkd(n) {
   })}`;
 }
 
+function formatYen(n) {
+  if (n == null || Number.isNaN(n)) return "—";
+  return `¥${Number(n).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+}
+
 function formatSyncedAt(iso) {
   if (!iso) return "unknown";
   try {
@@ -193,7 +198,10 @@ function render() {
         (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
     );
 
-  els.meta.textContent = `${cards.length} cards · buy only · updated ${formatSyncedAt(catalog.syncedAt)}`;
+  const hrAt = catalog.hareruya?.syncedAt;
+  els.meta.textContent = `${cards.length} cards · Beehive + Hareruya · updated ${formatSyncedAt(catalog.syncedAt)}${
+    hrAt ? ` · HR ${formatSyncedAt(hrAt)}` : ""
+  }`;
 
   if (cards.length === 0) {
     els.results.innerHTML = `<div class="empty">No cards match your search</div>`;
@@ -219,10 +227,21 @@ function render() {
                 <span class="lbl">Buy(beehive)</span>
                 <span class="amt">${formatHkd(c.buyHkd)}</span>
               </a>`
-            : `<div class="price-pill price-buy" title="Buy price">
+            : `<div class="price-pill price-buy" title="Beehive buy price">
                 <span class="lbl">Buy(beehive)</span>
                 <span class="amt">${formatHkd(c.buyHkd)}</span>
               </div>`;
+          const hrYen = c.buyYenHareruya;
+          const hrPill =
+            hrYen == null
+              ? `<div class="price-pill price-hareruya" title="No Hareruya match">
+                  <span class="lbl">Buy(hareruya)</span>
+                  <span class="amt">—</span>
+                </div>`
+              : `<a class="price-pill price-hareruya" href="https://www.hareruya2.com/en/pages/buying-list" target="_blank" rel="noopener noreferrer" title="Hareruya buy price (JPY)">
+                  <span class="lbl">Buy(hareruya)</span>
+                  <span class="amt">${formatYen(hrYen)}</span>
+                </a>`;
           return `<li class="card-row">
             ${thumb}
             <div class="card-main">
@@ -233,7 +252,7 @@ function render() {
                 ${setCode ? `<p class="set">${escapeHtml(setCode)}</p>` : ""}
                 ${name ? `<p class="name">${escapeHtml(name)}</p>` : ""}
               </div>
-              <div class="price">${buyPill}</div>
+              <div class="price">${buyPill}${hrPill}</div>
             </div>
           </li>`;
         })
@@ -254,7 +273,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=32";
+    : "./data/pkmjp-buylist.json?v=33";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
