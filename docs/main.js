@@ -398,7 +398,7 @@ function render() {
         <div class="rarity-head">
           <div class="rarity-title">
             <h2>${escapeHtml(hint.code)}</h2>
-            <p class="rarity-hint">${escapeHtml(hint.en)} · ${escapeHtml(hint.zh)}</p>
+            <p class="rarity-hint">${escapeHtml(hint.en)}</p>
           </div>
           <span>${list.length}</span>
         </div>
