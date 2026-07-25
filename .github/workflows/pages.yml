@@ -24,11 +24,6 @@ jobs:
           node-version: "22"
           cache: npm
       - run: npm ci
-      - name: Ensure catalog exists
-        run: |
-          if [ ! -f public/data/catalog.json ]; then
-            node scripts/sync.mjs
-          fi
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

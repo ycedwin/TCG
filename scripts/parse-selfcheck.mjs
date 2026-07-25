@@ -1,4 +1,4 @@
-import { parseTitle } from "./sync.mjs";
+import { parseTitle } from "../src/beehive.js";
 import assert from "node:assert/strict";
 
 const cases = [

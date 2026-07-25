@@ -22,7 +22,10 @@
         <h1>卡牌價格查詢</h1>
         <p class="tagline">資料來源：Beehive 皇巢 · 港幣 HKD</p>
       </div>
-      <div class="status" id="status" role="status">載入中…</div>
+      <div class="status-row">
+        <div class="status" id="status" role="status">載入中…</div>
+        <button type="button" class="refresh-btn" id="refresh">更新價格</button>
+      </div>
     </header>
 
     <main class="shell">
@@ -58,7 +61,7 @@
     </main>
 
     <footer class="foot">
-      <p>價格以 Beehive 網站為準 · 離線時使用本機快取</p>
+      <p>價格以 Beehive 網站為準 · 按「更新價格」同步 · 離線使用本機快取</p>
     </footer>
 
     <script type="module" src="/src/main.js"></script>

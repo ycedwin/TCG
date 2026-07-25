@@ -1,7 +1,13 @@
 import "./styles.css";
+import {
+  buildCatalog,
+  loadCachedCatalog,
+  saveCachedCatalog,
+} from "./beehive.js";
 
 const els = {
   status: document.getElementById("status"),
+  refresh: document.getElementById("refresh"),
   search: document.getElementById("search"),
   setSelect: document.getElementById("setSelect"),
   sortSelect: document.getElementById("sortSelect"),
@@ -11,6 +17,7 @@ const els = {
 
 /** @type {{ syncedAt: string, rarityOrder: string[], sets: any[], cards: any[] } | null} */
 let catalog = null;
+let refreshing = false;
 
 function formatHkd(n) {
   if (n == null || Number.isNaN(n)) return "—";
@@ -41,6 +48,8 @@ function setStatus(text, offline = false) {
 }
 
 function populateSets() {
+  const current = els.setSelect.value;
+  els.setSelect.innerHTML = `<option value="">全部系列</option>`;
   const frag = document.createDocumentFragment();
   for (const s of catalog.sets) {
     if (!s.count) continue;
@@ -50,6 +59,9 @@ function populateSets() {
     frag.appendChild(opt);
   }
   els.setSelect.appendChild(frag);
+  if ([...els.setSelect.options].some((o) => o.value === current)) {
+    els.setSelect.value = current;
+  }
 }
 
 function matchesQuery(card, q) {
@@ -70,7 +82,6 @@ function matchesQuery(card, q) {
     .join(" ")
     .toLowerCase();
 
-  // Allow searching "065" or "op16 065" or "op16-065"
   const compact = hay.replace(/[\s\-・]/g, "");
   const qCompact = raw.replace(/[\s\-・]/g, "");
   return hay.includes(raw) || compact.includes(qCompact);
@@ -128,7 +139,7 @@ function render() {
   }
 
   const groups = groupByRarity(cards);
-  const html = groups
+  els.results.innerHTML = groups
     .map(([rarity, list], idx) => {
       const items = list
         .map((c) => {
@@ -137,7 +148,9 @@ function render() {
             : `<div class="thumb missing">無圖</div>`;
           const headline = c.fullNumber || c.name || c.title;
           const sub =
-            c.fullNumber && c.name && c.name !== c.fullNumber ? c.name : c.collection || "";
+            c.fullNumber && c.name && c.name !== c.fullNumber
+              ? c.name
+              : c.collection || "";
           return `<li>
             <a class="card" href="${c.url}" target="_blank" rel="noopener noreferrer">
               ${img}
@@ -159,8 +172,6 @@ function render() {
       </section>`;
     })
     .join("");
-
-  els.results.innerHTML = html;
 }
 
 function escapeHtml(s) {
@@ -171,23 +182,81 @@ function escapeHtml(s) {
     .replaceAll('"', "&quot;");
 }
 
+function applyCatalog(next, { sourceLabel, offline = false } = {}) {
+  catalog = next;
+  populateSets();
+  setStatus(
+    `${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`,
+    offline,
+  );
+  render();
+}
+
+async function loadBundledCatalog() {
+  const res = await fetch("./data/catalog.json", { cache: "no-cache" });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
 async function loadCatalog() {
   const online = navigator.onLine;
+  const cached = loadCachedCatalog();
+  if (cached?.cards?.length) {
+    applyCatalog(cached, {
+      sourceLabel: online ? "本機快取" : "離線快取",
+      offline: !online,
+    });
+    return;
+  }
   try {
-    const res = await fetch("./data/catalog.json", { cache: "no-cache" });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    catalog = await res.json();
-    populateSets();
-    setStatus(
-      online
-        ? `已連線 · 資料 ${formatSyncedAt(catalog.syncedAt)}`
-        : `離線 · 使用快取 ${formatSyncedAt(catalog.syncedAt)}`,
-      !online,
-    );
-    render();
+    const bundled = await loadBundledCatalog();
+    applyCatalog(bundled, {
+      sourceLabel: online ? "內建資料" : "離線 · 內建資料",
+      offline: !online,
+    });
   } catch (err) {
     setStatus(online ? "載入失敗" : "離線且無快取", !online);
-    els.results.innerHTML = `<div class="error">無法載入卡牌資料。請先連線後重新整理。<br/><small>${escapeHtml(err.message)}</small></div>`;
+    els.results.innerHTML = `<div class="error">無法載入卡牌資料。<br/><small>${escapeHtml(err.message)}</small></div>`;
+  }
+}
+
+async function refreshFromBeehive() {
+  if (refreshing) return;
+  if (!navigator.onLine) {
+    setStatus("離線中，無法更新", true);
+    return;
+  }
+
+  refreshing = true;
+  els.refresh.disabled = true;
+  els.refresh.classList.add("is-busy");
+
+  try {
+    const setsRes = await fetch("./data/sets.json", { cache: "no-cache" });
+    if (!setsRes.ok) throw new Error("無法讀取系列清單");
+    const sets = await setsRes.json();
+
+    const next = await buildCatalog(sets, {
+      onProgress: ({ index, total, code }) => {
+        setStatus(`更新中 ${code}（${index}/${total}）…`);
+      },
+    });
+
+    if (!next.cards.length) throw new Error("沒有抓到卡牌");
+
+    try {
+      saveCachedCatalog(next);
+    } catch {
+      // ponytail: quota full — still show fresh data this session
+    }
+
+    applyCatalog(next, { sourceLabel: "已更新自 Beehive" });
+  } catch (err) {
+    setStatus(`更新失敗：${err.message}`);
+  } finally {
+    refreshing = false;
+    els.refresh.disabled = false;
+    els.refresh.classList.remove("is-busy");
   }
 }
 
@@ -199,9 +268,9 @@ function wireEvents() {
   });
   els.setSelect.addEventListener("change", render);
   els.sortSelect.addEventListener("change", render);
+  els.refresh.addEventListener("click", refreshFromBeehive);
   window.addEventListener("online", () => {
-    setStatus(`已連線 · 資料 ${formatSyncedAt(catalog?.syncedAt)}`, false);
-    loadCatalog();
+    setStatus(`已連線 · ${formatSyncedAt(catalog?.syncedAt)}`);
   });
   window.addEventListener("offline", () => {
     setStatus(`離線 · 使用快取 ${formatSyncedAt(catalog?.syncedAt)}`, true);
