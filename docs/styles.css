@@ -63,20 +63,12 @@ body {
 .brand-mark {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(2rem, 7vw, 3.1rem);
+  font-size: clamp(1.25rem, 4vw, 1.6rem);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   color: var(--gold);
   line-height: 1.1;
   animation: rise 0.7s ease both;
-}
-
-.brand h1 {
-  margin: 0.2rem 0 0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--ink);
-  animation: rise 0.7s ease 0.08s both;
 }
 
 .tagline {
