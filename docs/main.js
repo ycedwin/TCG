@@ -46,7 +46,7 @@ const RARITY_BASE = {
   "P-SEC": { en: "Parallel Secret", zh: "平行·秘密稀有" },
   "P-SECP": { en: "Secret Parallel+", zh: "高階平行·秘密" },
   "P-SRP": { en: "Super Rare Parallel+", zh: "高階平行·超稀有" },
-  "P-RP": { en: "Rare Parallel+", zh: "高階平行·稀有" },
+  "P-RP": { en: "Rare Parallel+", zh: "稀有" },
   "P-L": { en: "Parallel Leader", zh: "平行·領袖" },
   "P-P": { en: "Parallel Promo", zh: "平行·宣傳" },
 };
