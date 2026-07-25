@@ -108,9 +108,11 @@ function matchesPriceFilters(card) {
   const buyMin = parsePriceBound(els.buyMin);
   const buyMax = parsePriceBound(els.buyMax);
   if (buyMin == null && buyMax == null) return true;
+  // Filter against Beehive HKD when present; Hareruya-only cards ignore HKD bounds
   const buy = card.buyHkd;
-  if (buyMin != null && (buy == null || buy < buyMin)) return false;
-  if (buyMax != null && (buy == null || buy > buyMax)) return false;
+  if (buy == null) return true;
+  if (buyMin != null && buy < buyMin) return false;
+  if (buyMax != null && buy > buyMax) return false;
   return true;
 }
 
@@ -195,6 +197,7 @@ function render() {
     .sort(
       (a, b) =>
         (b.buyHkd || 0) - (a.buyHkd || 0) ||
+        (b.buyYenHareruya || 0) - (a.buyYenHareruya || 0) ||
         (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
     );
 
@@ -222,15 +225,21 @@ function render() {
               </button>`
             : `<div class="thumb missing">No art</div>`;
           const buyUrl = (c.url || "").trim();
-          const buyPill = buyUrl
-            ? `<a class="price-pill price-buy" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist product">
+          const hasBeehive = c.buyHkd != null;
+          const buyPill = !hasBeehive
+            ? `<div class="price-pill price-buy" title="Not on Beehive buylist">
                 <span class="lbl">Buy(beehive)</span>
-                <span class="amt">${formatHkd(c.buyHkd)}</span>
-              </a>`
-            : `<div class="price-pill price-buy" title="Beehive buy price">
-                <span class="lbl">Buy(beehive)</span>
-                <span class="amt">${formatHkd(c.buyHkd)}</span>
-              </div>`;
+                <span class="amt">—</span>
+              </div>`
+            : buyUrl
+              ? `<a class="price-pill price-buy" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist product">
+                  <span class="lbl">Buy(beehive)</span>
+                  <span class="amt">${formatHkd(c.buyHkd)}</span>
+                </a>`
+              : `<div class="price-pill price-buy" title="Beehive buy price">
+                  <span class="lbl">Buy(beehive)</span>
+                  <span class="amt">${formatHkd(c.buyHkd)}</span>
+                </div>`;
           const hrYen = c.buyYenHareruya;
           const hrPill =
             hrYen == null
@@ -273,7 +282,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=33";
+    : "./data/pkmjp-buylist.json?v=34";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });

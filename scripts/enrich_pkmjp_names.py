@@ -228,6 +228,31 @@ TRAINERS = {
     "ホップのウールー": "Hop's Wooloo",
     "ポワルン たいようのすがた": "Castform Sunny Form",
     "ポリゴンＺ": "Porygon-Z",
+    "ハイパーボール": "Ultra Ball",
+    "バトルサーチャー": "Battle Searcher",
+    "はかせのてがみ": "Professor's Letter",
+    "クラッシュハンマー": "Crushing Hammer",
+    "ピーピーマックス": "Max Potion",
+    "ゲンシグラードン": "Primal Groudon",
+    "ゲンシカイオーガ": "Primal Kyogre",
+    "ダブル無色エネルギー": "Double Colorless Energy",
+    "ダブルドラゴンエネルギー": "Double Dragon Energy",
+    "おじょうさま": "Lady",
+    "トレーナーズポスト": "Trainers' Mail",
+    "バトルコンプレッサー（フレア団ギア）": "Battle Compressor",
+    "かるいし": "Float Stone",
+    "スカイフィールド": "Sky Field",
+    "次元の谷": "Dimension Valley",
+    "ちからのハチマキ": "Muscle Band",
+    "センパイとコウハイ": "Senpai and Kohai",
+    "フィールドブロアー": "Field Blower",
+    "ミステリートレジャー": "Mysterious Treasure",
+    "かがやくリザードン": "Radiant Charizard",
+    "アローラライチュウ": "Alolan Raichu",
+    "アローラナッシー": "Alolan Exeggutor",
+    "アローラベトベトン": "Alolan Muk",
+    "メガミミロップ": "Mega Lopunny",
+    "メガヤミラミ": "Mega Sableye",
 }
 
 # Fix mis-maps
@@ -252,6 +277,8 @@ LEAD_FORMS = {
     "はくば": "Ice Rider",
     "こくば": "Shadow Rider",
     "オリジン": "Origin Forme",
+    "ゲンシ": "Primal",
+    "かがやく": "Radiant",
 }
 
 TITLES = {
@@ -353,8 +380,16 @@ def strip_suffixes(name: str) -> tuple[str, str, list[str]]:
             suffixes.append("V-UNION")
             rest = rest[:-7]
             continue
+        if rest.endswith("BREAK"):
+            suffixes.append("BREAK")
+            rest = rest[:-5]
+            continue
         if rest.endswith("GX"):
             suffixes.append("GX")
+            rest = rest[:-2]
+            continue
+        if rest.endswith("EX"):
+            suffixes.append("EX")
             rest = rest[:-2]
             continue
         if rest.endswith("ex"):
@@ -460,6 +495,13 @@ def make_translator(species: dict[str, str]):
                 if sen:
                     return finish(f"{en} {sen}")
 
+        # TAG TEAM / dual names: ラティアス&ラティオス
+        if "&" in rest or "＆" in rest:
+            parts = re.split(r"[&＆]", rest)
+            ens = [lookup_species(p) or lookup_trainer(p) for p in parts]
+            if ens and all(ens):
+                return finish(" & ".join(ens))
+
         # Exact species before Mega-split (メガヤンマ = Yanmega)
         sen = lookup_species(rest)
         if sen:
@@ -469,6 +511,12 @@ def make_translator(species: dict[str, str]):
             sen = lookup_species(rest[2:])
             if sen:
                 return finish(f"Mega {sen}")
+
+        # Older XY-era Mega marker: MリザードンEX
+        if rest.startswith("M") and len(rest) > 1:
+            sen = lookup_species(rest[1:])
+            if sen:
+                return finish(f"M {sen}")
 
         return None
 
