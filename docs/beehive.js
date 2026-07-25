@@ -2,7 +2,9 @@
 
 export const BASE = "https://beehivetcg.com";
 export const PAGE_LIMIT = 250;
-export const CACHE_KEY = "op-catalog-v1";
+export const CACHE_KEY = "op-catalog-v2";
+const IDB_NAME = "op-prices";
+const IDB_STORE = "kv";
 
 export const RARITY_ORDER = [
   "P-SRP",
@@ -294,16 +296,62 @@ export async function buildCatalog(sets, { onProgress } = {}) {
   };
 }
 
-export function loadCachedCatalog() {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return null;
-    return JSON.parse(raw);
-  } catch {
-    return null;
-  }
+function openDb() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(IDB_NAME, 1);
+    req.onupgradeneeded = () => {
+      const db = req.result;
+      if (!db.objectStoreNames.contains(IDB_STORE)) {
+        db.createObjectStore(IDB_STORE);
+      }
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
 }
 
-export function saveCachedCatalog(catalog) {
-  localStorage.setItem(CACHE_KEY, JSON.stringify(catalog));
+/** Load persisted catalog (IndexedDB, then legacy localStorage). */
+export async function loadCachedCatalog() {
+  try {
+    const db = await openDb();
+    const fromIdb = await new Promise((resolve, reject) => {
+      const tx = db.transaction(IDB_STORE, "readonly");
+      const req = tx.objectStore(IDB_STORE).get(CACHE_KEY);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => reject(req.error);
+    });
+    if (fromIdb?.cards?.length) return fromIdb;
+  } catch {
+    // fall through
+  }
+
+  try {
+    for (const key of [CACHE_KEY, "op-catalog-v1"]) {
+      const raw = localStorage.getItem(key);
+      if (!raw) continue;
+      const parsed = JSON.parse(raw);
+      if (parsed?.cards?.length) return parsed;
+    }
+  } catch {
+    // ignore
+  }
+  return null;
+}
+
+/** Persist full catalog for offline use. */
+export async function saveCachedCatalog(catalog) {
+  if (!catalog?.cards?.length) return;
+  const db = await openDb();
+  await new Promise((resolve, reject) => {
+    const tx = db.transaction(IDB_STORE, "readwrite");
+    tx.objectStore(IDB_STORE).put(catalog, CACHE_KEY);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+  // Best-effort mirror for very old browsers; ignore quota errors
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(catalog));
+  } catch {
+    // IndexedDB is the source of truth
+  }
 }

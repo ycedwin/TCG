@@ -62,12 +62,7 @@ function setStatus(text, offline = false) {
 }
 
 function setLabel(card) {
-  return (
-    setNames.get(card.collection) ||
-    card.collection ||
-    card.set ||
-    ""
-  );
+  return setNames.get(card.collection) || card.collection || card.set || "";
 }
 
 function matchesQuery(card, q) {
@@ -115,9 +110,11 @@ function render() {
   const q = els.search.value;
 
   let cards = catalog.cards.filter((c) => matchesQuery(c, q));
-  cards = cards.slice().sort((a, b) =>
-    (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
-  );
+  cards = cards
+    .slice()
+    .sort((a, b) =>
+      (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
+    );
 
   els.meta.textContent = `${cards.length} cards · updated ${formatSyncedAt(catalog.syncedAt)}`;
 
@@ -162,7 +159,17 @@ function render() {
     .join("");
 }
 
-function applyCatalog(next, { sourceLabel, offline = false } = {}) {
+async function persist(raw) {
+  try {
+    await saveCachedCatalog(raw);
+  } catch (err) {
+    console.warn("Could not cache catalog", err);
+    setStatus(`Loaded · cache save failed (${err.message || "quota"})`);
+  }
+}
+
+async function applyCatalog(next, { sourceLabel, offline = false, persistData = true } = {}) {
+  if (persistData) await persist(next);
   catalog = filterCatalog(next);
   setNames = new Map((catalog.sets || []).map((s) => [s.code, s.name]));
   setStatus(`${sourceLabel} · ${formatSyncedAt(catalog.syncedAt)}`, offline);
@@ -170,30 +177,36 @@ function applyCatalog(next, { sourceLabel, offline = false } = {}) {
 }
 
 async function loadBundledCatalog() {
-  const res = await fetch("./data/catalog.json", { cache: "no-cache" });
+  const res = await fetch("./data/catalog.json");
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
 }
 
 async function loadCatalog() {
   const online = navigator.onLine;
-  const cached = loadCachedCatalog();
+
+  // 1) Instant offline-capable cache
+  const cached = await loadCachedCatalog();
   if (cached?.cards?.length) {
-    applyCatalog(cached, {
-      sourceLabel: online ? "Local cache" : "Offline cache",
+    await applyCatalog(cached, {
+      sourceLabel: online ? "Cached" : "Offline cache",
       offline: !online,
+      persistData: false,
     });
     return;
   }
+
+  // 2) First visit: load bundled catalog from site (SW will cache the file)
   try {
     const bundled = await loadBundledCatalog();
-    applyCatalog(bundled, {
-      sourceLabel: online ? "Bundled data" : "Offline · bundled",
+    await applyCatalog(bundled, {
+      sourceLabel: online ? "Loaded" : "Offline · bundled",
       offline: !online,
+      persistData: true,
     });
   } catch (err) {
-    setStatus(online ? "Load failed" : "Offline · no cache", !online);
-    els.results.innerHTML = `<div class="error">Could not load card data.<br/><small>${escapeHtml(err.message)}</small></div>`;
+    setStatus(online ? "Load failed" : "Offline · no cache yet", !online);
+    els.results.innerHTML = `<div class="error">Could not load card data.<br/><small>${escapeHtml(err.message)}</small><br/><small>Open once while online to cache for offline use.</small></div>`;
   }
 }
 
@@ -209,7 +222,7 @@ async function refreshFromBeehive() {
   els.refresh.classList.add("is-busy");
 
   try {
-    const setsRes = await fetch("./data/sets.json", { cache: "no-cache" });
+    const setsRes = await fetch("./data/sets.json");
     if (!setsRes.ok) throw new Error("Could not load set list");
     const sets = await setsRes.json();
 
@@ -221,15 +234,10 @@ async function refreshFromBeehive() {
 
     if (!next.cards.length) throw new Error("No cards returned");
 
-    try {
-      saveCachedCatalog(next);
-    } catch {
-      // ponytail: quota full — still show fresh data this session
-    }
-
-    applyCatalog(next, { sourceLabel: "Updated from Beehive" });
+    await applyCatalog(next, { sourceLabel: "Updated from Beehive", persistData: true });
   } catch (err) {
     setStatus(`Refresh failed: ${err.message}`);
+    console.error(err);
   } finally {
     refreshing = false;
     els.refresh.disabled = false;

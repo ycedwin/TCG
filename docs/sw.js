@@ -1,5 +1,5 @@
-/* Network-first for app files so deploys aren't stuck behind an old cache */
-const CACHE = "op-price-v2";
+/* Cache app shell + catalog so a second visit works offline */
+const CACHE = "op-price-v3";
 const PRECACHE = [
   "./",
   "./index.html",
@@ -9,11 +9,15 @@ const PRECACHE = [
   "./favicon.svg",
   "./manifest.webmanifest",
   "./data/sets.json",
+  "./data/catalog.json",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()),
+    caches
+      .open(CACHE)
+      .then((c) => c.addAll(PRECACHE))
+      .then(() => self.skipWaiting()),
   );
 });
 
@@ -35,7 +39,28 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Always try network first for same-origin app assets
+  const isCatalog = url.pathname.endsWith("/data/catalog.json");
+
+  if (isCatalog) {
+    // Cache-first for the big catalog file (offline-friendly)
+    event.respondWith(
+      caches.match(request).then((cached) => {
+        const network = fetch(request)
+          .then((res) => {
+            if (res.ok) {
+              const copy = res.clone();
+              caches.open(CACHE).then((c) => c.put(request, copy));
+            }
+            return res;
+          })
+          .catch(() => cached);
+        return cached || network;
+      }),
+    );
+    return;
+  }
+
+  // Network-first for app code so deploys update quickly
   event.respondWith(
     fetch(request)
       .then((res) => {
@@ -45,6 +70,8 @@ self.addEventListener("fetch", (event) => {
         }
         return res;
       })
-      .catch(() => caches.match(request).then((cached) => cached || Response.error())),
+      .catch(() =>
+        caches.match(request).then((cached) => cached || Response.error()),
+      ),
   );
 });

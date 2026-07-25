@@ -55,11 +55,7 @@
     <script type="module" src="./main.js"></script>
     <script>
       if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.getRegistrations().then((regs) => {
-          Promise.all(regs.map((r) => r.unregister())).finally(() => {
-            navigator.serviceWorker.register("./sw.js").catch(() => {});
-          });
-        });
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
       }
     </script>
   </body>
