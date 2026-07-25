@@ -437,11 +437,30 @@ body {
 }
 
 .price {
-  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.12rem;
   font-variant-numeric: tabular-nums;
-  color: var(--gold);
   white-space: nowrap;
+  line-height: 1.2;
+}
+
+.price-sell {
+  font-weight: 700;
   font-size: 0.95rem;
+  color: var(--gold);
+}
+
+.price-buy {
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.price-buy.is-paused {
+  text-decoration: line-through;
+  opacity: 0.75;
 }
 
 .empty,

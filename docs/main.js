@@ -21,6 +21,8 @@ let namesEn = {};
 let setsMeta = [];
 let characterTiers = { S: [], A: [], B: [] };
 let tierMatchers = null;
+/** Beehive buy/trade-in prices: byKey["OP01-016|P-RP"] = { buyHkd, buyPaused } */
+let buylist = null;
 let refreshing = false;
 
 /** Hide cheap commons — only show cards above this HKD price */
@@ -234,6 +236,21 @@ function formatHkd(n) {
   })}`;
 }
 
+function cardNumberKey(card) {
+  if (card.set && card.number) return `${card.set}-${card.number}`;
+  const fn = card.fullNumber || "";
+  return fn && fn !== "DON!!" ? fn : "";
+}
+
+/** Exact match: card number + rarity → Beehive buy price */
+function buyInfoFor(card) {
+  if (!buylist?.byKey) return null;
+  const fn = cardNumberKey(card);
+  const rarity = card.rarity || "";
+  if (!fn || !rarity) return null;
+  return buylist.byKey[`${fn}|${rarity}`] || null;
+}
+
 function formatSyncedAt(iso) {
   if (!iso) return "unknown";
   try {
@@ -372,11 +389,20 @@ function render() {
           const setCode = c.collection || c.set || "";
           const en = c.nameEn || "";
           const { tier, label } = popularityTier(c);
+          const buy = buyInfoFor(c);
           const thumb = c.image
             ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${en ? " · " + en : ""}`)}" aria-label="Enlarge card art">
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
               </button>`
             : `<div class="thumb missing">No art</div>`;
+          const buyHtml =
+            buy == null
+              ? ""
+              : `<span class="price-buy${buy.buyPaused ? " is-paused" : ""}" title="${
+                  buy.buyPaused
+                    ? "暫停回收 — buy price marked $0"
+                    : "Beehive buy / trade-in price"
+                }">Buy ${formatHkd(buy.buyHkd)}</span>`;
           return `<li class="card-row">
             ${thumb}
             <div class="card-main">
@@ -388,7 +414,10 @@ function render() {
                 ${setCode ? `<p class="set">${escapeHtml(setCode)}</p>` : ""}
                 ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
               </div>
-              <div class="price">${formatHkd(c.priceHkd)}</div>
+              <div class="price">
+                <span class="price-sell" title="Sell price">${formatHkd(c.priceHkd)}</span>
+                ${buyHtml}
+              </div>
             </div>
           </li>`;
         })
@@ -425,10 +454,11 @@ async function applyCatalog(next, { sourceLabel, offline = false, persistData = 
 }
 
 async function loadMeta() {
-  const [namesRes, setsRes, tiersRes] = await Promise.all([
+  const [namesRes, setsRes, tiersRes, buyRes] = await Promise.all([
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
     fetch("./data/character-tiers.json"),
+    fetch("./data/buylist.json"),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
@@ -436,6 +466,7 @@ async function loadMeta() {
     characterTiers = await tiersRes.json();
     tierMatchers = null;
   }
+  if (buyRes.ok) buylist = await buyRes.json();
 }
 
 async function loadBundledCatalog() {
