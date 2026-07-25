@@ -370,55 +370,62 @@ body {
 
 .lightbox {
   border: none;
-  padding: 0;
-  max-width: min(92vw, 420px);
-  background: transparent;
+  padding: 0.65rem;
+  width: min(72vw, 240px);
+  max-width: 240px;
+  background: rgba(10, 28, 48, 0.96);
   color: var(--ink);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
 }
 
 .lightbox::backdrop {
-  background: rgba(3, 10, 18, 0.82);
-  backdrop-filter: blur(4px);
+  background: rgba(3, 10, 18, 0.45);
 }
 
 .lightbox img {
   width: 100%;
+  max-width: 210px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 8px;
   display: block;
-  box-shadow: var(--shadow);
+  margin: 0 auto;
   background: #0a1524;
 }
 
 .lightbox-close {
   position: absolute;
-  top: 0.35rem;
-  right: 0.35rem;
+  top: 0.2rem;
+  right: 0.2rem;
   z-index: 2;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   border: none;
   border-radius: 999px;
-  background: rgba(7, 21, 37, 0.85);
+  background: rgba(7, 21, 37, 0.9);
   color: var(--ink);
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   line-height: 1;
   cursor: pointer;
 }
 
 .lightbox-cap {
-  margin: 0.55rem 0 0;
+  margin: 0.4rem 0 0;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--muted);
 }
 
 .lightbox[open],
 .lightbox:modal {
   position: fixed;
-  inset: 0;
-  margin: auto;
-  width: min(92vw, 420px);
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  margin: 0;
   height: fit-content;
 }
 

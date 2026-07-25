@@ -111,7 +111,7 @@ function largeImageUrl(src) {
   if (!src) return "";
   try {
     const u = new URL(src);
-    u.searchParams.set("width", "800");
+    u.searchParams.set("width", "420");
     return u.toString();
   } catch {
     return src;
