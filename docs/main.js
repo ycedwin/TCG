@@ -19,16 +19,16 @@ let refreshing = false;
 
 function formatHkd(n) {
   if (n == null || Number.isNaN(n)) return "—";
-  return `HK$${n.toLocaleString("zh-HK", {
+  return `HK$${n.toLocaleString("en-HK", {
     minimumFractionDigits: n % 1 ? 2 : 0,
     maximumFractionDigits: 2,
   })}`;
 }
 
 function formatSyncedAt(iso) {
-  if (!iso) return "未知";
+  if (!iso) return "unknown";
   try {
-    return new Date(iso).toLocaleString("zh-HK", {
+    return new Date(iso).toLocaleString("en-HK", {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
@@ -47,7 +47,7 @@ function setStatus(text, offline = false) {
 
 function populateSets() {
   const current = els.setSelect.value;
-  els.setSelect.innerHTML = `<option value="">全部系列</option>`;
+  els.setSelect.innerHTML = `<option value="">All sets</option>`;
   const frag = document.createDocumentFragment();
   for (const s of catalog.sets) {
     if (!s.count) continue;
@@ -127,10 +127,10 @@ function render() {
   cards = cards.filter((c) => matchesQuery(c, q));
   cards = sortCards(cards, sort);
 
-  els.meta.textContent = `共 ${cards.length} 張卡 · 更新於 ${formatSyncedAt(catalog.syncedAt)}`;
+  els.meta.textContent = `${cards.length} cards · updated ${formatSyncedAt(catalog.syncedAt)}`;
 
   if (cards.length === 0) {
-    els.results.innerHTML = `<div class="empty">找不到符合條件的卡牌</div>`;
+    els.results.innerHTML = `<div class="empty">No cards match your filters</div>`;
     return;
   }
 
@@ -141,7 +141,7 @@ function render() {
         .map((c) => {
           const img = c.image
             ? `<img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />`
-            : `<div class="thumb missing">無圖</div>`;
+            : `<div class="thumb missing">No art</div>`;
           const headline = c.fullNumber || c.name || c.title;
           const sub =
             c.fullNumber && c.name && c.name !== c.fullNumber
@@ -162,7 +162,7 @@ function render() {
       return `<section class="rarity-block" style="animation-delay:${Math.min(idx, 8) * 0.04}s">
         <div class="rarity-head">
           <h2>${escapeHtml(rarity)}</h2>
-          <span>${list.length} 張</span>
+          <span>${list.length}</span>
         </div>
         <ul class="card-list">${items}</ul>
       </section>`;
@@ -188,7 +188,7 @@ async function loadCatalog() {
   const cached = loadCachedCatalog();
   if (cached?.cards?.length) {
     applyCatalog(cached, {
-      sourceLabel: online ? "本機快取" : "離線快取",
+      sourceLabel: online ? "Local cache" : "Offline cache",
       offline: !online,
     });
     return;
@@ -196,19 +196,19 @@ async function loadCatalog() {
   try {
     const bundled = await loadBundledCatalog();
     applyCatalog(bundled, {
-      sourceLabel: online ? "內建資料" : "離線 · 內建資料",
+      sourceLabel: online ? "Bundled data" : "Offline · bundled",
       offline: !online,
     });
   } catch (err) {
-    setStatus(online ? "載入失敗" : "離線且無快取", !online);
-    els.results.innerHTML = `<div class="error">無法載入卡牌資料。<br/><small>${escapeHtml(err.message)}</small></div>`;
+    setStatus(online ? "Load failed" : "Offline · no cache", !online);
+    els.results.innerHTML = `<div class="error">Could not load card data.<br/><small>${escapeHtml(err.message)}</small></div>`;
   }
 }
 
 async function refreshFromBeehive() {
   if (refreshing) return;
   if (!navigator.onLine) {
-    setStatus("離線中，無法更新", true);
+    setStatus("Offline — cannot refresh", true);
     return;
   }
 
@@ -218,16 +218,16 @@ async function refreshFromBeehive() {
 
   try {
     const setsRes = await fetch("./data/sets.json", { cache: "no-cache" });
-    if (!setsRes.ok) throw new Error("無法讀取系列清單");
+    if (!setsRes.ok) throw new Error("Could not load set list");
     const sets = await setsRes.json();
 
     const next = await buildCatalog(sets, {
       onProgress: ({ index, total, code }) => {
-        setStatus(`更新中 ${code}（${index}/${total}）…`);
+        setStatus(`Refreshing ${code} (${index}/${total})…`);
       },
     });
 
-    if (!next.cards.length) throw new Error("沒有抓到卡牌");
+    if (!next.cards.length) throw new Error("No cards returned");
 
     try {
       saveCachedCatalog(next);
@@ -235,9 +235,9 @@ async function refreshFromBeehive() {
       // ponytail: quota full — still show fresh data this session
     }
 
-    applyCatalog(next, { sourceLabel: "已更新自 Beehive" });
+    applyCatalog(next, { sourceLabel: "Updated from Beehive" });
   } catch (err) {
-    setStatus(`更新失敗：${err.message}`);
+    setStatus(`Refresh failed: ${err.message}`);
   } finally {
     refreshing = false;
     els.refresh.disabled = false;
@@ -255,10 +255,10 @@ function wireEvents() {
   els.sortSelect.addEventListener("change", render);
   els.refresh.addEventListener("click", refreshFromBeehive);
   window.addEventListener("online", () => {
-    setStatus(`已連線 · ${formatSyncedAt(catalog?.syncedAt)}`);
+    setStatus(`Online · ${formatSyncedAt(catalog?.syncedAt)}`);
   });
   window.addEventListener("offline", () => {
-    setStatus(`離線 · 使用快取 ${formatSyncedAt(catalog?.syncedAt)}`, true);
+    setStatus(`Offline · cache ${formatSyncedAt(catalog?.syncedAt)}`, true);
   });
 }
 

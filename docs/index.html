@@ -1,59 +1,59 @@
 <!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#0b1e33" />
-    <meta name="description" content="海賊王 One Piece 卡牌價格查詢（Beehive 皇巢）" />
+    <meta name="description" content="One Piece card price checker (Beehive TCG)" />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&family=Shippori+Mincho:wght@600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <title>海賊王卡價查詢</title>
+    <title>One Piece Price Checker</title>
   </head>
   <body>
     <div class="bg" aria-hidden="true"></div>
     <header class="top">
       <div class="brand">
-        <p class="brand-mark">海賊王卡價</p>
-        <h1>卡牌價格查詢</h1>
-        <p class="tagline">資料來源：Beehive 皇巢 · 港幣 HKD</p>
+        <p class="brand-mark">OP Prices</p>
+        <h1>Card price checker</h1>
+        <p class="tagline">Source: Beehive TCG · HKD</p>
       </div>
       <div class="status-row">
-        <div class="status" id="status" role="status">載入中…</div>
-        <button type="button" class="refresh-btn" id="refresh">更新價格</button>
+        <div class="status" id="status" role="status">Loading…</div>
+        <button type="button" class="refresh-btn" id="refresh">Refresh prices</button>
       </div>
     </header>
 
     <main class="shell">
-      <section class="controls" aria-label="搜尋與篩選">
+      <section class="controls" aria-label="Search and filters">
         <label class="field search-field">
-          <span>搜尋</span>
+          <span>Search</span>
           <input
             id="search"
             type="search"
             enterkeyhint="search"
-            placeholder="卡號（如 OP16-065 或 065）"
+            placeholder="Card number (e.g. OP16-065 or 065)"
             autocomplete="off"
           />
         </label>
         <label class="field">
-          <span>系列</span>
+          <span>Set</span>
           <select id="setSelect">
-            <option value="">全部系列</option>
+            <option value="">All sets</option>
           </select>
         </label>
         <label class="field">
-          <span>排序</span>
+          <span>Sort</span>
           <select id="sortSelect">
-            <option value="number">卡號</option>
-            <option value="price-asc">價格：低→高</option>
-            <option value="price-desc">價格：高→低</option>
+            <option value="number">Card number</option>
+            <option value="price-asc">Price: low → high</option>
+            <option value="price-desc">Price: high → low</option>
           </select>
         </label>
       </section>
@@ -63,7 +63,7 @@
     </main>
 
     <footer class="foot">
-      <p>價格以 Beehive 網站為準 · 按「更新價格」同步 · 離線使用本機快取</p>
+      <p>Prices from Beehive · tap Refresh to sync · offline uses local cache</p>
     </footer>
 
     <script type="module" src="./main.js"></script>

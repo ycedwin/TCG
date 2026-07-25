@@ -1,20 +1,20 @@
-# 海賊王卡價查詢
+# One Piece Price Checker
 
-純靜態網站（`docs/`），查 [Beehive](https://beehivetcg.com) One Piece 單卡港幣價格。
+Static site in `docs/` — check One Piece singles prices from [Beehive TCG](https://beehivetcg.com) (HKD).
 
-## 啟用 GitHub Pages
+## Enable GitHub Pages
 
 1. **Settings → Pages**
-2. Source：**Deploy from a branch**
-3. Branch：`main` · Folder：`/docs` → **Save**
+2. Source: **Deploy from a branch**
+3. Branch: `main` · Folder: `/docs` → **Save**
 
-站台：https://ycedwin.github.io/TCG/
+Site: https://ycedwin.github.io/TCG/
 
-## 改網站
+## Edit the site
 
-直接改 `docs/` 裡的檔案，push 即可。無需 Node / build。
+Change files under `docs/` and push. No Node / build step.
 
-- `docs/index.html` — 頁面
-- `docs/styles.css` — 樣式
-- `docs/main.js` / `docs/beehive.js` — 邏輯
-- `docs/data/catalog.json` — 內建價格（也可在網頁按「更新價格」）
+- `docs/index.html` — page
+- `docs/styles.css` — styles
+- `docs/main.js` / `docs/beehive.js` — logic
+- `docs/data/catalog.json` — bundled prices (or use **Refresh prices** in the app)

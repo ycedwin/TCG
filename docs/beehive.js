@@ -193,7 +193,7 @@ function fetchProductsJsonp(url) {
     const script = document.createElement("script");
     const timer = setTimeout(() => {
       cleanup();
-      reject(new Error("逾時"));
+      reject(new Error("Timed out"));
     }, 45000);
 
     function cleanup() {
@@ -212,7 +212,7 @@ function fetchProductsJsonp(url) {
     };
     script.onerror = () => {
       cleanup();
-      reject(new Error("無法連線 Beehive"));
+      reject(new Error("Could not reach Beehive"));
     };
     const sep = url.includes("?") ? "&" : "?";
     script.src = `${url}${sep}callback=${cb}`;

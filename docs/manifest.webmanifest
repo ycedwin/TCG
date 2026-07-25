@@ -1,10 +1,10 @@
 {
-  "name": "海賊王卡價查詢",
-  "short_name": "OP卡價",
-  "description": "One Piece 卡牌價格查詢（Beehive）",
+  "name": "One Piece Price Checker",
+  "short_name": "OP Prices",
+  "description": "One Piece card price checker (Beehive TCG)",
   "start_url": "./",
   "display": "standalone",
-  "lang": "zh-Hant",
+  "lang": "en",
   "theme_color": "#0b1e33",
   "background_color": "#071525",
   "icons": [
