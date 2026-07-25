@@ -1,11 +1,13 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v29";
+const CACHE = "op-price-v30";
 const IMG_CACHE = "op-images-v1";
 const PRECACHE = [
   "./",
   "./index.html",
+  "./pokemon.html",
   "./styles.css",
   "./main.js",
+  "./pokemon.js",
   "./beehive.js",
   "./favicon.svg",
   "./manifest.webmanifest",
@@ -14,6 +16,7 @@ const PRECACHE = [
   "./data/character-tiers.json",
   "./data/catalog.json",
   "./data/buylist.json",
+  "./data/pkmjp-buylist.json",
 ];
 
 self.addEventListener("install", (event) => {

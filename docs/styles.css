@@ -1,4 +1,5 @@
-:root {
+:root,
+.theme-op {
   --bg0: #071525;
   --bg1: #0b1e33;
   --ink: #f2efe6;
@@ -8,10 +9,37 @@
   --panel: rgba(12, 32, 54, 0.72);
   --line: rgba(232, 184, 74, 0.22);
   --danger: #ff7b72;
+  --row: rgba(10, 28, 48, 0.55);
+  --row-hover: rgba(16, 42, 70, 0.75);
+  --glow-a: rgba(232, 184, 74, 0.18);
+  --glow-b: rgba(56, 120, 180, 0.28);
+  --grad-0: #0a1a2d;
+  --grad-1: #071525;
+  --grad-2: #10263f;
   --radius: 14px;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
   --font: "Source Sans 3", "Segoe UI", sans-serif;
   --display: "Fraunces", "Georgia", serif;
+}
+
+/* Pokemon JP — crimson / amber, separate from OP navy-gold */
+.theme-pkm {
+  --bg0: #14080b;
+  --bg1: #2a0d12;
+  --ink: #fff4e8;
+  --muted: #c9a89a;
+  --gold: #f0c14b;
+  --gold-dim: #c8921f;
+  --panel: rgba(48, 14, 20, 0.72);
+  --line: rgba(240, 193, 75, 0.28);
+  --danger: #ff8a7a;
+  --row: rgba(42, 12, 18, 0.62);
+  --row-hover: rgba(64, 18, 26, 0.82);
+  --glow-a: rgba(227, 53, 13, 0.28);
+  --glow-b: rgba(240, 193, 75, 0.18);
+  --grad-0: #2a0d12;
+  --grad-1: #14080b;
+  --grad-2: #3a1510;
 }
 
 *,
@@ -38,9 +66,9 @@ body {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(900px 500px at 10% -10%, rgba(232, 184, 74, 0.18), transparent 55%),
-    radial-gradient(700px 420px at 100% 0%, rgba(56, 120, 180, 0.28), transparent 50%),
-    linear-gradient(165deg, #0a1a2d 0%, #071525 45%, #10263f 100%);
+    radial-gradient(900px 500px at 10% -10%, var(--glow-a), transparent 55%),
+    radial-gradient(700px 420px at 100% 0%, var(--glow-b), transparent 50%),
+    linear-gradient(165deg, var(--grad-0) 0%, var(--grad-1) 45%, var(--grad-2) 100%);
 }
 
 .bg::after {
@@ -62,6 +90,12 @@ body {
   gap: 0.75rem;
 }
 
+.brand {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
 .brand-mark {
   margin: 0;
   font-family: var(--display);
@@ -71,6 +105,41 @@ body {
   color: var(--gold);
   line-height: 1.1;
   animation: rise 0.7s ease both;
+}
+
+.game-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  animation: rise 0.7s ease 0.1s both;
+}
+
+.game-tab {
+  appearance: none;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.28rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.game-tab:hover {
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.game-tab.is-active {
+  color: var(--gold);
+  border-color: var(--gold-dim);
+  background: rgba(232, 184, 74, 0.12);
+}
+
+.theme-pkm .game-tab.is-active {
+  background: rgba(240, 193, 75, 0.14);
 }
 
 .tagline {
@@ -310,13 +379,13 @@ body {
   padding: 0.55rem;
   border-radius: 12px;
   border: 1px solid transparent;
-  background: rgba(10, 28, 48, 0.55);
+  background: var(--row);
   transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .card-row:hover {
   border-color: var(--line);
-  background: rgba(16, 42, 70, 0.75);
+  background: var(--row-hover);
   transform: translateY(-1px);
 }
 
