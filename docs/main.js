@@ -131,11 +131,21 @@ function largeImageUrl(src) {
   if (!src) return "";
   try {
     const u = new URL(src);
-    u.searchParams.set("width", "420");
+    // ~2x the 360px panel for sharp retina
+    u.searchParams.set("width", "720");
     return u.toString();
   } catch {
     return src;
   }
+}
+
+/** Warm CDN + SW image cache before tap completes */
+function prefetchLarge(thumbSrc) {
+  const full = largeImageUrl(thumbSrc);
+  if (!full || full === thumbSrc) return;
+  const img = new Image();
+  img.decoding = "async";
+  img.src = full;
 }
 
 function matchesQuery(card, q) {
@@ -185,10 +195,20 @@ function escapeHtml(s) {
 }
 
 function openLightbox(thumbSrc, caption) {
-  const full = largeImageUrl(thumbSrc);
-  els.lightboxImg.src = full || thumbSrc;
+  // Show cached list thumb first (instant), then swap in sharper art
+  els.lightboxImg.src = thumbSrc || "";
   els.lightboxCap.textContent = caption || "";
   els.lightbox.hidden = false;
+  const full = largeImageUrl(thumbSrc);
+  if (!full || full === thumbSrc) return;
+  const upgrade = new Image();
+  upgrade.decoding = "async";
+  upgrade.onload = () => {
+    if (!els.lightbox.hidden && els.lightboxImg.src) {
+      els.lightboxImg.src = full;
+    }
+  };
+  upgrade.src = full;
 }
 
 function closeLightbox() {
@@ -368,6 +388,15 @@ function wireEvents() {
     t = setTimeout(render, 120);
   });
   els.refresh.addEventListener("click", refreshFromBeehive);
+  // Start fetching large art on press/hover so open feels instant
+  els.results.addEventListener("pointerdown", (e) => {
+    const btn = e.target.closest(".thumb-btn");
+    if (btn?.dataset.img) prefetchLarge(btn.dataset.img);
+  });
+  els.results.addEventListener("mouseover", (e) => {
+    const btn = e.target.closest(".thumb-btn");
+    if (btn?.dataset.img) prefetchLarge(btn.dataset.img);
+  });
   els.results.addEventListener("click", (e) => {
     const btn = e.target.closest(".thumb-btn");
     if (!btn) return;
