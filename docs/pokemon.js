@@ -88,6 +88,7 @@ function matchesQuery(card, q) {
     card.printId,
     card.set,
     card.number,
+    card.nameEn,
     card.name,
     card.title,
     card.rarity,
@@ -206,7 +207,7 @@ function render() {
         .map((c) => {
           const cardNo = c.printId || c.fullNumber || "";
           const setCode = c.set || "";
-          const name = c.name || "";
+          const name = c.nameEn || c.name || "";
           const thumb = c.image
             ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${name ? " · " + name : ""}`)}" aria-label="Enlarge card art">
                 <img class="thumb" src="${escapeHtml(c.image)}" alt="" loading="lazy" decoding="async" width="56" height="78" />
@@ -253,7 +254,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=31";
+    : "./data/pkmjp-buylist.json?v=32";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });

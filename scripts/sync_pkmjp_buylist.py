@@ -178,6 +178,10 @@ def main() -> None:
     )
     print(json.dumps(out["counts"], indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
+    # English character names for the page
+    enrich = ROOT / "scripts/enrich_pkmjp_names.py"
+    if enrich.exists():
+        subprocess.check_call(["python3", str(enrich)])
 
 
 if __name__ == "__main__":
