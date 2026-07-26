@@ -238,7 +238,7 @@ function renderCardRow(c) {
   const name = displayNameOf(c);
   const thumb = c.image
     ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${name ? " · " + name : ""}`)}" aria-label="Enlarge card art">
-        <img class="thumb" src="${escapeHtml(c.image)}" alt="" loading="lazy" decoding="async" width="56" height="78" />
+        <img class="thumb" src="${escapeHtml(c.image)}" alt="" decoding="async" width="56" height="78" />
       </button>`
     : `<div class="thumb missing">No art</div>`;
   const buyUrl = (c.url || "").trim();
@@ -348,6 +348,50 @@ function renderEraShell(id, title, count, { open = false } = {}) {
   </details>`;
 }
 
+/** Keep overlapping rows mounted so thumbs don't remount/flash while scrolling. */
+function syncVirtWindow(win, cards, start, end) {
+  win.style.transform = `translateY(${start * VIRT_ROW}px)`;
+  let prevStart = win._virtStart;
+  let prevEnd = win._virtEnd;
+
+  if (
+    prevStart == null ||
+    prevEnd == null ||
+    end <= prevStart ||
+    start >= prevEnd
+  ) {
+    win.innerHTML = cards.slice(start, end).map(renderCardRow).join("");
+    win._virtStart = start;
+    win._virtEnd = end;
+    return;
+  }
+
+  while (prevStart < start && win.firstChild) {
+    win.removeChild(win.firstChild);
+    prevStart++;
+  }
+  while (prevEnd > end && win.lastChild) {
+    win.removeChild(win.lastChild);
+    prevEnd--;
+  }
+  if (start < prevStart) {
+    win.insertAdjacentHTML(
+      "afterbegin",
+      cards.slice(start, prevStart).map(renderCardRow).join(""),
+    );
+    prevStart = start;
+  }
+  if (end > prevEnd) {
+    win.insertAdjacentHTML(
+      "beforeend",
+      cards.slice(prevEnd, end).map(renderCardRow).join(""),
+    );
+    prevEnd = end;
+  }
+  win._virtStart = prevStart;
+  win._virtEnd = prevEnd;
+}
+
 function paintEraVirt(details) {
   const id = details.dataset.era;
   const cards = eraData.get(id)?.cards || [];
@@ -359,7 +403,7 @@ function paintEraVirt(details) {
     root.classList.remove("is-virt");
     root.style.height = "";
     win.style.transform = "";
-    delete win.dataset.range;
+    win._virtStart = win._virtEnd = null;
     win.innerHTML = "";
     return;
   }
@@ -368,14 +412,13 @@ function paintEraVirt(details) {
     root.classList.remove("is-virt");
     root.style.height = "";
     win.style.transform = "";
-    delete win.dataset.range;
+    win._virtStart = win._virtEnd = null;
     win.innerHTML = cards.map(renderCardRow).join("");
     return;
   }
 
   root.classList.add("is-virt");
-  const totalH = cards.length * VIRT_ROW;
-  root.style.height = `${totalH}px`;
+  root.style.height = `${cards.length * VIRT_ROW}px`;
 
   const rootTop = root.getBoundingClientRect().top + window.scrollY;
   const viewTop = window.scrollY;
@@ -385,12 +428,11 @@ function paintEraVirt(details) {
   start = Math.max(0, start);
   end = Math.min(cards.length, Math.max(start + 1, end));
 
-  win.style.transform = `translateY(${start * VIRT_ROW}px)`;
-  const range = `${start}-${end}`;
-  if (win.dataset.range !== range) {
-    win.dataset.range = range;
-    win.innerHTML = cards.slice(start, end).map(renderCardRow).join("");
+  if (win._virtStart === start && win._virtEnd === end) {
+    win.style.transform = `translateY(${start * VIRT_ROW}px)`;
+    return;
   }
+  syncVirtWindow(win, cards, start, end);
 }
 
 function paintAllVirt() {
@@ -531,7 +573,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=51";
+    : "./data/pkmjp-buylist.json?v=52";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
