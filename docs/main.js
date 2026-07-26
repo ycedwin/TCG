@@ -30,6 +30,7 @@ let characterTiers = { S: [], A: [], B: [] };
 let tierMatchers = null;
 /** Beehive buy/trade-in prices: byKey["OP01-016|P-RP"] = { buyHkd, buyPaused } */
 let buylist = null;
+let cardrush = null;
 let refreshing = false;
 
 /** Show cards above this sell price, or cheaper ones with a strong buy offer */
@@ -268,6 +269,11 @@ function formatHkd(n) {
   })}`;
 }
 
+function formatYen(n) {
+  if (n == null || Number.isNaN(n)) return "—";
+  return `¥${Number(n).toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+}
+
 function cardNumberKey(card) {
   if (card.set && card.number) return `${card.set}-${card.number}`;
   const fn = card.fullNumber || "";
@@ -281,6 +287,15 @@ function buyInfoFor(card) {
   const rarity = card.rarity || "";
   if (!fn || !rarity) return null;
   return buylist.byKey[`${fn}|${rarity}`] || null;
+}
+
+/** Exact match: card number + rarity → Card Rush sell (JPY) */
+function cardrushInfoFor(card) {
+  if (!cardrush?.byKey) return null;
+  const fn = cardNumberKey(card);
+  const rarity = card.rarity || "";
+  if (!fn || !rarity) return null;
+  return cardrush.byKey[`${fn}|${rarity}`] || null;
 }
 
 function formatSyncedAt(iso) {
@@ -452,6 +467,7 @@ function render() {
           const en = c.nameEn || "";
           const { tier, label } = popularityTier(c);
           const buy = buyInfoFor(c);
+          const cr = cardrushInfoFor(c);
           const thumb = c.image
             ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${en ? " · " + en : ""}`)}" aria-label="Enlarge card art">
                 <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
@@ -459,15 +475,31 @@ function render() {
             : `<div class="thumb missing">No art</div>`;
           const buyUrl = (buy?.url || "").trim();
           const sellUrl = (c.url || "").trim();
+          const crUrl = (cr?.url || "").trim();
           const sellPill = sellUrl
             ? `<a class="price-pill price-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive shop">
-                <span class="lbl">Sell</span>
+                <span class="lbl">Sell(beehive)</span>
                 <span class="amt">${formatHkd(c.priceHkd)}</span>
               </a>`
-            : `<div class="price-pill price-sell" title="Sell price">
-                <span class="lbl">Sell</span>
+            : `<div class="price-pill price-sell" title="Beehive sell price">
+                <span class="lbl">Sell(beehive)</span>
                 <span class="amt">${formatHkd(c.priceHkd)}</span>
               </div>`;
+          const crPill =
+            cr == null
+              ? `<div class="price-pill price-cardrush" title="No Card Rush match">
+                  <span class="lbl">Sell(cardrush)</span>
+                  <span class="amt">—</span>
+                </div>`
+              : crUrl
+                ? `<a class="price-pill price-cardrush" href="${escapeHtml(crUrl)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(cr.title || "Open Card Rush")}">
+                  <span class="lbl">Sell(cardrush)</span>
+                  <span class="amt">${formatYen(cr.sellYen)}</span>
+                </a>`
+                : `<div class="price-pill price-cardrush" title="Card Rush sell (JPY)">
+                  <span class="lbl">Sell(cardrush)</span>
+                  <span class="amt">${formatYen(cr.sellYen)}</span>
+                </div>`;
           const buyPill =
             buy == null
               ? `<div class="price-pill price-buy" title="No buylist match">
@@ -500,6 +532,7 @@ function render() {
               </div>
               <div class="price">
                 ${sellPill}
+                ${crPill}
                 ${buyPill}
               </div>
             </div>
@@ -538,11 +571,12 @@ async function applyCatalog(next, { sourceLabel, offline = false, persistData = 
 }
 
 async function loadMeta() {
-  const [namesRes, setsRes, tiersRes, buyRes] = await Promise.all([
+  const [namesRes, setsRes, tiersRes, buyRes, crRes] = await Promise.all([
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
     fetch("./data/character-tiers.json"),
     fetch("./data/buylist.json?v=26", { cache: "no-store" }),
+    fetch("./data/cardrush-op.json?v=39", { cache: "no-store" }),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
@@ -551,6 +585,7 @@ async function loadMeta() {
     tierMatchers = null;
   }
   if (buyRes.ok) buylist = await buyRes.json();
+  if (crRes.ok) cardrush = await crRes.json();
 }
 
 async function loadBundledCatalog() {
