@@ -648,10 +648,6 @@ a.price-pill:hover {
   color: var(--gold);
 }
 
-.price-cardrush .amt {
-  color: var(--gold);
-}
-
 .price-buy.is-paused .amt {
   text-decoration: line-through;
   opacity: 0.7;

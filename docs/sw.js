@@ -1,5 +1,5 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v39";
+const CACHE = "op-price-v38";
 const IMG_CACHE = "op-images-v1";
 const PRECACHE = [
   "./",
@@ -17,7 +17,6 @@ const PRECACHE = [
   "./data/character-tiers.json",
   "./data/catalog.json",
   "./data/buylist.json",
-  "./data/cardrush-op.json",
   "./data/pkmjp-buylist.json",
 ];
 
@@ -73,11 +72,8 @@ self.addEventListener("fetch", (event) => {
     url.pathname.endsWith("/data/names-en.json") ||
     url.pathname.endsWith("/data/character-tiers.json");
 
-  // Buylist / Card Rush must be network-first so prices stay fresh
-  if (
-    url.pathname.endsWith("/data/buylist.json") ||
-    url.pathname.endsWith("/data/cardrush-op.json")
-  ) {
+  // Buylist must be network-first so product URLs stay fresh (old cache had no url)
+  if (url.pathname.endsWith("/data/buylist.json")) {
     event.respondWith(
       fetch(request)
         .then((res) => {
