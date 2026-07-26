@@ -10,6 +10,7 @@ const els = {
   search: document.getElementById("search"),
   priceToggle: document.getElementById("priceToggle"),
   priceFilters: document.getElementById("priceFilters"),
+  rarityFilters: document.getElementById("rarityFilters"),
   buyMin: document.getElementById("buyMin"),
   buyMax: document.getElementById("buyMax"),
   meta: document.getElementById("meta"),
@@ -21,11 +22,14 @@ const els = {
   backTop: document.getElementById("backTop"),
 };
 
+/** "" = all · special art-ish · RR/RRR · commons/trainers/etc */
+let rarityBucket = "";
+
 /** Hide extreme buy outliers */
 const MAX_BUY_HKD = 15000;
 const MAX_BUY_YEN = 300000;
 
-/** Prefer high-end rarities first; unknowns follow alphabetically */
+/** Prefer high-end rarities first within a set; unknowns last */
 const RARITY_RANK = [
   "MUR",
   "SAR",
@@ -44,9 +48,17 @@ const RARITY_RANK = [
   "MA",
   "K",
   "A",
+  "☆",
+  "★",
+  "◆",
+  "●",
+  "H",
+  "P",
+  "PR",
   "R",
   "U",
   "C",
+  "-",
 ];
 
 let catalog = null;
@@ -106,8 +118,11 @@ function matchesQuery(card, q) {
     card.number,
     card.nameEn,
     card.name,
+    card.cardrushName,
+    card.hareruyaName,
     card.title,
     card.rarity,
+    card.setName,
   ]
     .filter(Boolean)
     .join(" ")
@@ -132,28 +147,201 @@ function rarityRank(code) {
   return i === -1 ? 500 : i;
 }
 
-function groupByRarity(cards) {
-  const map = new Map();
-  for (const c of cards) {
-    const key = c.rarity || "?";
-    if (!map.has(key)) map.set(key, []);
-    map.get(key).push(c);
+const RARITY_SPECIAL = new Set([
+  "MUR",
+  "SAR",
+  "UR",
+  "CSR",
+  "HR",
+  "SSR",
+  "SR",
+  "AR",
+  "CHR",
+  "S",
+  "BWR",
+  "MA",
+  "K",
+  "A",
+  "☆",
+  "★",
+  "◆",
+]);
+const RARITY_HIGH = new Set(["RRR", "RR", "ACE"]);
+
+function rarityBucketOf(card) {
+  const r = card.rarity || "-";
+  if (RARITY_SPECIAL.has(r)) return "special";
+  if (RARITY_HIGH.has(r)) return "high";
+  return "other";
+}
+
+function matchesRarityBucket(card) {
+  if (!rarityBucket) return true;
+  return rarityBucketOf(card) === rarityBucket;
+}
+
+function setCodeOf(card) {
+  return (card.set || "?").toUpperCase();
+}
+
+/** JP name: Card Rush first, then Hareruya, then Beehive/default. */
+function jpNameOf(card) {
+  return (
+    card.cardrushName ||
+    (card.source === "cardrush" ? card.name : "") ||
+    card.hareruyaName ||
+    card.name ||
+    ""
+  );
+}
+
+function displayNameOf(card) {
+  const jp = jpNameOf(card);
+  const en = (card.nameEn || "").trim();
+  if (jp && en && en.toLowerCase() !== jp.toLowerCase()) return `${jp} · ${en}`;
+  return jp || en;
+}
+
+function cardSortKey(card) {
+  return (
+    (card.buyHkd || 0) * 1e9 +
+    (card.buyYenHareruya || 0) * 1e3 +
+    (card.buyYenCardrush || 0)
+  );
+}
+
+function compareWithinSet(a, b) {
+  const na = Number.parseInt(a.number, 10);
+  const nb = Number.parseInt(b.number, 10);
+  if (Number.isFinite(na) && Number.isFinite(nb) && na !== nb) return na - nb;
+  const numCmp = String(a.number || "").localeCompare(
+    String(b.number || ""),
+    "en",
+    { numeric: true },
+  );
+  if (numCmp) return numCmp;
+  const rr = rarityRank(a.rarity || "") - rarityRank(b.rarity || "");
+  if (rr) return rr;
+  return cardSortKey(b) - cardSortKey(a);
+}
+
+function renderCardRow(c) {
+  const cardNo = c.printId || c.fullNumber || "";
+  const rarity = c.rarity || "";
+  const name = displayNameOf(c);
+  const thumb = c.image
+    ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${name ? " · " + name : ""}`)}" aria-label="Enlarge card art">
+        <img class="thumb" src="${escapeHtml(c.image)}" alt="" loading="lazy" decoding="async" width="56" height="78" />
+      </button>`
+    : `<div class="thumb missing">No art</div>`;
+  const buyUrl = (c.url || "").trim();
+  const hasBeehive = c.buyHkd != null;
+  const buyPill = !hasBeehive
+    ? `<div class="price-pill price-buy" title="Not on Beehive buylist">
+        <span class="lbl">Buy(beehive)</span>
+        <span class="amt">—</span>
+      </div>`
+    : buyUrl
+      ? `<a class="price-pill price-buy" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist product">
+          <span class="lbl">Buy(beehive)</span>
+          <span class="amt">${formatHkd(c.buyHkd)}</span>
+        </a>`
+      : `<div class="price-pill price-buy" title="Beehive buy price">
+          <span class="lbl">Buy(beehive)</span>
+          <span class="amt">${formatHkd(c.buyHkd)}</span>
+        </div>`;
+  const hrYen = c.buyYenHareruya;
+  const hrPill =
+    hrYen == null
+      ? `<div class="price-pill price-hareruya" title="No Hareruya match">
+          <span class="lbl">Buy(hareruya)</span>
+          <span class="amt">—</span>
+        </div>`
+      : `<div class="price-pill price-hareruya" title="Hareruya buy price (JPY)">
+          <span class="lbl">Buy(hareruya)</span>
+          <span class="amt">${formatYen(hrYen)}</span>
+        </div>`;
+  const sellYen = c.sellYenCardrush;
+  const sellUrl = (c.sellUrlCardrush || "").trim();
+  const sellPending = c.sellMatchCardrush === "ambiguous";
+  const sellAmt =
+    sellPending || sellYen == null ? "—" : formatYen(sellYen);
+  const sellTitle = sellPending
+    ? "Multiple sell matches — review needed"
+    : sellYen === 0
+      ? "No clean JP sell match"
+      : "Card Rush sell price (JPY)";
+  const sellPill = sellUrl
+    ? `<a class="price-pill price-cardrush-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(sellTitle)}">
+        <span class="lbl">Sell(cardrush)</span>
+        <span class="amt">${sellAmt}</span>
+      </a>`
+    : `<div class="price-pill price-cardrush-sell" title="${escapeHtml(sellTitle)}">
+        <span class="lbl">Sell(cardrush)</span>
+        <span class="amt">${sellAmt}</span>
+      </div>`;
+  const crYen = c.buyYenCardrush;
+  const crExtra = (c.cardrushExtra || "").trim();
+  const crTitle = crExtra
+    ? `Card Rush buy (JPY) · ${crExtra}`
+    : "Card Rush buy price (JPY)";
+  const crPill =
+    crYen == null
+      ? `<div class="price-pill price-cardrush" title="No Card Rush match">
+          <span class="lbl">Buy(cardrush)</span>
+          <span class="amt">—</span>
+        </div>`
+      : `<a class="price-pill price-cardrush" href="https://cardrush.media/pokemon/buying_prices" target="_blank" rel="noopener noreferrer" title="${escapeHtml(crTitle)}">
+          <span class="lbl">Buy(cardrush)</span>
+          <span class="amt">${formatYen(crYen)}</span>
+        </a>`;
+  const tier = (c.tier || "").trim();
+  const tierRank = c.tierRank;
+  const tierBadge = tier
+    ? `<span class="tier tier-${escapeHtml(tier)}" title="Bulbapedia 2025 visit rank${
+        tierRank != null ? ` #${tierRank}` : ""
+      }">Tier ${escapeHtml(tier)}</span>`
+    : "";
+  return `<li class="card-row">
+    ${thumb}
+    <div class="card-main">
+      <div class="info">
+        <div class="num-row">
+          <span class="num">${escapeHtml(cardNo)}</span>
+          ${tierBadge}
+        </div>
+        ${rarity ? `<p class="set">${escapeHtml(rarity)}</p>` : ""}
+        ${name ? `<p class="name">${escapeHtml(name)}</p>` : ""}
+      </div>
+      <div class="price">${sellPill}${crPill}${hrPill}${buyPill}</div>
+    </div>
+  </li>`;
+}
+
+function renderFoldBlock(title, list, { open = false, meta = "" } = {}) {
+  const body = list.map(renderCardRow).join("");
+  const openAttr = open ? " open" : "";
+  const metaText = meta || String(list.length);
+  return `<details class="fold fold-set"${openAttr}>
+    <summary class="fold-head fold-head-set">
+      <span class="fold-title">${escapeHtml(title)}</span>
+      <span class="fold-meta">${metaText}</span>
+    </summary>
+    <ul class="card-list">${body}</ul>
+  </details>`;
+}
+
+/** Sets with any Beehive/Hareruya row — everything else is CR-only vintage. */
+function modernSetCodes() {
+  const modern = new Set();
+  for (const c of catalog?.cards || []) {
+    if (c.source !== "cardrush") modern.add(setCodeOf(c));
   }
-  const order = catalog?.rarityOrder || [];
-  const keys = [...map.keys()].sort((a, b) => {
-    const ra = rarityRank(a);
-    const rb = rarityRank(b);
-    if (ra !== rb) return ra - rb;
-    const ia = order.indexOf(a);
-    const ib = order.indexOf(b);
-    if (ia !== -1 || ib !== -1) {
-      if (ia === -1) return 1;
-      if (ib === -1) return -1;
-      return ia - ib;
-    }
-    return a.localeCompare(b);
-  });
-  return keys.map((k) => [k, map.get(k)]);
+  return modern;
+}
+
+function isVintageCard(card, modernSets) {
+  return !modernSets.has(setCodeOf(card));
 }
 
 /** Prefer origin upload URL — Photon (i0.wp.com) thumbs are tiny and can look washed when upscaled */
@@ -199,29 +387,56 @@ function closeLightbox() {
 
 function withinBuyCaps(card) {
   if ((card.buyHkd || 0) > MAX_BUY_HKD) return false;
-  // Hareruya top listings sit at exactly ¥300,000
+  // Hareruya / Card Rush top listings sit at exactly ¥300,000
   if ((card.buyYenHareruya || 0) >= MAX_BUY_YEN) return false;
+  if ((card.buyYenCardrush || 0) >= MAX_BUY_YEN) return false;
   return true;
+}
+
+function renderEraSection(title, cards, { open = false } = {}) {
+  if (!cards.length) return "";
+  const list = cards.slice().sort((a, b) => {
+    const price = cardSortKey(b) - cardSortKey(a);
+    if (price) return price;
+    const setCmp = setCodeOf(a).localeCompare(setCodeOf(b), "en");
+    if (setCmp) return setCmp;
+    return compareWithinSet(a, b);
+  });
+  return renderFoldBlock(title, list, { open, meta: `${list.length}` });
 }
 
 function render() {
   if (!catalog) return;
   const q = els.search.value;
+  const searching = q.trim().length > 0;
   let cards = (catalog.cards || []).filter(
-    (c) => withinBuyCaps(c) && matchesQuery(c, q) && matchesPriceFilters(c),
+    (c) =>
+      withinBuyCaps(c) &&
+      matchesQuery(c, q) &&
+      matchesPriceFilters(c) &&
+      matchesRarityBucket(c),
   );
-  cards = cards
-    .slice()
-    .sort(
-      (a, b) =>
-        (b.buyHkd || 0) - (a.buyHkd || 0) ||
-        (b.buyYenHareruya || 0) - (a.buyYenHareruya || 0) ||
-        (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
-    );
+
+  const modernSets = modernSetCodes();
+  const modern = [];
+  const vintage = [];
+  for (const c of cards) {
+    if (isVintageCard(c, modernSets)) vintage.push(c);
+    else modern.push(c);
+  }
 
   const hrAt = catalog.hareruya?.syncedAt;
-  els.meta.textContent = `${cards.length} cards · Beehive + Hareruya · updated ${formatSyncedAt(catalog.syncedAt)}${
+  const crAt = catalog.cardrush?.syncedAt;
+  const crSellAt = catalog.cardrushSell?.syncedAt;
+  const bucketLbl = rarityBucket
+    ? ` · ${rarityBucket === "high" ? "RR+" : rarityBucket}`
+    : "";
+  els.meta.textContent = `${cards.length} cards${bucketLbl} · ${modern.length} modern${
+    vintage.length ? ` · ${vintage.length} vintage` : ""
+  } · Beehive + Hareruya + Card Rush · updated ${formatSyncedAt(catalog.syncedAt)}${
     hrAt ? ` · HR ${formatSyncedAt(hrAt)}` : ""
+  }${crAt ? ` · CR ${formatSyncedAt(crAt)}` : ""}${
+    crSellAt ? ` · CR sell ${formatSyncedAt(crSellAt)}` : ""
   }`;
 
   if (cards.length === 0) {
@@ -229,78 +444,16 @@ function render() {
     return;
   }
 
-  const groups = groupByRarity(cards);
-  els.results.innerHTML = groups
-    .map(([rarity, list], idx) => {
-      const items = list
-        .map((c) => {
-          const cardNo = c.printId || c.fullNumber || "";
-          const setCode = c.set || "";
-          const name = c.nameEn || c.name || "";
-          const thumb = c.image
-            ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${name ? " · " + name : ""}`)}" aria-label="Enlarge card art">
-                <img class="thumb" src="${escapeHtml(c.image)}" alt="" loading="lazy" decoding="async" width="56" height="78" />
-              </button>`
-            : `<div class="thumb missing">No art</div>`;
-          const buyUrl = (c.url || "").trim();
-          const hasBeehive = c.buyHkd != null;
-          const buyPill = !hasBeehive
-            ? `<div class="price-pill price-buy" title="Not on Beehive buylist">
-                <span class="lbl">Buy(beehive)</span>
-                <span class="amt">—</span>
-              </div>`
-            : buyUrl
-              ? `<a class="price-pill price-buy" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist product">
-                  <span class="lbl">Buy(beehive)</span>
-                  <span class="amt">${formatHkd(c.buyHkd)}</span>
-                </a>`
-              : `<div class="price-pill price-buy" title="Beehive buy price">
-                  <span class="lbl">Buy(beehive)</span>
-                  <span class="amt">${formatHkd(c.buyHkd)}</span>
-                </div>`;
-          const hrYen = c.buyYenHareruya;
-          const hrPill =
-            hrYen == null
-              ? `<div class="price-pill price-hareruya" title="No Hareruya match">
-                  <span class="lbl">Buy(hareruya)</span>
-                  <span class="amt">—</span>
-                </div>`
-              : `<div class="price-pill price-hareruya" title="Hareruya buy price (JPY)">
-                  <span class="lbl">Buy(hareruya)</span>
-                  <span class="amt">${formatYen(hrYen)}</span>
-                </div>`;
-          return `<li class="card-row">
-            ${thumb}
-            <div class="card-main">
-              <div class="info">
-                <div class="num-row">
-                  <span class="num">${escapeHtml(cardNo)}</span>
-                </div>
-                ${setCode ? `<p class="set">${escapeHtml(setCode)}</p>` : ""}
-                ${name ? `<p class="name">${escapeHtml(name)}</p>` : ""}
-              </div>
-              <div class="price">${buyPill}${hrPill}</div>
-            </div>
-          </li>`;
-        })
-        .join("");
-      return `<section class="rarity-block" style="animation-delay:${Math.min(idx, 8) * 0.04}s">
-        <div class="rarity-head">
-          <div class="rarity-title">
-            <h2>${escapeHtml(rarity)}</h2>
-          </div>
-          <span>${list.length}</span>
-        </div>
-        <ul class="card-list">${items}</ul>
-      </section>`;
-    })
-    .join("");
+  // ponytail: two era folds, flat price-sorted lists; rarity via chips.
+  els.results.innerHTML =
+    renderEraSection("Modern", modern, { open: true }) +
+    renderEraSection("Vintage", vintage, { open: searching });
 }
 
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=38";
+    : "./data/pkmjp-buylist.json?v=48";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
@@ -379,6 +532,15 @@ function wireEvents() {
   for (const el of [els.buyMin, els.buyMax]) {
     el.addEventListener("input", scheduleRender);
   }
+  els.rarityFilters?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".rarity-chip");
+    if (!btn || !els.rarityFilters.contains(btn)) return;
+    rarityBucket = btn.dataset.bucket || "";
+    for (const chip of els.rarityFilters.querySelectorAll(".rarity-chip")) {
+      chip.classList.toggle("is-active", chip === btn);
+    }
+    render();
+  });
   els.priceToggle.addEventListener("click", () => {
     const open = els.priceFilters.hidden;
     els.priceFilters.hidden = !open;

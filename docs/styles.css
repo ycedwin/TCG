@@ -1,45 +1,48 @@
 :root,
 .theme-op {
-  --bg0: #071525;
-  --bg1: #0b1e33;
-  --ink: #f2efe6;
-  --muted: #a8b4c4;
-  --gold: #e8b84a;
-  --gold-dim: #b8892a;
-  --panel: rgba(12, 32, 54, 0.72);
-  --line: rgba(232, 184, 74, 0.22);
-  --danger: #ff7b72;
-  --row: rgba(10, 28, 48, 0.55);
-  --row-hover: rgba(16, 42, 70, 0.75);
-  --glow-a: rgba(232, 184, 74, 0.18);
-  --glow-b: rgba(56, 120, 180, 0.28);
-  --grad-0: #0a1a2d;
-  --grad-1: #071525;
-  --grad-2: #10263f;
+  /* One Piece — black / red */
+  --bg0: #0a0a0a;
+  --bg1: #141414;
+  --ink: #f5f0eb;
+  --muted: #a89a9a;
+  --gold: #e53935;
+  --gold-dim: #b71c1c;
+  --price-buy: #5ec8ff;
+  --panel: rgba(22, 12, 12, 0.78);
+  --line: rgba(229, 57, 53, 0.28);
+  --danger: #ff8a80;
+  --row: rgba(18, 10, 10, 0.65);
+  --row-hover: rgba(36, 16, 16, 0.85);
+  --glow-a: rgba(229, 57, 53, 0.22);
+  --glow-b: rgba(60, 12, 12, 0.4);
+  --grad-0: #1a0a0a;
+  --grad-1: #0a0a0a;
+  --grad-2: #1f1010;
   --radius: 14px;
-  --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
   --font: "Source Sans 3", "Segoe UI", sans-serif;
   --display: "Fraunces", "Georgia", serif;
 }
 
-/* Pokemon JP — crimson / amber, separate from OP navy-gold */
+/* Pokemon JP — blue / yellow */
 .theme-pkm {
-  --bg0: #14080b;
-  --bg1: #2a0d12;
-  --ink: #fff4e8;
-  --muted: #c9a89a;
-  --gold: #f0c14b;
-  --gold-dim: #c8921f;
-  --panel: rgba(48, 14, 20, 0.72);
-  --line: rgba(240, 193, 75, 0.28);
+  --bg0: #071525;
+  --bg1: #0b2747;
+  --ink: #f7fbff;
+  --muted: #9bb0c9;
+  --gold: #ffd54f;
+  --gold-dim: #f9a825;
+  --price-buy: #7dd3fc;
+  --panel: rgba(10, 32, 64, 0.72);
+  --line: rgba(255, 213, 79, 0.28);
   --danger: #ff8a7a;
-  --row: rgba(42, 12, 18, 0.62);
-  --row-hover: rgba(64, 18, 26, 0.82);
-  --glow-a: rgba(227, 53, 13, 0.28);
-  --glow-b: rgba(240, 193, 75, 0.18);
-  --grad-0: #2a0d12;
-  --grad-1: #14080b;
-  --grad-2: #3a1510;
+  --row: rgba(8, 28, 56, 0.62);
+  --row-hover: rgba(14, 42, 80, 0.82);
+  --glow-a: rgba(33, 150, 243, 0.3);
+  --glow-b: rgba(255, 213, 79, 0.2);
+  --grad-0: #0b2747;
+  --grad-1: #071525;
+  --grad-2: #123a66;
 }
 
 *,
@@ -76,8 +79,15 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0.08;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M0 60h120M60 0v120' stroke='%23e8b84a' stroke-width='1'/%3E%3C/svg%3E");
   pointer-events: none;
+}
+
+.theme-op .bg::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M0 60h120M60 0v120' stroke='%23e53935' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+.theme-pkm .bg::after {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cpath d='M0 60h120M60 0v120' stroke='%23ffd54f' stroke-width='1'/%3E%3C/svg%3E");
 }
 
 .top {
@@ -90,39 +100,26 @@ body {
   gap: 0.75rem;
 }
 
-.brand {
-  display: grid;
-  gap: 0.45rem;
-  min-width: 0;
-}
-
-.brand-mark {
-  margin: 0;
-  font-family: var(--display);
-  font-size: clamp(1.25rem, 4vw, 1.6rem);
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--gold);
-  line-height: 1.1;
-  animation: rise 0.7s ease both;
-}
-
 .game-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  animation: rise 0.7s ease 0.1s both;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  animation: rise 0.7s ease both;
 }
 
 .game-tab {
   appearance: none;
   text-decoration: none;
   color: var(--muted);
-  font-size: 0.78rem;
+  font-family: var(--display);
+  font-size: clamp(0.95rem, 3.2vw, 1.2rem);
   font-weight: 600;
-  letter-spacing: 0.03em;
-  padding: 0.28rem 0.65rem;
-  border-radius: 999px;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  padding: 0.4rem 0.85rem;
+  border-radius: 10px;
   border: 1px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
 }
@@ -132,14 +129,20 @@ body {
   border-color: var(--line);
 }
 
-.game-tab.is-active {
-  color: var(--gold);
+/* OP: black / red */
+.theme-op .game-tab.is-active {
+  color: #fff5f5;
   border-color: var(--gold-dim);
-  background: rgba(232, 184, 74, 0.12);
+  background: linear-gradient(165deg, rgba(229, 57, 53, 0.5), rgba(80, 16, 16, 0.35));
+  box-shadow: 0 0 0 1px rgba(229, 57, 53, 0.2);
 }
 
+/* PKM: blue / yellow */
 .theme-pkm .game-tab.is-active {
-  background: rgba(240, 193, 75, 0.14);
+  color: #0b1e33;
+  border-color: var(--gold-dim);
+  background: linear-gradient(165deg, rgba(255, 213, 79, 0.92), rgba(33, 150, 243, 0.35));
+  box-shadow: 0 0 0 1px rgba(255, 213, 79, 0.25);
 }
 
 .tagline {
@@ -167,7 +170,7 @@ body {
   padding: 0.4rem 0.7rem;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(7, 21, 37, 0.55);
+  background: color-mix(in srgb, var(--bg1) 70%, transparent);
   color: var(--muted);
   font-size: 0.82rem;
 }
@@ -176,7 +179,11 @@ body {
   appearance: none;
   border: 1px solid var(--gold-dim);
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(232, 184, 74, 0.22), rgba(232, 184, 74, 0.08));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--gold) 22%, transparent),
+    color-mix(in srgb, var(--gold) 8%, transparent)
+  );
   color: var(--gold);
   font: inherit;
   font-size: 0.85rem;
@@ -187,7 +194,11 @@ body {
 }
 
 .refresh-btn:hover:not(:disabled) {
-  background: linear-gradient(180deg, rgba(232, 184, 74, 0.35), rgba(232, 184, 74, 0.14));
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--gold) 35%, transparent),
+    color-mix(in srgb, var(--gold) 14%, transparent)
+  );
   transform: translateY(-1px);
 }
 
@@ -203,7 +214,7 @@ body {
   height: 0.55rem;
   border-radius: 50%;
   background: var(--gold);
-  box-shadow: 0 0 0 0 rgba(232, 184, 74, 0.45);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 45%, transparent);
   animation: pulse 2.2s ease infinite;
 }
 
@@ -253,7 +264,7 @@ body {
 .field input:focus,
 .field select:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(232, 184, 74, 0.18);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 18%, transparent);
 }
 
 .search-row {
@@ -284,7 +295,7 @@ body {
 .price-toggle[aria-expanded="true"] {
   border-color: var(--gold);
   color: var(--gold);
-  background: rgba(232, 184, 74, 0.12);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
 }
 
 .price-toggle.is-active:not([aria-expanded="true"]) {
@@ -313,6 +324,40 @@ body {
   }
 }
 
+.rarity-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.15rem;
+}
+
+.rarity-chip {
+  appearance: none;
+  margin: 0;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(4, 14, 26, 0.45);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.rarity-chip:hover {
+  border-color: color-mix(in srgb, var(--price-buy) 55%, transparent);
+  color: var(--ink);
+}
+
+.rarity-chip.is-active {
+  border-color: color-mix(in srgb, var(--price-buy) 70%, transparent);
+  background: color-mix(in srgb, var(--price-buy) 18%, transparent);
+  color: var(--ink);
+}
+
 .meta {
   margin: 0.9rem 0 0.4rem;
   color: var(--muted);
@@ -334,6 +379,24 @@ body {
 
 .fold-set {
   margin: 0;
+}
+
+.era-block {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.era-block + .era-block {
+  margin-top: 1rem;
+}
+
+.era-heading {
+  margin: 0.4rem 0 0;
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold);
 }
 
 .fold-head {
@@ -401,11 +464,18 @@ body {
 .variant-group {
   list-style: none;
   display: grid;
-  gap: 0.55rem;
+  gap: 0;
 }
 
 .card-row.is-expandable {
   cursor: pointer;
+  padding-bottom: 1.15rem;
+  z-index: 1;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card-row.is-expandable:focus-visible {
@@ -413,34 +483,90 @@ body {
   outline-offset: 2px;
 }
 
+.card-row.is-expandable.is-open {
+  border-color: color-mix(in srgb, var(--gold) 45%, transparent);
+  background: var(--row-hover);
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.4),
+    0 0 0 1px color-mix(in srgb, var(--gold) 22%, transparent),
+    0 0 24px color-mix(in srgb, var(--gold) 12%, transparent);
+}
+
 .card-row.is-expandable::after {
-  content: "▸";
+  content: "▾";
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 0.2rem;
+  transform: translateX(-50%);
   color: var(--gold);
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   line-height: 1;
-  transition: transform 0.15s ease;
+  transition: transform 0.2s ease;
   pointer-events: none;
   z-index: 1;
   text-shadow: 0 0 6px var(--row), 0 0 10px var(--row);
 }
 
 .card-row.is-expandable.is-open::after {
-  transform: translate(-50%, -50%) rotate(90deg);
+  transform: translateX(-50%) rotate(180deg);
 }
 
 .variant-rest {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  margin-top: 0;
   padding-left: 0.55rem;
-  border-left: 2px solid var(--line);
+  border-left: 2px solid transparent;
+  transition:
+    grid-template-rows 0.2s ease,
+    opacity 0.2s ease,
+    margin-top 0.2s ease,
+    border-color 0.2s ease;
 }
 
-/* .card-list { display:grid } otherwise beats the hidden attribute */
-.variant-rest[hidden] {
-  display: none;
+.variant-rest > .card-list {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.variant-group.is-open .variant-rest {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 0.55rem;
+  border-left-color: var(--line);
+}
+
+.variant-group.is-open .variant-rest .card-row {
+  animation: variant-in 0.2s ease both;
+}
+
+.variant-group.is-open .variant-rest .card-row:nth-child(1) {
+  animation-delay: 0.02s;
+}
+.variant-group.is-open .variant-rest .card-row:nth-child(2) {
+  animation-delay: 0.04s;
+}
+.variant-group.is-open .variant-rest .card-row:nth-child(3) {
+  animation-delay: 0.06s;
+}
+.variant-group.is-open .variant-rest .card-row:nth-child(4) {
+  animation-delay: 0.08s;
+}
+.variant-group.is-open .variant-rest .card-row:nth-child(n + 5) {
+  animation-delay: 0.1s;
+}
+
+@keyframes variant-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .card-list {
@@ -700,8 +826,8 @@ a.price-pill {
 }
 
 a.price-pill:hover {
-  border-color: rgba(232, 184, 74, 0.55);
-  background: rgba(232, 184, 74, 0.12);
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
   transform: translateY(-1px);
 }
 
@@ -718,24 +844,53 @@ a.price-pill:hover {
   font-weight: 700;
 }
 
-.price-sell .amt {
-  color: var(--gold);
+/* Sell = warm amber; buy = cool teal (whole pill, not just amount) */
+.price-sell,
+.price-cardrush-sell {
+  border-color: color-mix(in srgb, var(--gold) 50%, transparent);
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
 }
 
-.price-buy .amt {
-  color: var(--ink);
+.price-sell .lbl,
+.price-cardrush-sell .lbl {
+  color: color-mix(in srgb, var(--gold) 75%, var(--muted));
 }
 
-.price-hareruya .amt {
-  color: var(--gold);
-}
-
-.price-cardrush .amt {
-  color: #7ec8e3;
-}
-
+.price-sell .amt,
 .price-cardrush-sell .amt {
-  color: #e8b84a;
+  color: var(--gold);
+}
+
+.price-buy,
+.price-hareruya,
+.price-cardrush {
+  border-color: color-mix(in srgb, var(--price-buy) 45%, transparent);
+  background: color-mix(in srgb, var(--price-buy) 12%, transparent);
+}
+
+.price-buy .lbl,
+.price-hareruya .lbl,
+.price-cardrush .lbl {
+  color: color-mix(in srgb, var(--price-buy) 70%, var(--muted));
+}
+
+.price-buy .amt,
+.price-hareruya .amt,
+.price-cardrush .amt {
+  color: var(--price-buy);
+}
+
+a.price-sell:hover,
+a.price-cardrush-sell:hover {
+  border-color: color-mix(in srgb, var(--gold) 70%, transparent);
+  background: color-mix(in srgb, var(--gold) 22%, transparent);
+}
+
+a.price-buy:hover,
+a.price-hareruya:hover,
+a.price-cardrush:hover {
+  border-color: color-mix(in srgb, var(--price-buy) 65%, transparent);
+  background: color-mix(in srgb, var(--price-buy) 20%, transparent);
 }
 
 .price-buy.is-paused .amt {
@@ -791,7 +946,7 @@ a.price-pill:hover {
 }
 
 .back-top:hover {
-  background: rgba(232, 184, 74, 0.16);
+  background: color-mix(in srgb, var(--gold) 16%, transparent);
   transform: translateY(-2px);
 }
 
@@ -808,13 +963,13 @@ a.price-pill:hover {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(232, 184, 74, 0.45);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 45%, transparent);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(232, 184, 74, 0);
+    box-shadow: 0 0 0 8px color-mix(in srgb, var(--gold) 0%, transparent);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(232, 184, 74, 0);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--gold) 0%, transparent);
   }
 }
 
@@ -824,5 +979,14 @@ a.price-pill:hover {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+
+  .variant-rest {
+    grid-template-rows: 0fr;
+  }
+
+  .variant-group.is-open .variant-rest {
+    grid-template-rows: 1fr;
+    opacity: 1;
   }
 }

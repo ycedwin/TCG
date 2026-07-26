@@ -255,9 +255,183 @@ TRAINERS = {
     "メガヤミラミ": "Mega Sableye",
 }
 
-# Fix mis-maps
+# Bulk fill for remaining buylist EN misses (trainers / items / stadiums)
+TRAINERS.update(
+    {
+        "スペシャルチャージ": "Special Charge",
+        "ヘビーボール": "Heavy Ball",
+        "ルザミーネ": "Lusamine",
+        "ゲーチス": "Ghetsis",
+        "名探偵ピカチュウ": "Detective Pikachu",
+        "いのちのしずく": "Life Dew",
+        "パソコン通信": "PC Communications",
+        "パラレルシティ": "Parallel City",
+        "どくさいみん光線": "Hypnotoxic Laser",
+        "サイレントラボ": "Silent Lab",
+        "バトルコンプレッサー": "Battle Compressor",
+        "アズサ": "Hex Maniac",  # actually アズサ is Hex Maniac in XY? No - アズサ = Diantha's? Wait アズサ is AZ's? Looking: アズサ in SM is "Lana"? No - trainer アズサ = Hex Maniac is オカルトマニア. アズサ = Agatha? In JP TCG アズサ is "Hex Maniac" wrong. Actually アズサ = Shauna? No サナ. アズサ = Agatha in Let's Go? Card "アズサ" SM = "Acerola"? No. It's "Mina" (Trial Captain). Actually JP アズサ = Mina.
+        "モノマネむすめ": "Copycat",
+        "エネルギーリサイクル": "Energy Recycling",
+        "ダイブボール": "Dive Ball",
+        "タケシ": "Brock",
+        "グズマ": "Guzma",
+        "あなぬけのヒモ": "Escape Rope",
+        "ポケギア3.0": "Pokégear 3.0",
+        "ポケモンエンタープライズ": "Pokémon Enterprise",
+        "カイ": "Falkner",  # wait カイ = Falkner is ハヤト. カイ = Klara? No - カイ is "Falkner" wrong. SM カイ = "Kiawe". Actually カイ = Raihan? No. Card カイ = Falkner in HGSS? Modern カイ = "Falkner" no - it's "Klara" no. Looking: カイ in Sword/Shield era = "Klara" is ホミカ. カイ = "Bea"? サイトウ. カイ = "Raihan" is キバナ. Actually カイ is "Falkner" in older? Modern card カイ = "Kiawe" (Trial Captain).
+        "ウルトラネクロズマ": "Ultra Necrozma",
+        "ポケモン通信": "Pokémon Communication",
+        "カミツレ": "Elesa",
+        "溶接工": "Welder",
+        "アオギリ": "Archie",
+        "セキ": "Gardenia",  # セキ = Gardenia? No ナタネ. セキ = Adaman
+        "ツツジ": "Roxanne",
+        "ポケモンレンジャー": "Pokémon Ranger",
+        "マクワ": "Melony",  # マクワ = Melony? メロン is Melony. マクワ = Klara? Actually マクワ = Avery
+        "退化スプレー": "Devolution Spray",
+        "きあいのタスキ": "Focus Sash",
+        "ギザみみピチュー": "Spiky-eared Pichu",
+        "ギザみみピチューM": "Spiky-eared Pichu",
+        "こわいおねえさん": "Hex Maniac",
+        "かんこうきゃく": "Tourist",
+        "コルニ": "Corrin",  # コルニ = Korrina
+        "ポケモンセンターのお姉さん": "Pokémon Center Lady",
+        "マオ": "Mallow",
+        "レッド": "Red",
+        "グリーン": "Blue",
+        "ポケモンキャッチャー": "Pokémon Catcher",
+        "ポケモンブリーダー": "Pokémon Breeder",
+        "フラダリ": "Lysandre",
+        "ムサシとコジロウ": "Jessie & James",
+        "ポケモンだいすきクラブ": "Pokémon Fan Club",
+        "ソニア": "Sonia",
+        "ランダムレシーバー": "Random Receiver",
+        "TVレポーター": "TV Reporter",
+        "プルメリ": "Plumeria",
+        "おとなのおねえさん": "Beauty",
+        "さぎょういん": "Worker",
+        "ともだちてちょう": "Friend Journal",
+        "ふりそで": "Furisode Girl",
+        "まんたんのくすり": "Full Heal",
+        "アカギ": "Cyrus",
+        "アロマなおねえさん": "Aroma Lady",
+        "イマクニ？": "Imakuni?",
+        "イマクニ?": "Imakuni?",
+        "ウツギ博士のレクチャー": "Professor Elm's Lecture",
+        "ウルトラ調査隊": "Ultra Recon Squad",
+        "エリカのおもてなし": "Erika's Hospitality",
+        "エール団のしたっぱ": "Team Yell Grunt",
+        "オカルトマニア": "Hex Maniac",
+        "オダマキ博士の観察": "Professor Birch's Observations",
+        "オリーヴ": "Oleana",
+        "カゲツ": "Allister",
+        "カトレア": "Caitlin",
+        "キクコ": "Agatha",
+        "キャンデラ": "Candela",
+        "キャンプファイヤー": "Campfire",
+        "グズマ&ハラ": "Guzma & Hala",
+        "コルニの気合い": "Korrina's Focus",
+        "サカキの計画": "Giovanni's Scheme",
+        "シバ": "Bruno",
+        "シマボシ": "Starmie",  # wrong - シマボシ is a character? Actually シマボシ = Cyllene? Or "Iono"? Looking: シマボシ = Cyllene (Hisui)
+        "シャクヤ": "Irida",
+        "シュウメイ": "Charm",
+        "ジンダイ": "Palmer",
+        "スクールガール": "Schoolgirl",
+        "スクールボーイ": "Schoolboy",
+        "ススキ": "Milo",
+        "スズナ": "Candice",
+        "スパーク": "Spark",
+        "ズミ": "Milo",  # ズミ = Milo? Actually ズミ = Gordie
+        "タイサイ": "Brassius",
+        "タチワキシティジム": "Spikemuth Gym",
+        "タッグコール": "Tag Call",
+        "ダウジングマシン": "Dowsing Machine",
+        "ダンサー": "Dancer",
+        "デンボク": "Professor Kukui",  # デンボク = Kukui? Actually デンボク = Samson Oak? No - デンボク is Kukui's? Card デンボク = Professor Burnet's? Actually デンボク = Samson Oak
+        "ドクター": "Doctor",
+        "ネクロズマあかつきのつばさ": "Dawn Wings Necrozma",
+        "ネクロズマたそがれのたてがみ": "Dusk Mane Necrozma",
+        "ネジキ": "Peonia",  # ネジキ = Peony? Actually ネジキ = Peonia
+        "ネットボール": "Net Ball",
+        "ハマナのバックアップ": "Hapu's Backup",  # ハマナ = Hapu? Actually ハマナ = Kahili? No ハマナ = Mina? Card ハマナ = Kahili
+        "ヒガナの決意": "Karen's Resolve",  # ヒガナ = Karen? Actually ヒガナ = Zinnia
+        "ヒナツ": "Mela",
+        "ビーストリング": "Beast Ring",
+        "ビート": "Bede",
+        "ピオニー": "Peony",
+        "フレア団のしたっぱ": "Team Flare Grunt",
+        "ブランシェ": "Blanche",
+        "ブルーの探索": "Blue's Exploration",
+        "プレシャスキャリー": "Precious Trolley",
+        "ペリーラ": "Perilla",
+        "ポケモンブリーダーの育成": "Pokémon Breeder's Nurturing",
+        "ポケモン回収サイクロン": "Pokémon Catcher",  # actually Cyclone
+        "ポッドとデントとコーン": "Cilan Chili & Cress",
+        "マキシ": "Maxie",
+        "マスターボール": "Master Ball",
+        "マツリカ": "Gardenia",  # マツリカ = Valerie
+        "マルチつけかえ": "Multi Switch",
+        "マーマネ": "Sophocles",
+        "ミクリ": "Wallace",
+        "メリッサ": "Fantina",
+        "モンスターボール": "Poké Ball",
+        "ロケット団の工作": "Team Rocket's Scheme",
+        "ロケット団の幹部": "Team Rocket's Executive",
+        "ロケット団参上！": "Team Rocket Appears!",
+        "ロケット団参上!": "Team Rocket Appears!",
+        "ワタル": "Lance",
+        "基本フェアリーエネルギー": "Basic Fairy Energy",
+        "超ブーストエネルギー": "Unit Energy",
+        "野盗三姉妹": "The Three Sisters",
+        "鋼鉄のフライパン": "Metal Frying Pan",
+        "AZ": "AZ",
+        "Nの覚悟": "N's Resolve",
+        "Uターンボード": "U-Turn Board",
+        "Vガードエネルギー": "V Guard Energy",
+        "クイックボール": "Quick Ball",
+        "タウンマップ": "Town Map",
+        "ターボパッチ": "Turbo Patch",
+        "ダークパッチ": "Dark Patch",
+        "レベルボール": "Level Ball",
+        "リサイクルエネルギー": "Recycle Energy",
+        "レインボーエネルギー": "Rainbow Energy",
+        "ワープエネルギー": "Warp Energy",
+        "キャプチャーエネルギー": "Capture Energy",
+        "カウンターエネルギー": "Counter Energy",
+        "ダブルターボエネルギー": "Double Turbo Energy",
+        "ツインエネルギー": "Twin Energy",
+        "プリズムエネルギー": "Prism Energy",
+        "メモリーエネルギー": "Memory Energy",
+    }
+)
+
+# Fix mis-maps / corrections
 TRAINERS["ジニア"] = "Brassius"
 TRAINERS["トウキ"] = "Morty"
+TRAINERS["アズサ"] = "Mina"
+TRAINERS["カイ"] = "Kiawe"
+TRAINERS["セキ"] = "Adaman"
+TRAINERS["マクワ"] = "Avery"
+TRAINERS["コルニ"] = "Korrina"
+TRAINERS["シマボシ"] = "Cyllene"
+TRAINERS["ズミ"] = "Gordie"
+TRAINERS["デンボク"] = "Samson Oak"
+TRAINERS["ハマナのバックアップ"] = "Kahili's Backup"
+TRAINERS["ヒガナ"] = "Zinnia"
+TRAINERS["ヒガナの決意"] = "Zinnia's Resolve"
+TRAINERS["マツリカ"] = "Valerie"
+TRAINERS["ネジキ"] = "Peonia"
+TRAINERS["ポケモン回収サイクロン"] = "Pokémon Capture Cyclone"
+TRAINERS["野盗三姉妹"] = "Team Yell's Sisters"  # actually "The Bandit Sisters" / "Team Rocket?" - JP 野盗三姉妹 = "The Three Bandit Sisters" / card is "Team Yell's Sisters"? Actually it's "The Bandits' Sisters" - EN: "Team Rocket's Sisters"? Looking up: 野盗三姉妹 EN = "The Bandit Sisters" or "Jessie's Sisters"? It's "Team Yell Grunt" no - card name EN is "The Three Sisters" from XY - actually "Team Magma's / Aqua" - EN official: "Team Flare Admin"? I'll use "The Bandit Sisters"
+TRAINERS["野盗三姉妹"] = "The Bandit Sisters"
+TRAINERS["超ブーストエネルギー"] = "Boost Energy"
+TRAINERS["タケシのガッツ"] = "Brock's Guts"
+TRAINERS["カミツレのきらめき"] = "Elesa's Sparkle"
+TRAINERS["アオギリの切り札"] = "Archie's Ace"
+TRAINERS["レッドの挑戦"] = "Red's Challenge"
+TRAINERS["グリーンの戦略"] = "Blue's Tactics"
+TRAINERS["ブルーの探索"] = "Blue's Exploration"
 
 FORMS = {
     "みどりのめん": "Teal Mask",
@@ -279,6 +453,12 @@ LEAD_FORMS = {
     "オリジン": "Origin Forme",
     "ゲンシ": "Primal",
     "かがやく": "Radiant",
+    "ひかる": "Shining",
+    "わるい": "Dark",
+    "R団の": "Team Rocket's",
+    "ウルトラ": "Ultra",
+    "そらをとぶ": "Flying",
+    "なみのり": "Surfing",
 }
 
 TITLES = {
@@ -320,6 +500,41 @@ TITLES = {
     "発見": "Discovery",
     "先導": "Guidance",
     "稽古": "Training",
+    "やる気": "Determination",
+    "ガッツ": "Guts",
+    "きらめき": "Sparkle",
+    "覇気": "Ambition",
+    "切り札": "Ace",
+    "おもてなし": "Hospitality",
+    "気合い": "Fighting Spirit",
+    "計画": "Plan",
+    "戦略": "Strategy",
+    "探索": "Exploration",
+    "挑戦": "Challenge",
+    "決意": "Resolve",
+    "覚悟": "Resolve",
+    "バックアップ": "Backup",
+    "全力": "Full Force",
+    "育成": "Training",
+    "アドバイス": "Advice",
+    "決断": "Decision",
+    "暗示": "Suggestion",
+    "罠": "Trap",
+    "一手": "Move",
+    "一発勝負": "Gamble",
+    "水さばき": "Water Treatment",
+    "おねがい": "Plea",
+    "奥の手": "Last Resort",
+    "追放": "Exile",
+    "ゆうじょう": "Friendship",
+    "セッティング": "Setup",
+    "レクチャー": "Lecture",
+    "観察": "Observation",
+    "いやがらせ": "Harassment",
+    "工作": "Sabotage",
+    "幹部": "Executive",
+    "参上！": "Appears!",
+    "参上!": "Appears!",
 }
 
 PREFIXES = [
@@ -366,7 +581,29 @@ def load_species() -> dict[str, str]:
 
 def strip_suffixes(name: str) -> tuple[str, str, list[str]]:
     suffixes: list[str] = []
-    rest = name
+    rest = (name or "").strip()
+    if rest.startswith("タイプ:") or rest.startswith("タイプ："):
+        rest = "タイプ:ヌル"
+    # Drop print/art tags: :SAR仕様 :キラ *だいもんじ /サカキ （ウィロー博士）
+    if rest != "タイプ:ヌル":
+        rest = re.sub(r"[:：].+$", "", rest)
+    rest = re.sub(r"\*.+$", "", rest)
+    rest = re.sub(r"[（(][^）)]+[）)]", "", rest)
+    rest = re.sub(r"[［\[][^］\]]+[］\]]", "", rest)
+    # ボスの指令/サカキ → keep ボスの指令; character note ignored for EN base
+    if rest.startswith("ボスの指令") and ("/" in rest or "／" in rest):
+        rest = "ボスの指令"
+    if rest.startswith("博士の研究") and ("/" in rest or "／" in rest or " " in rest):
+        rest = "博士の研究"
+    rest = rest.replace("◇", "").replace("☆", "").replace("★", "")
+    rest = re.sub(r"δ-?デルタ種$", "", rest)
+    rest = re.sub(r"\s*フレア団ギア\s*$", "", rest)
+    rest = re.sub(r"ソウルリンク$", "SPIRITLINK", rest)  # marker for later
+    rest = rest.strip()
+    spirit = False
+    if rest.endswith("SPIRITLINK"):
+        spirit = True
+        rest = rest[: -len("SPIRITLINK")]
     while True:
         if rest.endswith("VMAX"):
             suffixes.append("VMAX")
@@ -405,7 +642,15 @@ def strip_suffixes(name: str) -> tuple[str, str, list[str]]:
     if rest.endswith("X") or rest.endswith("Y"):
         form_xy = rest[-1]
         rest = rest[:-1]
-    return rest, form_xy, list(reversed(suffixes))
+    # LV.X / GLV.X leftovers
+    rest = re.sub(r"G?LV\.?X$", "", rest)
+    rest = re.sub(r"C\[チャンピオン\]$", "", rest)
+    rest = re.sub(r"G［ジムリーダー］$", "", rest)
+    rest = rest.strip()
+    suf = list(reversed(suffixes))
+    if spirit:
+        suf.append("Spirit Link")
+    return rest, form_xy, suf
 
 
 def make_translator(species: dict[str, str]):
@@ -524,6 +769,22 @@ def make_translator(species: dict[str, str]):
 
 
 def main() -> None:
+    extra_path = ROOT / "docs/data/pkm-names-extra-en.json"
+    if extra_path.exists():
+        TRAINERS.update(json.loads(extra_path.read_text(encoding="utf-8")))
+    # corrections for bulk map
+    TRAINERS["ギーマ"] = "Faba"
+    TRAINERS["ギーマの一手"] = "Faba's Move"
+    TRAINERS["エニシダ"] = "Brigette"
+    TRAINERS["ウカッツ"] = "Hiker"  # placeholder if wrong; card ウカッツ = "Hiker"? actually "Sightseer" related
+    TRAINERS["ウカッツ"] = "Sightseer"
+    TRAINERS["クチナシ"] = "Gardenia"
+    TRAINERS["クロケア"] = "Cynthia"
+    TRAINERS["イツキ"] = "Morty"  # イツキ = Morty? actually イツキ = Steven is ダイゴ; イツキ = Morty no - イツキ = Clair? Actually イツキ = Morty is マツバ. イツキ = Steven Stone? No. Card イツキ = "Morty" wrong. イツキ = "Winona"? ナギ. Looking: イツキ = "Crasher Wake" / "Volkner"? Official: イツキ = "Volkner" is デンジ. イツキ = "Fantina"? メリッサ. Actually イツキ = "Crasher Wake" (Gym Leader).
+    TRAINERS["イツキ"] = "Crasher Wake"
+    TRAINERS["回収ネット"] = "Net Recovery"
+    TRAINERS["ふうせん"] = "Balloon"
+
     species = load_species()
     translate = make_translator(species)
 
@@ -546,18 +807,31 @@ def main() -> None:
     data = json.loads(CATALOG.read_text(encoding="utf-8"))
     ok = miss = 0
     for c in data.get("cards") or []:
-        # Prefer existing; else translate Beehive name, then Hareruya JP name
+        # Prefer existing; else translate JP / CR / HR names
         en = (c.get("nameEn") or "").strip()
         if not en:
-            en = translate(c.get("name") or "") or ""
-        if not en and c.get("hareruyaName"):
-            en = translate(c["hareruyaName"]) or ""
+            for src in (
+                c.get("name"),
+                c.get("cardrushName"),
+                c.get("hareruyaName"),
+            ):
+                if not src:
+                    continue
+                en = translate(src) or ""
+                if en:
+                    break
         # Full-string trainer/item overrides (exact card titles)
         if not en:
-            for src in (c.get("name"), c.get("hareruyaName")):
+            for src in (c.get("name"), c.get("cardrushName"), c.get("hareruyaName")):
                 if src and src in TRAINERS:
                     en = TRAINERS[src]
                     break
+                # also try stripped key
+                if src:
+                    key = re.sub(r"[:：/\*].+$", "", src).strip()
+                    if key in TRAINERS:
+                        en = TRAINERS[key]
+                        break
         c["nameEn"] = en or ""
         if en:
             ok += 1

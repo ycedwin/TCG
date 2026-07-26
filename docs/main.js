@@ -634,7 +634,9 @@ function renderNumberGroup(_num, list) {
   const [first, ...rest] = list;
   return `<li class="variant-group">
     ${renderCardRow(first, { tag: "div", expandable: true })}
-    <ul class="card-list variant-rest" hidden>${rest.map((c) => renderCardRow(c)).join("")}</ul>
+    <div class="variant-rest" aria-hidden="true" inert>
+      <ul class="card-list">${rest.map((c) => renderCardRow(c)).join("")}</ul>
+    </div>
   </li>`;
 }
 
@@ -656,11 +658,14 @@ function renderSetBlock(code, list) {
 function toggleVariantGroup(primary) {
   const group = primary.closest(".variant-group");
   const rest = group?.querySelector(".variant-rest");
-  if (!rest) return;
-  const open = rest.hidden;
-  rest.hidden = !open;
+  if (!group || !rest) return;
+  const open = !group.classList.contains("is-open");
+  group.classList.toggle("is-open", open);
   primary.classList.toggle("is-open", open);
   primary.setAttribute("aria-expanded", open ? "true" : "false");
+  rest.setAttribute("aria-hidden", open ? "false" : "true");
+  if (open) rest.removeAttribute("inert");
+  else rest.setAttribute("inert", "");
 }
 
 function render() {

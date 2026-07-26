@@ -185,6 +185,14 @@ def main() -> None:
     hr = ROOT / "scripts/sync_hareruya_buylist.py"
     if hr.exists():
         subprocess.check_call(["python3", str(hr)])
+    cr = ROOT / "scripts/enrich_cardrush_pkm_buy.py"
+    if cr.exists():
+        subprocess.check_call(["python3", str(cr)])
+    cr_sell = ROOT / "scripts/enrich_cardrush_pkm_sell.py"
+    if cr_sell.exists():
+        # needs curl_cffi (Frameworks 3.14 on this machine)
+        py = "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3"
+        subprocess.check_call([py if Path(py).exists() else "python3", str(cr_sell)])
 
 
 if __name__ == "__main__":
