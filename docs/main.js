@@ -30,6 +30,8 @@ let characterTiers = { S: [], A: [], B: [] };
 let tierMatchers = null;
 /** Beehive buy/trade-in prices: byKey["OP01-016|P-RP"] = { buyHkd, buyPaused } */
 let buylist = null;
+/** Card Rush OP buy-only rows (separate records; never merged into Beehive cards) */
+let cardrushBuy = null;
 let refreshing = false;
 
 /** Show cards above this sell price, or cheaper ones with a strong buy offer */
@@ -116,11 +118,18 @@ function buildTierMatchers() {
 
 function officialNameEn(card) {
   if (isDonCard(card)) return "";
-  for (const k of [
+  const keys = [
     card.number && card.set ? `${card.set}-${card.number}` : "",
     card.sourceNumber,
     card.fullNumber,
-  ]) {
+  ];
+  // CR reprints: OP01-120(PRB01版) / OP09-051[OP14] → try bare OP01-120
+  for (const k of [...keys]) {
+    if (!k) continue;
+    const bare = k.match(/^([A-Z]+\d*)-(\d{2,3})/i);
+    if (bare) keys.push(`${bare[1].toUpperCase()}-${bare[2]}`);
+  }
+  for (const k of keys) {
     if (k && namesEn[k] && namesEn[k] !== "DON" && namesEn[k] !== "Event") {
       return namesEn[k];
     }
@@ -159,8 +168,9 @@ function tierSearchText(card) {
   return normalizeName(parts.filter(Boolean).join(" "));
 }
 
-/** Character popularity tier (not price) */
+/** Character popularity tier (not price). null = hide badge (DON / Event). */
 function popularityTier(card) {
+  if (isDonCard(card) || isEventCard(card)) return null;
   if (!tierMatchers) tierMatchers = buildTierMatchers();
   const hay = tierSearchText(card);
   if (!hay) return { tier: "C", label: "Tier C" };
@@ -268,6 +278,38 @@ function formatHkd(n) {
   })}`;
 }
 
+function formatYen(n) {
+  if (n == null || Number.isNaN(n)) return "—";
+  return `¥${Number(n).toLocaleString("en-US")}`;
+}
+
+/** Map Card Rush buy JSON → render rows (source-tagged; no Beehive sell/buy). */
+function cardrushRows() {
+  return (cardrushBuy?.cards || []).map((c) => {
+    const row = {
+      source: "cardrush",
+      fullNumber: c.modelNumber,
+      set: c.set,
+      collection: c.set,
+      number: c.modelNumber,
+      rarity: c.rarity || "-",
+      name: c.name,
+      fullName: c.fullName,
+      nameEn: "",
+      image: c.image || "",
+      url: c.url || "",
+      buyYenCardrush: c.buyYen,
+      sellYenCardrush: c.sellYen,
+      sellUrlCardrush: c.sellUrl || "",
+      sellMatchCardrush: c.sellMatch || "",
+      priceHkd: null,
+    };
+    // English for display + search (names-en.json by model number)
+    row.nameEn = officialNameEn(row);
+    return row;
+  });
+}
+
 function cardNumberKey(card) {
   if (card.set && card.number) return `${card.set}-${card.number}`;
   const fn = card.fullNumber || "";
@@ -331,11 +373,14 @@ function matchesQuery(card, q) {
   const hay = [
     card.fullNumber,
     card.number,
+    card.modelNumber,
     `${card.set}-${card.number}`,
     card.nameEn,
+    card.name,
+    card.fullName,
     card.collection,
     card.rarity,
-    isDonCard(card) ? "don don!!" : "",
+    isDonCard(card) || card.fullNumber === "don" ? "don don!!" : "",
   ]
     .filter(Boolean)
     .join(" ")
@@ -412,6 +457,14 @@ function matchesPriceFilters(card) {
     return true;
   }
 
+  // Card Rush rows are JPY buy-only — skip when HKD sell/buy bounds are set
+  if (card.source === "cardrush") {
+    if (sellMin != null || sellMax != null || buyMin != null || buyMax != null) {
+      return false;
+    }
+    return true;
+  }
+
   const sell = card.priceHkd;
   if (sellMin != null && (sell == null || sell < sellMin)) return false;
   if (sellMax != null && (sell == null || sell > sellMax)) return false;
@@ -422,102 +475,219 @@ function matchesPriceFilters(card) {
   return true;
 }
 
+function setCodeOf(card) {
+  return (card.collection || card.set || "?").toUpperCase();
+}
+
+function setSortKey(card) {
+  const code = setCodeOf(card);
+  const order = setsMeta?.length
+    ? setsMeta.findIndex((s) => (s.code || "").toUpperCase() === code)
+    : -1;
+  // Known sets first (sets.json order), then others A–Z; don last among unknowns
+  const rank = order === -1 ? (code === "DON" ? 9000 : 1000) : order;
+  return [rank, code, card.fullNumber || "", card.rarity || ""];
+}
+
+function compareBySet(a, b) {
+  const ka = setSortKey(a);
+  const kb = setSortKey(b);
+  for (let i = 0; i < ka.length; i++) {
+    if (ka[i] < kb[i]) return -1;
+    if (ka[i] > kb[i]) return 1;
+  }
+  return 0;
+}
+
+function setLabel(code) {
+  const meta = setsMeta?.find((s) => (s.code || "").toUpperCase() === code);
+  if (!meta) return code;
+  return meta.nameZh || meta.name || code;
+}
+
+/** Preserve order from already-sorted cards */
+function groupInOrder(cards, keyFn) {
+  const map = new Map();
+  for (const c of cards) {
+    const k = keyFn(c);
+    if (!map.has(k)) map.set(k, []);
+    map.get(k).push(c);
+  }
+  return [...map.entries()];
+}
+
+function crDisplayName(c) {
+  const cardName = (c.fullName || c.name || "").trim();
+  const en = (c.nameEn || officialNameEn(c) || "").trim();
+  if (!cardName) return en;
+  if (!en || cardName.includes(en)) return cardName;
+  return `${cardName} · ${en}`;
+}
+
+function renderCardRow(c, { tag = "li", expandable = false } = {}) {
+  const isCr = c.source === "cardrush";
+  const cardNo = c.fullNumber || c.title || "";
+  const rarity = c.rarity || "";
+  const displayName = isCr ? crDisplayName(c) : c.nameEn || "";
+  const pop = popularityTier(c);
+  const buy = isCr ? null : buyInfoFor(c);
+  const thumb = c.image
+    ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${displayName ? " · " + displayName : ""}`)}" aria-label="Enlarge card art">
+        <img class="thumb" src="${escapeHtml(c.image)}" alt="" loading="lazy" decoding="async" width="56" height="78" />
+      </button>`
+    : `<div class="thumb missing">No art</div>`;
+  let pricePills = "";
+  if (isCr) {
+    const sellYen = c.sellYenCardrush;
+    const sellUrl = (c.sellUrlCardrush || "").trim();
+    const sellPending = c.sellMatchCardrush === "ambiguous";
+    const sellAmt =
+      sellPending || sellYen == null ? "—" : formatYen(sellYen);
+    const sellTitle = sellPending
+      ? "Multiple sell matches — review needed"
+      : sellYen === 0
+        ? "No clean JP sell match"
+        : "Card Rush sell price (JPY)";
+    const sellPill = sellUrl
+      ? `<a class="price-pill price-cardrush-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(sellTitle)}">
+          <span class="lbl">Sell(cardrush)</span>
+          <span class="amt">${sellAmt}</span>
+        </a>`
+      : `<div class="price-pill price-cardrush-sell" title="${escapeHtml(sellTitle)}">
+          <span class="lbl">Sell(cardrush)</span>
+          <span class="amt">${sellAmt}</span>
+        </div>`;
+    const crYen = c.buyYenCardrush;
+    const crUrl = (c.url || "").trim();
+    const buyPill = crUrl
+      ? `<a class="price-pill price-cardrush" href="${escapeHtml(crUrl)}" target="_blank" rel="noopener noreferrer" title="Open Card Rush buy list">
+          <span class="lbl">Buy(cardrush)</span>
+          <span class="amt">${formatYen(crYen)}</span>
+        </a>`
+      : `<div class="price-pill price-cardrush" title="Card Rush buy price (JPY)">
+          <span class="lbl">Buy(cardrush)</span>
+          <span class="amt">${formatYen(crYen)}</span>
+        </div>`;
+    pricePills = `${sellPill}${buyPill}`;
+  } else {
+    const buyUrl = (buy?.url || "").trim();
+    const sellUrl = (c.url || "").trim();
+    const sellPill = sellUrl
+      ? `<a class="price-pill price-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive shop">
+          <span class="lbl">Sell(beehive)</span>
+          <span class="amt">${formatHkd(c.priceHkd)}</span>
+        </a>`
+      : `<div class="price-pill price-sell" title="Beehive sell price">
+          <span class="lbl">Sell(beehive)</span>
+          <span class="amt">${formatHkd(c.priceHkd)}</span>
+        </div>`;
+    const buyPill =
+      buy == null
+        ? `<div class="price-pill price-buy" title="No buylist match">
+            <span class="lbl">Buy(beehive)</span>
+            <span class="amt">—</span>
+          </div>`
+        : buyUrl
+          ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="${
+              buy.buyPaused
+                ? "暫停回收 — buy price marked $0"
+                : "Open Beehive buylist product"
+            }">
+            <span class="lbl">Buy(beehive)</span>
+            <span class="amt">${formatHkd(buy.buyHkd)}</span>
+          </a>`
+          : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="Buy price only (no product link)">
+            <span class="lbl">Buy(beehive)</span>
+            <span class="amt">${formatHkd(buy.buyHkd)}</span>
+          </div>`;
+    pricePills = `${sellPill}${buyPill}`;
+  }
+  const cls = `card-row${expandable ? " is-expandable" : ""}`;
+  const attrs = expandable
+    ? ` role="button" tabindex="0" aria-expanded="false" title="Show other prints"`
+    : "";
+  return `<${tag} class="${cls}"${attrs}>
+    ${thumb}
+    <div class="card-main">
+      <div class="info">
+        <div class="num-row">
+          <span class="num">${escapeHtml(cardNo)}</span>
+          ${
+            pop
+              ? `<span class="tier tier-${pop.tier}" title="Character popularity">${escapeHtml(pop.label)}</span>`
+              : ""
+          }
+        </div>
+        ${rarity ? `<p class="set">${escapeHtml(rarity)}</p>` : ""}
+        ${displayName ? `<p class="name">${escapeHtml(displayName)}</p>` : ""}
+      </div>
+      <div class="price">${pricePills}</div>
+    </div>
+  </${tag}>`;
+}
+
+/** One visible card per number; click it to expand same-number siblings. */
+function renderNumberGroup(_num, list) {
+  if (list.length === 1) return renderCardRow(list[0]);
+  // DON!! shares one id — list flat, no expand chevron
+  if (isDonCard(list[0])) return list.map((c) => renderCardRow(c)).join("");
+  const [first, ...rest] = list;
+  return `<li class="variant-group">
+    ${renderCardRow(first, { tag: "div", expandable: true })}
+    <ul class="card-list variant-rest" hidden>${rest.map((c) => renderCardRow(c)).join("")}</ul>
+  </li>`;
+}
+
+function renderSetBlock(code, list) {
+  const label = setLabel(code);
+  const groups = groupInOrder(list, (c) => c.fullNumber || "");
+  const body = groups
+    .map(([num, rows]) => renderNumberGroup(num, rows))
+    .join("");
+  return `<details class="fold fold-set" open>
+    <summary class="fold-head fold-head-set">
+      <span class="fold-title">${escapeHtml(code)}</span>
+      <span class="fold-meta">${list.length} · ${escapeHtml(label)}</span>
+    </summary>
+    <ul class="card-list">${body}</ul>
+  </details>`;
+}
+
+function toggleVariantGroup(primary) {
+  const group = primary.closest(".variant-group");
+  const rest = group?.querySelector(".variant-rest");
+  if (!rest) return;
+  const open = rest.hidden;
+  rest.hidden = !open;
+  primary.classList.toggle("is-open", open);
+  primary.setAttribute("aria-expanded", open ? "true" : "false");
+}
+
 function render() {
   if (!catalog) return;
   const q = els.search.value;
 
-  let cards = catalog.cards.filter(
+  const beehive = catalog.cards.filter(
     (c) => matchesQuery(c, q) && matchesPriceFilters(c),
   );
-  cards = cards
-    .slice()
-    .sort((a, b) =>
-      (a.fullNumber || "").localeCompare(b.fullNumber || "", "en"),
-    );
+  const cr = cardrushRows().filter(
+    (c) => matchesQuery(c, q) && matchesPriceFilters(c),
+  );
+  const cards = [...beehive, ...cr].sort(compareBySet);
 
-  els.meta.textContent = `${cards.length} cards · updated ${formatSyncedAt(catalog.syncedAt)}`;
+  const crAt = cardrushBuy?.syncedAt;
+  els.meta.textContent = `${cards.length} cards · Beehive ${beehive.length} + Card Rush ${cr.length} · updated ${formatSyncedAt(catalog.syncedAt)}${
+    crAt ? ` · CR ${formatSyncedAt(crAt)}` : ""
+  }`;
 
   if (cards.length === 0) {
     els.results.innerHTML = `<div class="empty">No cards match your search</div>`;
     return;
   }
 
-  const groups = groupByRarity(cards);
-  els.results.innerHTML = groups
-    .map(([rarity, list], idx) => {
-      const items = list
-        .map((c) => {
-          const cardNo = c.fullNumber || c.title || "";
-          const setCode = c.collection || c.set || "";
-          const en = c.nameEn || "";
-          const { tier, label } = popularityTier(c);
-          const buy = buyInfoFor(c);
-          const thumb = c.image
-            ? `<button type="button" class="thumb-btn" data-img="${escapeHtml(c.image)}" data-cap="${escapeHtml(`${cardNo}${en ? " · " + en : ""}`)}" aria-label="Enlarge card art">
-                <img class="thumb" src="${c.image}" alt="" loading="lazy" decoding="async" width="56" height="78" />
-              </button>`
-            : `<div class="thumb missing">No art</div>`;
-          const buyUrl = (buy?.url || "").trim();
-          const sellUrl = (c.url || "").trim();
-          const sellPill = sellUrl
-            ? `<a class="price-pill price-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive shop">
-                <span class="lbl">Sell</span>
-                <span class="amt">${formatHkd(c.priceHkd)}</span>
-              </a>`
-            : `<div class="price-pill price-sell" title="Sell price">
-                <span class="lbl">Sell</span>
-                <span class="amt">${formatHkd(c.priceHkd)}</span>
-              </div>`;
-          const buyPill =
-            buy == null
-              ? `<div class="price-pill price-buy" title="No buylist match">
-                  <span class="lbl">Buy(beehive)</span>
-                  <span class="amt">—</span>
-                </div>`
-              : buyUrl
-                ? `<a class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="${
-                    buy.buyPaused
-                      ? "暫停回收 — buy price marked $0"
-                      : "Open Beehive buylist product"
-                  }">
-                  <span class="lbl">Buy(beehive)</span>
-                  <span class="amt">${formatHkd(buy.buyHkd)}</span>
-                </a>`
-                : `<div class="price-pill price-buy${buy.buyPaused ? " is-paused" : ""}" title="Buy price only (no product link)">
-                  <span class="lbl">Buy(beehive)</span>
-                  <span class="amt">${formatHkd(buy.buyHkd)}</span>
-                </div>`;
-          return `<li class="card-row">
-            ${thumb}
-            <div class="card-main">
-              <div class="info">
-                <div class="num-row">
-                  <span class="num">${escapeHtml(cardNo)}</span>
-                  <span class="tier tier-${tier}" title="Character popularity">${escapeHtml(label)}</span>
-                </div>
-                ${setCode ? `<p class="set">${escapeHtml(setCode)}</p>` : ""}
-                ${en ? `<p class="name">${escapeHtml(en)}</p>` : ""}
-              </div>
-              <div class="price">
-                ${sellPill}
-                ${buyPill}
-              </div>
-            </div>
-          </li>`;
-        })
-        .join("");
-      const hint = rarityHint(rarity);
-      return `<section class="rarity-block" style="animation-delay:${Math.min(idx, 8) * 0.04}s">
-        <div class="rarity-head">
-          <div class="rarity-title">
-            <h2>${escapeHtml(hint.code)}</h2>
-            <p class="rarity-hint">${escapeHtml(hint.en)}</p>
-          </div>
-          <span>${list.length}</span>
-        </div>
-        <ul class="card-list">${items}</ul>
-      </section>`;
-    })
+  const setGroups = groupInOrder(cards, setCodeOf);
+  els.results.innerHTML = setGroups
+    .map(([code, list]) => renderSetBlock(code, list))
     .join("");
 }
 
@@ -538,11 +708,12 @@ async function applyCatalog(next, { sourceLabel, offline = false, persistData = 
 }
 
 async function loadMeta() {
-  const [namesRes, setsRes, tiersRes, buyRes] = await Promise.all([
+  const [namesRes, setsRes, tiersRes, buyRes, crRes] = await Promise.all([
     fetch("./data/names-en.json"),
     fetch("./data/sets.json"),
-    fetch("./data/character-tiers.json"),
+    fetch("./data/character-tiers.json?v=2", { cache: "no-store" }),
     fetch("./data/buylist.json?v=26", { cache: "no-store" }),
+    fetch("./data/cardrush-op-buy.json?v=3", { cache: "no-store" }),
   ]);
   if (namesRes.ok) namesEn = await namesRes.json();
   if (setsRes.ok) setsMeta = await setsRes.json();
@@ -551,6 +722,7 @@ async function loadMeta() {
     tierMatchers = null;
   }
   if (buyRes.ok) buylist = await buyRes.json();
+  if (crRes.ok) cardrushBuy = await crRes.json();
 }
 
 async function loadBundledCatalog() {
@@ -669,10 +841,25 @@ function wireEvents() {
     // Let price <a target=_blank> navigate normally; only intercept art enlarge
     if (e.target.closest("a.price-pill")) return;
     const btn = e.target.closest(".thumb-btn");
-    if (!btn) return;
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      openLightbox(btn.dataset.img, btn.dataset.cap);
+      return;
+    }
+    // Click first card of a number-group to show/hide the rest
+    const primary = e.target.closest(".card-row.is-expandable");
+    if (primary) {
+      e.preventDefault();
+      toggleVariantGroup(primary);
+    }
+  });
+  els.results.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const primary = e.target.closest(".card-row.is-expandable");
+    if (!primary || e.target.closest("a.price-pill, .thumb-btn")) return;
     e.preventDefault();
-    e.stopPropagation();
-    openLightbox(btn.dataset.img, btn.dataset.cap);
+    toggleVariantGroup(primary);
   });
   els.lightboxClose.addEventListener("click", closeLightbox);
   els.lightbox.addEventListener("click", (e) => {

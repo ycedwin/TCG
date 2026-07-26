@@ -324,43 +324,123 @@ body {
   gap: 1.25rem;
 }
 
-.rarity-block {
+.fold {
   animation: rise 0.45s ease both;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  overflow: hidden;
 }
 
-.rarity-head {
+.fold-set {
+  margin: 0;
+}
+
+.fold-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 0.75rem;
-  margin: 0 0 0.55rem;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid var(--line);
+  padding: 0.65rem 0.85rem;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
 }
 
-.rarity-title {
-  min-width: 0;
+.fold-head::-webkit-details-marker {
+  display: none;
 }
 
-.rarity-head h2 {
-  margin: 0;
+.fold-head::after {
+  content: "▸";
+  color: var(--gold);
+  font-size: 0.85rem;
+  transition: transform 0.15s ease;
+  flex-shrink: 0;
+  margin-left: 0.25rem;
+}
+
+.fold[open] > .fold-head::after {
+  transform: rotate(90deg);
+}
+
+.fold-head-set {
+  justify-content: flex-start;
+}
+
+.fold-head-set .fold-title {
+  flex: 0 0 auto;
+  text-align: left;
+}
+
+.fold-head-set .fold-meta {
+  margin-left: auto;
+  margin-right: 0.35rem;
+}
+
+.fold-title {
   font-family: var(--display);
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--gold);
   letter-spacing: 0.04em;
+  min-width: 0;
+  text-align: left;
 }
 
-.rarity-hint {
-  margin: 0.15rem 0 0;
+.fold-meta {
   color: var(--muted);
   font-size: 0.78rem;
-  line-height: 1.3;
+  flex-shrink: 0;
+  text-align: right;
 }
 
-.rarity-head span {
-  color: var(--muted);
-  font-size: 0.82rem;
-  flex-shrink: 0;
+.fold > .card-list {
+  padding: 0 0.55rem 0.55rem;
+}
+
+.variant-group {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.card-row.is-expandable {
+  cursor: pointer;
+}
+
+.card-row.is-expandable:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.card-row.is-expandable::after {
+  content: "▸";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--gold);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  transition: transform 0.15s ease;
+  pointer-events: none;
+  z-index: 1;
+  text-shadow: 0 0 6px var(--row), 0 0 10px var(--row);
+}
+
+.card-row.is-expandable.is-open::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.variant-rest {
+  padding-left: 0.55rem;
+  border-left: 2px solid var(--line);
+}
+
+/* .card-list { display:grid } otherwise beats the hidden attribute */
+.variant-rest[hidden] {
+  display: none;
 }
 
 .card-list {
@@ -372,6 +452,7 @@ body {
 }
 
 .card-row {
+  position: relative;
   display: grid;
   grid-template-columns: 56px 1fr;
   gap: 0.75rem;
@@ -583,6 +664,7 @@ body.is-lightbox-open .controls {
 .price {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: stretch;
   justify-content: flex-end;
   gap: 0.4rem;
@@ -646,6 +728,14 @@ a.price-pill:hover {
 
 .price-hareruya .amt {
   color: var(--gold);
+}
+
+.price-cardrush .amt {
+  color: #7ec8e3;
+}
+
+.price-cardrush-sell .amt {
+  color: #e8b84a;
 }
 
 .price-buy.is-paused .amt {
