@@ -58,6 +58,8 @@ body {
   color: var(--ink);
   font-family: var(--font);
   background: var(--bg0);
+  /* Stop mobile pull-to-refresh when a fast fling overshoots the top */
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -459,6 +461,28 @@ body {
 
 .fold > .card-list {
   padding: 0 0.55rem 0.55rem;
+}
+
+.virt {
+  position: relative;
+  padding: 0 0.55rem 0.55rem;
+}
+
+.virt .virt-window {
+  margin: 0;
+}
+
+.virt.is-virt .virt-window {
+  position: absolute;
+  left: 0.55rem;
+  right: 0.55rem;
+  top: 0;
+  will-change: transform;
+}
+
+.virt.is-virt .card-row {
+  min-height: calc(120px - 0.55rem);
+  box-sizing: border-box;
 }
 
 .variant-group {

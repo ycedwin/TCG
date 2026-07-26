@@ -63,6 +63,13 @@ const RARITY_RANK = [
 
 let catalog = null;
 let refreshing = false;
+/** @type {Map<string, {title: string, cards: object[]}>} */
+let eraData = new Map();
+let virtRaf = 0;
+// ponytail: fixed row pitch; slight gaps ok if a row wraps taller on narrow phones
+const VIRT_ROW = 120;
+const VIRT_OVERSCAN = 8;
+const VIRT_THRESHOLD = 48;
 
 function setStatus(text, offline = false) {
   els.status.textContent = text;
@@ -318,17 +325,86 @@ function renderCardRow(c) {
   </li>`;
 }
 
-function renderFoldBlock(title, list, { open = false, meta = "" } = {}) {
-  const body = list.map(renderCardRow).join("");
+function sortEraCards(cards) {
+  return cards.slice().sort((a, b) => {
+    const price = cardSortKey(b) - cardSortKey(a);
+    if (price) return price;
+    const setCmp = setCodeOf(a).localeCompare(setCodeOf(b), "en");
+    if (setCmp) return setCmp;
+    return compareWithinSet(a, b);
+  });
+}
+
+function renderEraShell(id, title, count, { open = false } = {}) {
   const openAttr = open ? " open" : "";
-  const metaText = meta || String(list.length);
-  return `<details class="fold fold-set"${openAttr}>
+  return `<details class="fold fold-set" data-era="${escapeHtml(id)}"${openAttr}>
     <summary class="fold-head fold-head-set">
       <span class="fold-title">${escapeHtml(title)}</span>
-      <span class="fold-meta">${metaText}</span>
+      <span class="fold-meta">${count}</span>
     </summary>
-    <ul class="card-list">${body}</ul>
+    <div class="virt" data-era-virt="${escapeHtml(id)}">
+      <ul class="card-list virt-window"></ul>
+    </div>
   </details>`;
+}
+
+function paintEraVirt(details) {
+  const id = details.dataset.era;
+  const cards = eraData.get(id)?.cards || [];
+  const root = details.querySelector(".virt");
+  const win = root?.querySelector(".virt-window");
+  if (!root || !win) return;
+
+  if (!details.open || !cards.length) {
+    root.classList.remove("is-virt");
+    root.style.height = "";
+    win.style.transform = "";
+    delete win.dataset.range;
+    win.innerHTML = "";
+    return;
+  }
+
+  if (cards.length <= VIRT_THRESHOLD) {
+    root.classList.remove("is-virt");
+    root.style.height = "";
+    win.style.transform = "";
+    delete win.dataset.range;
+    win.innerHTML = cards.map(renderCardRow).join("");
+    return;
+  }
+
+  root.classList.add("is-virt");
+  const totalH = cards.length * VIRT_ROW;
+  root.style.height = `${totalH}px`;
+
+  const rootTop = root.getBoundingClientRect().top + window.scrollY;
+  const viewTop = window.scrollY;
+  const viewH = window.innerHeight || 800;
+  let start = Math.floor((viewTop - rootTop) / VIRT_ROW) - VIRT_OVERSCAN;
+  let end = Math.ceil((viewTop + viewH - rootTop) / VIRT_ROW) + VIRT_OVERSCAN;
+  start = Math.max(0, start);
+  end = Math.min(cards.length, Math.max(start + 1, end));
+
+  win.style.transform = `translateY(${start * VIRT_ROW}px)`;
+  const range = `${start}-${end}`;
+  if (win.dataset.range !== range) {
+    win.dataset.range = range;
+    win.innerHTML = cards.slice(start, end).map(renderCardRow).join("");
+  }
+}
+
+function paintAllVirt() {
+  for (const d of els.results.querySelectorAll("details[data-era]")) {
+    paintEraVirt(d);
+  }
+}
+
+function scheduleVirtPaint() {
+  if (virtRaf) return;
+  virtRaf = requestAnimationFrame(() => {
+    virtRaf = 0;
+    paintAllVirt();
+  });
 }
 
 /** Sets with any Beehive/Hareruya row — everything else is CR-only vintage. */
@@ -393,18 +469,6 @@ function withinBuyCaps(card) {
   return true;
 }
 
-function renderEraSection(title, cards, { open = false } = {}) {
-  if (!cards.length) return "";
-  const list = cards.slice().sort((a, b) => {
-    const price = cardSortKey(b) - cardSortKey(a);
-    if (price) return price;
-    const setCmp = setCodeOf(a).localeCompare(setCodeOf(b), "en");
-    if (setCmp) return setCmp;
-    return compareWithinSet(a, b);
-  });
-  return renderFoldBlock(title, list, { open, meta: `${list.length}` });
-}
-
 function render() {
   if (!catalog) return;
   const q = els.search.value;
@@ -440,20 +504,34 @@ function render() {
   }`;
 
   if (cards.length === 0) {
+    eraData = new Map();
     els.results.innerHTML = `<div class="empty">No cards match your search</div>`;
     return;
   }
 
-  // ponytail: two era folds, flat price-sorted lists; rarity via chips.
-  els.results.innerHTML =
-    renderEraSection("Modern", modern, { open: true }) +
-    renderEraSection("Vintage", vintage, { open: searching });
+  eraData = new Map();
+  const parts = [];
+  if (modern.length) {
+    eraData.set("modern", { title: "Modern", cards: sortEraCards(modern) });
+    parts.push(
+      renderEraShell("modern", "Modern", modern.length, { open: searching }),
+    );
+  }
+  if (vintage.length) {
+    eraData.set("vintage", { title: "Vintage", cards: sortEraCards(vintage) });
+    parts.push(
+      renderEraShell("vintage", "Vintage", vintage.length, { open: searching }),
+    );
+  }
+  // ponytail: shells only until open; then windowed rows (~viewport + overscan).
+  els.results.innerHTML = parts.join("");
+  paintAllVirt();
 }
 
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=49";
+    : "./data/pkmjp-buylist.json?v=51";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
@@ -548,6 +626,18 @@ function wireEvents() {
     if (open) els.buyMin.focus();
   });
   els.refresh.addEventListener("click", refresh);
+  els.results.addEventListener("toggle", (e) => {
+    const d = e.target;
+    if (!(d instanceof HTMLDetailsElement) || !d.dataset.era) return;
+    if (!d.open) {
+      const win = d.querySelector(".virt-window");
+      if (win) {
+        win.innerHTML = "";
+        delete win.dataset.range;
+      }
+    }
+    scheduleVirtPaint();
+  }, true);
   els.results.addEventListener("pointerdown", (e) => {
     const btn = e.target.closest(".thumb-btn");
     if (btn?.dataset.img) prefetchLarge(btn.dataset.img);
@@ -573,7 +663,15 @@ function wireEvents() {
   const syncBackTop = () => {
     els.backTop.hidden = window.scrollY < 400;
   };
-  window.addEventListener("scroll", syncBackTop, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      syncBackTop();
+      scheduleVirtPaint();
+    },
+    { passive: true },
+  );
+  window.addEventListener("resize", scheduleVirtPaint, { passive: true });
   els.backTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });

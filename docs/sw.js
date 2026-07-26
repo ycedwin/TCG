@@ -1,6 +1,6 @@
 /* Cache app shell + catalog + card thumbnails for offline */
-const CACHE = "op-price-v60";
-const IMG_CACHE = "op-images-v1";
+const CACHE = "op-price-v61";
+const IMG_CACHE = "op-images-v2";
 const PRECACHE = [
   "./",
   "./index.html",
@@ -20,6 +20,21 @@ const PRECACHE = [
   "./data/cardrush-op-buy.json",
   "./data/pkmjp-buylist.json",
 ];
+
+function isCardArtHost(hostname) {
+  return (
+    hostname === "cdn.shopify.com" ||
+    hostname === "beehivetcgbuylist.com" ||
+    hostname === "files.cardrush.media" ||
+    hostname === "production-recore-public-files.s3.ap-northeast-1.amazonaws.com" ||
+    hostname.endsWith(".wp.com")
+  );
+}
+
+function cacheableArtResponse(res) {
+  // <img> often uses no-cors → opaque (status 0); still cacheable
+  return res && (res.ok || res.type === "opaque");
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -48,15 +63,15 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(request.url);
 
-  // Card art (Shopify CDN) — cache for offline after first view
-  if (url.hostname === "cdn.shopify.com") {
+  // Card art — cache for offline after first view (OP Shopify + PKM hosts)
+  if (isCardArtHost(url.hostname)) {
     event.respondWith(
       caches.open(IMG_CACHE).then(async (cache) => {
         const cached = await cache.match(request);
         if (cached) return cached;
         try {
           const res = await fetch(request);
-          if (res.ok) cache.put(request, res.clone());
+          if (cacheableArtResponse(res)) cache.put(request, res.clone());
           return res;
         } catch {
           return cached || Response.error();
@@ -76,7 +91,8 @@ self.addEventListener("fetch", (event) => {
   // Buylist / Card Rush buy must be network-first so prices stay fresh
   if (
     url.pathname.endsWith("/data/buylist.json") ||
-    url.pathname.endsWith("/data/cardrush-op-buy.json")
+    url.pathname.endsWith("/data/cardrush-op-buy.json") ||
+    url.pathname.endsWith("/data/pkmjp-buylist.json")
   ) {
     event.respondWith(
       fetch(request)
