@@ -58,8 +58,6 @@ body {
   color: var(--ink);
   font-family: var(--font);
   background: var(--bg0);
-  /* Stop mobile pull-to-refresh when a fast fling overshoots the top */
-  overscroll-behavior-y: none;
 }
 
 body {
@@ -481,7 +479,7 @@ body {
 }
 
 .virt.is-virt .card-row {
-  min-height: calc(120px - 0.55rem);
+  min-height: calc(var(--virt-row, 120px) - 0.55rem);
   box-sizing: border-box;
 }
 
@@ -837,6 +835,43 @@ body.is-lightbox-open .controls {
   text-decoration: none;
   color: inherit;
   pointer-events: auto;
+}
+
+/* Phone: name full width, prices in a 2×2 grid underneath */
+@media (max-width: 639px) {
+  .card-main {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+    align-items: stretch;
+  }
+
+  .info .name,
+  .info .set {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word;
+  }
+
+  .price {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: stretch;
+    gap: 0.35rem;
+    width: 100%;
+    flex-shrink: 1;
+  }
+
+  .price-pill {
+    min-width: 0;
+    width: 100%;
+    align-items: flex-start;
+    padding: 0.32rem 0.4rem;
+  }
+
+  .price-pill .amt {
+    font-size: 0.95rem;
+  }
 }
 
 .price-pill .lbl,

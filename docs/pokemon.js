@@ -67,9 +67,13 @@ let refreshing = false;
 let eraData = new Map();
 let virtRaf = 0;
 // ponytail: fixed row pitch; slight gaps ok if a row wraps taller on narrow phones
-const VIRT_ROW = 120;
 const VIRT_OVERSCAN = 8;
 const VIRT_THRESHOLD = 48;
+
+/** Desktop side-by-side vs phone stacked prices need different row pitch. */
+function virtRowPx() {
+  return window.matchMedia("(max-width: 639px)").matches ? 200 : 120;
+}
 
 function setStatus(text, offline = false) {
   els.status.textContent = text;
@@ -245,27 +249,27 @@ function renderCardRow(c) {
   const hasBeehive = c.buyHkd != null;
   const buyPill = !hasBeehive
     ? `<div class="price-pill price-buy" title="Not on Beehive buylist">
-        <span class="lbl">Buy(beehive)</span>
+        <span class="lbl">Buy BH</span>
         <span class="amt">—</span>
       </div>`
     : buyUrl
       ? `<a class="price-pill price-buy" href="${escapeHtml(buyUrl)}" target="_blank" rel="noopener noreferrer" title="Open Beehive buylist product">
-          <span class="lbl">Buy(beehive)</span>
+          <span class="lbl">Buy BH</span>
           <span class="amt">${formatHkd(c.buyHkd)}</span>
         </a>`
       : `<div class="price-pill price-buy" title="Beehive buy price">
-          <span class="lbl">Buy(beehive)</span>
+          <span class="lbl">Buy BH</span>
           <span class="amt">${formatHkd(c.buyHkd)}</span>
         </div>`;
   const hrYen = c.buyYenHareruya;
   const hrPill =
     hrYen == null
       ? `<div class="price-pill price-hareruya" title="No Hareruya match">
-          <span class="lbl">Buy(hareruya)</span>
+          <span class="lbl">Buy HR</span>
           <span class="amt">—</span>
         </div>`
       : `<div class="price-pill price-hareruya" title="Hareruya buy price (JPY)">
-          <span class="lbl">Buy(hareruya)</span>
+          <span class="lbl">Buy HR</span>
           <span class="amt">${formatYen(hrYen)}</span>
         </div>`;
   const sellYen = c.sellYenCardrush;
@@ -280,11 +284,11 @@ function renderCardRow(c) {
       : "Card Rush sell price (JPY)";
   const sellPill = sellUrl
     ? `<a class="price-pill price-cardrush-sell" href="${escapeHtml(sellUrl)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(sellTitle)}">
-        <span class="lbl">Sell(cardrush)</span>
+        <span class="lbl">Sell CR</span>
         <span class="amt">${sellAmt}</span>
       </a>`
     : `<div class="price-pill price-cardrush-sell" title="${escapeHtml(sellTitle)}">
-        <span class="lbl">Sell(cardrush)</span>
+        <span class="lbl">Sell CR</span>
         <span class="amt">${sellAmt}</span>
       </div>`;
   const crYen = c.buyYenCardrush;
@@ -295,11 +299,11 @@ function renderCardRow(c) {
   const crPill =
     crYen == null
       ? `<div class="price-pill price-cardrush" title="No Card Rush match">
-          <span class="lbl">Buy(cardrush)</span>
+          <span class="lbl">Buy CR</span>
           <span class="amt">—</span>
         </div>`
       : `<a class="price-pill price-cardrush" href="https://cardrush.media/pokemon/buying_prices" target="_blank" rel="noopener noreferrer" title="${escapeHtml(crTitle)}">
-          <span class="lbl">Buy(cardrush)</span>
+          <span class="lbl">Buy CR</span>
           <span class="amt">${formatYen(crYen)}</span>
         </a>`;
   const tier = (c.tier || "").trim();
@@ -349,8 +353,8 @@ function renderEraShell(id, title, count, { open = false } = {}) {
 }
 
 /** Keep overlapping rows mounted so thumbs don't remount/flash while scrolling. */
-function syncVirtWindow(win, cards, start, end) {
-  win.style.transform = `translateY(${start * VIRT_ROW}px)`;
+function syncVirtWindow(win, cards, start, end, row) {
+  win.style.transform = `translateY(${start * row}px)`;
   let prevStart = win._virtStart;
   let prevEnd = win._virtEnd;
 
@@ -402,8 +406,10 @@ function paintEraVirt(details) {
   if (!details.open || !cards.length) {
     root.classList.remove("is-virt");
     root.style.height = "";
+    root.style.removeProperty("--virt-row");
     win.style.transform = "";
     win._virtStart = win._virtEnd = null;
+    win._virtRow = null;
     win.innerHTML = "";
     return;
   }
@@ -411,28 +417,37 @@ function paintEraVirt(details) {
   if (cards.length <= VIRT_THRESHOLD) {
     root.classList.remove("is-virt");
     root.style.height = "";
+    root.style.removeProperty("--virt-row");
     win.style.transform = "";
     win._virtStart = win._virtEnd = null;
+    win._virtRow = null;
     win.innerHTML = cards.map(renderCardRow).join("");
     return;
   }
 
+  const row = virtRowPx();
+  if (win._virtRow != null && win._virtRow !== row) {
+    // breakpoint crossed — remount so pitch matches stacked/side layout
+    win._virtStart = win._virtEnd = null;
+  }
+  win._virtRow = row;
   root.classList.add("is-virt");
-  root.style.height = `${cards.length * VIRT_ROW}px`;
+  root.style.setProperty("--virt-row", `${row}px`);
+  root.style.height = `${cards.length * row}px`;
 
   const rootTop = root.getBoundingClientRect().top + window.scrollY;
   const viewTop = window.scrollY;
   const viewH = window.innerHeight || 800;
-  let start = Math.floor((viewTop - rootTop) / VIRT_ROW) - VIRT_OVERSCAN;
-  let end = Math.ceil((viewTop + viewH - rootTop) / VIRT_ROW) + VIRT_OVERSCAN;
+  let start = Math.floor((viewTop - rootTop) / row) - VIRT_OVERSCAN;
+  let end = Math.ceil((viewTop + viewH - rootTop) / row) + VIRT_OVERSCAN;
   start = Math.max(0, start);
   end = Math.min(cards.length, Math.max(start + 1, end));
 
   if (win._virtStart === start && win._virtEnd === end) {
-    win.style.transform = `translateY(${start * VIRT_ROW}px)`;
+    win.style.transform = `translateY(${start * row}px)`;
     return;
   }
-  syncVirtWindow(win, cards, start, end);
+  syncVirtWindow(win, cards, start, end, row);
 }
 
 function paintAllVirt() {
@@ -573,7 +588,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=52";
+    : "./data/pkmjp-buylist.json?v=53";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });
