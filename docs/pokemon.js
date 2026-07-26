@@ -453,7 +453,7 @@ function render() {
 async function loadCatalog({ bust = false } = {}) {
   const url = bust
     ? `./data/pkmjp-buylist.json?v=${Date.now()}`
-    : "./data/pkmjp-buylist.json?v=48";
+    : "./data/pkmjp-buylist.json?v=49";
   setStatus("Loading…");
   try {
     const res = await fetch(url, { cache: "no-store" });

@@ -6,8 +6,8 @@ Source: Bulbapedia most→least visited Pokémon articles in 2025 (1025 species)
 
 Cuts (rank 1 = most visited):
   S: 1–20
-  A: 21–60
-  B: 61–250
+  A: 21–100
+  B: 101–250
   C: 251–1025
 """
 
@@ -28,7 +28,7 @@ BULBA = Path(
     "Bulbapedia_Most_and_least_visited_Pok_mon_articles_in_2025-0.md"
 )
 
-CUTS = {"S": 20, "A": 60, "B": 250, "C": 1025}
+CUTS = {"S": 20, "A": 100, "B": 250, "C": 1025}
 
 
 def ensure_species_csv() -> str:

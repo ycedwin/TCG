@@ -3,7 +3,7 @@
   "note": "Visit popularity 2025. Trainers/items/energy get no tier.",
   "cuts": {
     "S": 20,
-    "A": 60,
+    "A": 100,
     "B": 250,
     "C": 1025
   },
@@ -71,9 +71,7 @@
       "Ninetales",
       "Scyther",
       "Meowth",
-      "Toxtricity"
-    ],
-    "B": [
+      "Toxtricity",
       "Lycanroc",
       "Baxcalibur",
       "Mawile",
@@ -113,7 +111,9 @@
       "Volcarona",
       "Darkrai",
       "Eelektross",
-      "Fuecoco",
+      "Fuecoco"
+    ],
+    "B": [
       "Kirlia",
       "Lapras",
       "Togekiss",
