@@ -262,7 +262,7 @@ def main() -> None:
     print(json.dumps(data["hareruya"]["counts"], indent=2))
     print(f"wrote {CATALOG}")
 
-    enrich = ROOT / "scripts/enrich_pkmjp_names.py"
+    enrich = ROOT / "scripts/sync_pkm_names.py"
     if enrich.exists():
         subprocess.check_call(["python3", str(enrich)])
 

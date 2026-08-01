@@ -1,0 +1,941 @@
+{
+  "syncedAt": "2026-07-30T12:43:48.364063Z",
+  "note": "Leftovers after enrich (should be empty or tiny).",
+  "counts": {
+    "stripped_cr_only": 0,
+    "existing": 4183,
+    "matched": 3048,
+    "resolved_multi": 25,
+    "no_cr": 1051,
+    "skipped_special": 84,
+    "skipped_existing_print": 51,
+    "added_cr_only": 1065,
+    "totalCards": 5248
+  },
+  "unresolved": [
+    {
+      "fullNumber": "CP3-026",
+      "title": "ニンフィアEX(RR){フェアリー}〈026/032〉[CP3]",
+      "extras": [
+        "エラー版"
+      ],
+      "buyYen": [
+        200000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMD-005",
+      "title": "サトシのピカチュウGX(D){雷}〈005/026〉[SMD]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        100000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "BW7-078",
+      "title": "カメックス(UR){水}〈078/070〉[BW7]",
+      "extras": [
+        "1ED"
+      ],
+      "buyYen": [
+        90000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "WCS23-001",
+      "title": "ピカチュウex(D){雷}〈001/030〉[WCS23]",
+      "extras": [
+        "SR仕様"
+      ],
+      "buyYen": [
+        50000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "PBG-005",
+      "title": "ダークライ(D){悪}〈005/016〉[PBG]",
+      "extras": [
+        "SR仕様"
+      ],
+      "buyYen": [
+        45000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMD-010",
+      "title": "ロケット団のミミッキュGX(D){超}〈010/026〉[SMD]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        40000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "20TH-017",
+      "title": "フリーザー(D){水}〈017/072〉[20th]",
+      "extras": [
+        "SR仕様"
+      ],
+      "buyYen": [
+        30000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "EBB-086",
+      "title": "ルギアEX(CP){無}〈086/093〉[EBB]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        17000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "20TH-020",
+      "title": "サンダー(D){雷}〈020/072〉[20th]",
+      "extras": [
+        "SR仕様"
+      ],
+      "buyYen": [
+        27000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "XYC-006",
+      "title": "イベルタルEX(D){悪}〈006/023〉[XYC]",
+      "extras": [
+        "SR仕様"
+      ],
+      "buyYen": [
+        13000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SN-001",
+      "title": "ピカチュウV(D){雷}〈001/024〉[SN]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        14000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "XYD-005",
+      "title": "レックウザEX(D){ドラゴン}〈005/018〉[XYD]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        13000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "20TH-002",
+      "title": "MフシギバナEX(D){草}〈002/072〉[20th]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        8000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "XYC-012",
+      "title": "ゼルネアスEX(D){フェアリー}〈012/023〉[XYC]",
+      "extras": [
+        "SR仕様"
+      ],
+      "buyYen": [
+        11000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "20TH-074",
+      "title": "MカメックスEX(D){水}〈074/072〉[20th]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        6500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SC2-002",
+      "title": "リザードンVMAX:SC2(D){炎}〈002/021〉[SC2]",
+      "extras": [
+        "RRR仕様/SC2"
+      ],
+      "buyYen": [
+        7000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMM-010",
+      "title": "ブラッキー&ダークライGX(D){悪}〈010/031〉[SMM]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        7000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-036",
+      "title": "ピカチュウ(CP){雷}〈036/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        6000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-103",
+      "title": "ハイパーボール(CP){グッズ}〈103/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        4500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-002",
+      "title": "MスピアーEX(CP){草}〈002/131〉[CP4]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        3500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SML-009",
+      "title": "リザードンGX(D){炎}〈009/051〉[SML]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        3200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SGG-002",
+      "title": "ゲンガーVMAX(-){悪}〈002/019〉[SGG]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        3500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-109",
+      "title": "かるいし(CP){グッズ}〈109/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        2500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-107",
+      "title": "ふしぎなアメ(CP){グッズ}〈107/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        2800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SP4-004",
+      "title": "エーフィVMAX(-){超}〈004/004〉[SP4]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        3300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMM-001",
+      "title": "エーフィ&デオキシスGX(D){超}〈001/031〉[SMM]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        3000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-102",
+      "title": "トレーナーズポスト(CP){グッズ}〈102/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        1500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SO-007",
+      "title": "ファイヤー(-){炎}〈007/030〉[SO]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        1200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SO-002",
+      "title": "リザードンVSTAR(-){炎}〈002/030〉[SO]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        1500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SO-016",
+      "title": "レックウザVMAX(-){ドラゴン}〈016/030〉[SO]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        1800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SN-007",
+      "title": "イーブイV(D){無}〈007/024〉[SN]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        2200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SP4-001",
+      "title": "ブースターVMAX(-){炎}〈001/004〉[SP4]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        1900
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SP4-002",
+      "title": "シャワーズVMAX(-){水}〈002/004〉[SP4]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        2000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SP4-003",
+      "title": "サンダースVMAX(-){雷}〈003/004〉[SP4]",
+      "extras": [
+        "RRR仕様"
+      ],
+      "buyYen": [
+        2000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-105",
+      "title": "バトルサーチャー(CP){グッズ}〈105/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        1800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVM-016",
+      "title": "バシャーモex(D){炎}〈016/175〉[SVM]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-123",
+      "title": "センパイとコウハイ(CP){サポート}〈123/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        1000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-129",
+      "title": "スカイフィールド(CP){スタジアム}〈129/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        1400
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SML-015",
+      "title": "ギャラドスGX(D){水}〈015/051〉[SML]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "20TH-001",
+      "title": "フシギバナEX(D){草}〈001/072〉[20th]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        3500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-128",
+      "title": "次元の谷(CP){スタジアム}〈128/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        700
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SM12A-033",
+      "title": "シャワーズ(CP){水}〈033/173〉[SM12a]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        1400
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMI-001",
+      "title": "ブースターGX(D){炎}〈001/038〉[SMI]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMI-017",
+      "title": "イーブイGX(D){無}〈017/038〉[SMI]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-053",
+      "title": "アンノーン(CP){超}〈053/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-100",
+      "title": "あなぬけのヒモ(CP){グッズ}〈100/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVC-001",
+      "title": "ピカチュウex(D){雷}〈001/021〉[SVC]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-001",
+      "title": "スピアーEX(CP){草}〈001/131〉[CP4]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        700
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-054",
+      "title": "ソーナンス(CP){超}〈054/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-116",
+      "title": "レックウザソウルリンク(CP){グッズ}〈116/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMI-019",
+      "title": "イーブイGX(D){無}〈019/038〉[SMI]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SML-025",
+      "title": "ミュウツーGX(D){超}〈025/051〉[SML]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        600
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SO-001",
+      "title": "リザードンV(-){炎}〈001/030〉[SO]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVM-038",
+      "title": "ピカチュウex(D){雷}〈038/175〉[SVM]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SC-001",
+      "title": "リザードンV(D){炎}〈001/021〉[SC-fr]",
+      "extras": [
+        "RR仕様/sC"
+      ],
+      "buyYen": [
+        1100
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-090",
+      "title": "ゼルネアスEX(CP){フェアリー}〈090/131〉[CP4]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-101",
+      "title": "改造ハンマー(CP){グッズ}〈101/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        500
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SC2-001",
+      "title": "リザードンV:SC2(D){炎}〈001/021〉[SC2]",
+      "extras": [
+        "RR仕様/SC2"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMI-013",
+      "title": "サンダースGX(D){雷}〈013/038〉[SMI]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMI-018",
+      "title": "イーブイGX(D){無}〈018/038〉[SMI]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVAW-006",
+      "title": "ミミッキュex(D){超}〈006/023〉[SVAW]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        700
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVG-009",
+      "title": "リザードンex(D){炎}〈009/049〉[SVG]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVM-097",
+      "title": "ルギアex(D){無}〈097/175〉[SVM]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SEF-001",
+      "title": "フシギバナV(D){草}〈001/021〉[SEF]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        600
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SML-019",
+      "title": "ライチュウGX(D){雷}〈019/051〉[SML]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        600
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-131",
+      "title": "ダブル無色エネルギー(CP){特殊エネルギー}〈131/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        400
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMI-007",
+      "title": "シャワーズGX(D){水}〈007/038〉[SMI]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        1000
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SVJL-006",
+      "title": "リザードンex(-){悪}〈006/021〉[SVJL]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        700
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SGG-001",
+      "title": "ゲンガーV(-){悪}〈001/019〉[SGG]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-120",
+      "title": "コルニ(CP){サポート}〈120/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        400
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SM12A-019",
+      "title": "ブースター(CP){炎}〈019/173〉[SM12a]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        600
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMJ-010",
+      "title": "カプ・テテフGX(D){超}〈010/035〉[SMJ]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SMM-002",
+      "title": "ジラーチGX(D){超}〈002/031〉[SMM]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        600
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-118",
+      "title": "アズサ(CP){サポート}〈118/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        400
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "MBG-003",
+      "title": "メガゲンガーex(-){悪}〈003/021〉[MBG]",
+      "extras": [
+        "RR仕様"
+      ],
+      "buyYen": [
+        200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SM12A-090",
+      "title": "ジラーチ(CP){鋼}〈090/173〉[SM12a]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        800
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SM12A-130",
+      "title": "ポケギア3.0(CP){グッズ}〈130/173〉[SM12a]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SN-008",
+      "title": "カビゴン(D){無}〈008/024〉[SN]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        600
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-121",
+      "title": "サカキの計画(CP){サポート}〈121/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        300
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-126",
+      "title": "フレア団のしたっぱ(CP){サポート}〈126/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "CP4-127",
+      "title": "巨大植物の森(CP){グッズ}〈127/131〉[CP4]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        250
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SA-011",
+      "title": "エネルギーつけかえ(D){グッズ}〈011/023〉[SA-w]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SM12A-057",
+      "title": "ギラティナ(CP){超}〈057/173〉[SM12a]",
+      "extras": [
+        "ミラー"
+      ],
+      "buyYen": [
+        200
+      ],
+      "reason": "only special extras; title does not ask"
+    },
+    {
+      "fullNumber": "SM8B-117",
+      "title": "フィールドブロアー(CP){グッズ}〈117/150〉[SM8b]",
+      "extras": [
+        "ミラー/ハイクラスパック仕様"
+      ],
+      "buyYen": [
+        200
+      ],
+      "reason": "only special extras; title does not ask"
+    }
+  ]
+}

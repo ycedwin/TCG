@@ -25,7 +25,7 @@ SELL_SEARCH = "https://www.cardrush-pokemon.jp/product-list"
 
 # import shared match helpers
 sys.path.insert(0, str(ROOT / "scripts"))
-from enrich_cardrush_pkm_sell import (  # noqa: E402
+from sync_pkm_cardrush_sell import (  # noqa: E402
     SKIP_RE,
     TITLE_RE,
     EXTRA_RE,

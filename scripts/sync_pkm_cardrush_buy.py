@@ -419,41 +419,39 @@ def main() -> None:
     print(f"wrote {BH}")
     print(f"review {REVIEW} · unresolved {len(unresolved)}")
 
-    # ponytail: self-check
-    pico = [
-        c
-        for c in cards
-        if c.get("fullNumber") == "SV8-132" and c.get("rarity") == "SAR"
-    ]
-    assert pico and pico[0].get("buyYenCardrush") == 75000, pico
-    m2a = [
-        c
-        for c in cards
-        if c.get("fullNumber") == "M2A-223" and c.get("rarity") == "MA"
-    ]
-    assert m2a and m2a[0].get("buyYenCardrush") == 5000, m2a
+    # ponytail: smoke checks (prices move — only require a positive CR buy match)
+    def must_cr_buy(pred, label: str) -> None:
+        hits = [c for c in cards if pred(c)]
+        assert hits, f"{label}: not found"
+        yen = hits[0].get("buyYenCardrush")
+        assert yen is not None and yen > 0, f"{label}: no CR buy ({hits[0].get('printId')})"
+
+    must_cr_buy(
+        lambda c: c.get("fullNumber") == "SV8-132" and c.get("rarity") == "SAR",
+        "SV8-132 SAR",
+    )
+    must_cr_buy(
+        lambda c: c.get("fullNumber") == "M2A-223" and c.get("rarity") == "MA",
+        "M2A-223 MA",
+    )
     cr_only = [c for c in cards if c.get("source") == "cardrush"]
     assert added == len(cr_only) and added > 500, (added, len(cr_only))
-    cp5 = [
-        c
-        for c in cr_only
-        if c.get("fullNumber") == "CP5-017" and c.get("name") == "ミュウ"
-    ]
-    assert cp5 and cp5[0]["buyYenCardrush"] == 160000, cp5
-    boss = [
-        c
-        for c in cards
-        if c.get("printId") == "SV1A 100/073" and c.get("rarity") == "SAR"
-    ]
-    assert len(boss) == 1 and boss[0].get("buyYenCardrush") == 4000, boss
+    must_cr_buy(
+        lambda c: c.get("printId") == "CP5 017/036" and c.get("name") == "ミュウ",
+        "CP5 017/036 ミュウ",
+    )
+    must_cr_buy(
+        lambda c: c.get("printId") == "SV1A 100/073" and c.get("rarity") == "SAR",
+        "SV1A 100/073 SAR",
+    )
     assert all(
         MIN_YEN <= c["buyYenCardrush"] < MAX_YEN
         for c in cards
         if c.get("buyYenCardrush") is not None
     )
-    print("self-check ok")
+    print("self-check ok", f"cr_only={len(cr_only)}")
 
-    enrich = ROOT / "scripts/enrich_pkmjp_names.py"
+    enrich = ROOT / "scripts/sync_pkm_names.py"
     if enrich.exists():
         subprocess.check_call(["python3", str(enrich)])
 

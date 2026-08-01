@@ -106,7 +106,66 @@ def parse_card(name: str, attr: str) -> dict | None:
     }
 
 
-def main() -> None:
+PRESERVE_SELL = (
+    "sellYenCardrush",
+    "sellUrlCardrush",
+    "sellMatchCardrush",
+)
+PRESERVE_TIER = ("tier", "tierRank")
+
+
+def card_preserve_key(c: dict) -> str:
+    pid = (c.get("printId") or "").strip()
+    rar = (c.get("rarity") or "").strip()
+    if pid:
+        return f"pid:{pid}|{rar}"
+    return f"fn:{(c.get('fullNumber') or '').strip()}|{rar}"
+
+
+def load_preserve(path: Path) -> tuple[dict[str, dict], dict | None]:
+    """Snapshot sell + tier fields from the previous buylist."""
+    if not path.exists():
+        return {}, None
+    try:
+        prev = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}, None
+    by: dict[str, dict] = {}
+    keys = PRESERVE_SELL + PRESERVE_TIER
+    for c in prev.get("cards") or []:
+        snap = {k: c[k] for k in keys if k in c}
+        if snap:
+            by[card_preserve_key(c)] = snap
+    return by, prev.get("cardrushSell")
+
+
+def apply_preserve(
+    cards: list[dict],
+    by: dict[str, dict],
+    *,
+    keep_sell: bool,
+) -> int:
+    """Copy prior sell/tier onto matching cards. Returns cards touched."""
+    keys = (PRESERVE_SELL + PRESERVE_TIER) if keep_sell else PRESERVE_TIER
+    touched = 0
+    for c in cards:
+        snap = by.get(card_preserve_key(c))
+        if not snap:
+            continue
+        changed = False
+        for k in keys:
+            if k not in snap:
+                continue
+            if c.get(k) != snap[k]:
+                c[k] = snap[k]
+                changed = True
+        if changed:
+            touched += 1
+    return touched
+
+
+def main(*, skip_sell: bool = False) -> None:
+    prev_by, prev_sell_meta = load_preserve(OUT)
     allp = fetch_all()
     cards: list[dict] = []
     skipped = {"bulk": 0, "paused": 0, "cheap": 0, "parse": 0}
@@ -179,16 +238,41 @@ def main() -> None:
     print(json.dumps(out["counts"], indent=2, ensure_ascii=False))
     print(f"wrote {OUT}")
     # English names, then Hareruya JPY buy prices
-    enrich = ROOT / "scripts/enrich_pkmjp_names.py"
+    enrich = ROOT / "scripts/sync_pkm_names.py"
     if enrich.exists():
         subprocess.check_call(["python3", str(enrich)])
-    hr = ROOT / "scripts/sync_hareruya_buylist.py"
+    hr = ROOT / "scripts/sync_pkm_hareruya_buy.py"
     if hr.exists():
         subprocess.check_call(["python3", str(hr)])
-    cr = ROOT / "scripts/enrich_cardrush_pkm_buy.py"
+    cr = ROOT / "scripts/sync_pkm_cardrush_buy.py"
     if cr.exists():
         subprocess.check_call(["python3", str(cr)])
-    cr_sell = ROOT / "scripts/enrich_cardrush_pkm_sell.py"
+
+    # ponytail: Beehive rewrite drops sell/tier — stitch them back by printId.
+    data = json.loads(OUT.read_text(encoding="utf-8"))
+    if skip_sell:
+        touched = apply_preserve(data["cards"], prev_by, keep_sell=True)
+        if prev_sell_meta and not data.get("cardrushSell"):
+            data["cardrushSell"] = prev_sell_meta
+        print(
+            f"preserved sell+tier on {touched}/{len(data['cards'])} cards "
+            f"(from {len(prev_by)} prior snapshots)"
+        )
+    else:
+        touched = apply_preserve(data["cards"], prev_by, keep_sell=False)
+        print(
+            f"preserved tier on {touched}/{len(data['cards'])} cards "
+            f"before CR sell scrape"
+        )
+    OUT.write_text(
+        json.dumps(data, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+
+    if skip_sell:
+        print("skip Card Rush sell (--skip-sell)")
+        return
+    cr_sell = ROOT / "scripts/sync_pkm_cardrush_sell.py"
     if cr_sell.exists():
         # needs curl_cffi (Frameworks 3.14 on this machine)
         py = "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3"
@@ -196,4 +280,13 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument(
+        "--skip-sell",
+        action="store_true",
+        help="Skip Card Rush sell scrape (faster buy-only refresh)",
+    )
+    args = ap.parse_args()
+    main(skip_sell=args.skip_sell)
